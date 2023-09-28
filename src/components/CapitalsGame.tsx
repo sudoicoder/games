@@ -6,13 +6,13 @@ export default function CapitalsGame({ data }: CapitalsGameProps) {
   const [unmatcheds] = useState(() => generateUnmatchedList(data))
   return (
     <div className={classes.game}>
-      {unmatcheds.map(({ kind, name }) => {
+      {unmatcheds.map(unmatched => {
         return (
           <button
-            key={`${kind}:${name}`}
+            key={`${unmatched.kind}:${unmatched.name}`}
             className={classes.tile}
           >
-            {name}
+            {unmatched.name}
           </button>
         )
       })}
