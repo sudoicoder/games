@@ -1,4 +1,7 @@
-export default function CapitalsGame({}: CapitalsGameProps) {
+import { useState } from "react"
+
+export default function CapitalsGame({ data }: CapitalsGameProps) {
+  const [unmatched] = useState(() => generateUnmatchedList(data))
   return <div>CapitalsGame</div>
 }
 
