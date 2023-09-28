@@ -19,3 +19,22 @@
 .tile-mismatched {
   background-color: salmon;
 }
+
+.success {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
+.success-message {
+  font-size: large;
+  color: darkgoldenrod;
+}
+
+.restart {
+  padding: 0.5em;
+  background-color: lightgreen;
+  color: darkslategray;
+  font-weight: bolder;
+  cursor: pointer;
+}
