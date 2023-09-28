@@ -3,10 +3,10 @@ import { useState } from "react"
 import classes from "@/styles/capitalsgame.module.css"
 
 export default function CapitalsGame({ data }: CapitalsGameProps) {
-  const [unmatched] = useState(() => generateUnmatchedList(data))
+  const [unmatcheds] = useState(() => generateUnmatchedList(data))
   return (
     <div className={classes.game}>
-      {unmatched.map(({ kind, name }) => {
+      {unmatcheds.map(({ kind, name }) => {
         return (
           <button
             key={`${kind}:${name}`}
