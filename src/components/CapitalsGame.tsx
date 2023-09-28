@@ -12,6 +12,9 @@ export default function CapitalsGame({ data }: CapitalsGameProps) {
       return
     }
     const previous = clicked[0]
+    if (previous === unmatched) {
+      return
+    }
     if (previous.kind === unmatched.kind) {
       setClicked([previous, unmatched])
       return
