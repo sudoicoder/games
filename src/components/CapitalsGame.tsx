@@ -4,15 +4,8 @@ import classes from "@/styles/capitalsgame.module.css"
 
 export default function CapitalsGame({ data }: CapitalsGameProps) {
   const [unmatcheds] = useState(() => generateUnmatchedList(data))
-  const selecteds = useRef(new Set<React.ElementRef<"button">>())
-  function handleClick(unmatched: Unmatched) {
-    if (selecteds.current.size >= 2) {
-      selecteds.current.forEach(selected => {
-        selected.className = classes.tile
-      })
-      selecteds.current.clear()
-    }
-  }
+  const [selected] = useState<Unmatched[]>([])
+  function handleClick(unmatched: Unmatched) {}
   return (
     <div className={classes.game}>
       {unmatcheds.map(unmatched => {
