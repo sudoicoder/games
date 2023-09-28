@@ -1,3 +1,16 @@
+import CapitalsGame from "@/components/CapitalsGame"
+
 export default function App() {
-  return <div>App</div>
+  return (
+    <div>
+      <CapitalsGame
+        data={{
+          Germany: "Berlin",
+          India: "New Delhi",
+          Turkiye: "Ankara",
+          Azerbaijan: "Baku",
+        }}
+      />
+    </div>
+  )
 }
