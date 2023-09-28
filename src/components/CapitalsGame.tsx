@@ -5,6 +5,7 @@ import classes from "@/styles/capitalsgame.module.css"
 export default function CapitalsGame({ data }: CapitalsGameProps) {
   const [unmatcheds, setUnmatched] = useState(() => generateUnmatchedList(data))
   const [clicked, setClicked] = useState<Unmatched[]>([])
+
   function handleClick(unmatched: Unmatched) {
     if (clicked.length !== 1) {
       setClicked([unmatched])
@@ -24,6 +25,7 @@ export default function CapitalsGame({ data }: CapitalsGameProps) {
     setClicked([])
     setUnmatched(ums => ums.filter(um => um !== previous && um !== unmatched))
   }
+
   return (
     <div className={classes.game}>
       {unmatcheds.map(unmatched => {
