@@ -11,3 +11,11 @@
   color: lightgray;
   cursor: pointer;
 }
+
+.tile-selected {
+  background-color: slateblue;
+}
+
+.tile-mismatch {
+  background-color: salmon;
+}
