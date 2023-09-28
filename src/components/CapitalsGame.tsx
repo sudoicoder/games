@@ -4,6 +4,7 @@ import classes from "@/styles/capitalsgame.module.css"
 
 export default function CapitalsGame({ data }: CapitalsGameProps) {
   const [unmatcheds] = useState(() => generateUnmatchedList(data))
+  function handleClick(unmatched: Unmatched) {}
   return (
     <div className={classes.game}>
       {unmatcheds.map(unmatched => {
@@ -11,6 +12,7 @@ export default function CapitalsGame({ data }: CapitalsGameProps) {
           <button
             key={`${unmatched.kind}:${unmatched.name}`}
             className={classes.tile}
+            onClick={() => handleClick(unmatched)}
           >
             {unmatched.name}
           </button>
