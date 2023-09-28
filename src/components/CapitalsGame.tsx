@@ -6,7 +6,7 @@ interface CapitalsGameProps {
   data: Record<Country, Capital>
 }
 
-function generatedUnmatchedList(data: CapitalsGameProps["data"]): Unmatched[] {
+function generateUnmatchedList(data: CapitalsGameProps["data"]): Unmatched[] {
   return Object.entries(data).flatMap(([country, capital]) => [
     { kind: "country", name: country },
     { kind: "capital", name: capital },
