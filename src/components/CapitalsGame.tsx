@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useState } from "react"
 
 import classes from "@/styles/capitalsgame.module.css"
 
@@ -9,10 +9,15 @@ export default function CapitalsGame({ data }: CapitalsGameProps) {
   return (
     <div className={classes.game}>
       {unmatcheds.map(unmatched => {
+        const extraClasses = !selected.includes(unmatched)
+          ? null
+          : selected.length < 2
+          ? classes["tile-selected"]
+          : classes["tile-mismatched"]
         return (
           <button
             key={`${unmatched.kind}:${unmatched.name}`}
-            className={classes.tile}
+            className={`${classes.tile} ${extraClasses ?? ""}`.trim()}
             onClick={() => handleClick(unmatched)}
           >
             {unmatched.name}
