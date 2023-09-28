@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import classes from "@/styles/capitals-game.module.css"
+import classes from "@/styles/capitalsgame.module.css"
 
 export default function CapitalsGame({ data }: CapitalsGameProps) {
   const [unmatched] = useState(() => generateUnmatchedList(data))
