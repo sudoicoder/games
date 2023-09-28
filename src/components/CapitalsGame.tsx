@@ -69,10 +69,12 @@ interface CapitalsGameProps {
 }
 
 function generateUnmatchedList(data: CapitalsGameProps["data"]): Unmatched[] {
-  return Object.entries(data).flatMap(([country, capital]) => [
-    { kind: "country", name: country },
-    { kind: "capital", name: capital },
-  ])
+  return Object.entries(data)
+    .flatMap(([country, capital]): Unmatched[] => [
+      { kind: "country", name: country },
+      { kind: "capital", name: capital },
+    ])
+    .sort(() => Math.random() - 0.5)
 }
 
 type Unmatched =
