@@ -1,0 +1,12 @@
+.game {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.tile {
+  padding: 0.8em;
+  border: 1px solid slategray;
+  background-color: darkslategray;
+  color: lightgray;
+}
