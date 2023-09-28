@@ -1,9 +1,10 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 
 import classes from "@/styles/capitalsgame.module.css"
 
 export default function CapitalsGame({ data }: CapitalsGameProps) {
   const [unmatcheds] = useState(() => generateUnmatchedList(data))
+  const selecteds = useRef(new Set<React.ElementRef<"button">>())
   function handleClick(unmatched: Unmatched) {}
   return (
     <div className={classes.game}>
