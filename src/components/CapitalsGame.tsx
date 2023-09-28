@@ -29,6 +29,8 @@ export default function CapitalsGame({ data }: CapitalsGameProps) {
     setUnmatched(ums => ums.filter(um => um !== previous && um !== unmatched))
   }
 
+  const success = unmatcheds.length <= 0 ? "Congratulations!!!" : null
+
   return (
     <div className={classes.game}>
       {unmatcheds.map(unmatched => {
@@ -47,6 +49,17 @@ export default function CapitalsGame({ data }: CapitalsGameProps) {
           </button>
         )
       })}
+      {!!success && (
+        <div className={classes.success}>
+          <span className={classes["success-message"]}>{success}</span>
+          <button
+            className={classes.restart}
+            onClick={() => setUnmatched(generateUnmatchedList(data))}
+          >
+            Restart
+          </button>
+        </div>
+      )}
     </div>
   )
 }
