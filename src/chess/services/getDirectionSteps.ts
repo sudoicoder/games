@@ -1,13 +1,5 @@
-export type Direction = [number, number]
-
-const directions: Record<
-  | "downwardDiagonals"
-  | "horizontals"
-  | "upwardDiagonals"
-  | "verticals"
-  | "jumps",
-  Direction[]
-> = {
+const STEPS = {
+  downwards: [[+1, 0]],
   downwardDiagonals: [
     [+1, -1],
     [+1, +1],
@@ -16,13 +8,10 @@ const directions: Record<
     [0, +1],
     [0, -1],
   ],
+  upwards: [[-1, 0]],
   upwardDiagonals: [
     [-1, -1],
     [-1, +1],
-  ],
-  verticals: [
-    [+1, 0],
-    [-1, 0],
   ],
   jumps: [
     [-2, -1],
@@ -34,6 +23,11 @@ const directions: Record<
     [+1, -2],
     [+1, +2],
   ],
+} as const
+
+export default function getDirectionSteps(direction: Direction) {
+  return STEPS[direction]
 }
 
-export default directions
+export type Direction = keyof typeof STEPS
+export type Step = [number, number]
