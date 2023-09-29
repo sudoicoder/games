@@ -1,7 +1,7 @@
-import circle from "../assets/circle.svg"
-import cross from "../assets/cross.svg"
+import circle from "./assets/circle.svg"
+import cross from "./assets/cross.svg"
 
-import classes from "../styles/tic-tac-toe-game.module.css"
+import classes from "./styles/tic-tac-toe-game.module.css"
 
 import useTicTacToeGameState from "./hooks/useTicTacToeGameState"
 

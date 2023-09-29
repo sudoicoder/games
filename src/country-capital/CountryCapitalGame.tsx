@@ -1,4 +1,4 @@
-import classes from "../styles/country-capital-game.module.css"
+import classes from "./styles/country-capital-game.module.css"
 
 import useCountryCapitalGameState from "./hooks/useCountryCapitalGameState"
 
