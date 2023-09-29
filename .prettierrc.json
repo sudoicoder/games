@@ -1,0 +1,13 @@
+{
+  "semi": false,
+  "arrowParens": "avoid",
+  "jsxSingleQuote": false,
+  "singleAttributePerLine": true,
+  "bracketSameLine": false,
+  "bracketSpacing": true,
+  "singleQuote": false,
+  "useTabs": false,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "filepath": "."
+}

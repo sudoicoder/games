@@ -1,0 +1,43 @@
+.game {
+  max-width: fit-content;
+  padding: 4px;
+  outline: 1px solid slategray;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.row {
+  display: flex;
+  gap: 5px;
+}
+
+.square {
+  width: 5em;
+  height: 5em;
+  padding: 1em;
+  border: none;
+  background: transparent;
+  outline: 1px solid slategray;
+}
+
+.square:hover:not(:disabled) {
+  cursor: pointer;
+  background-color: darkslategray;
+}
+
+.symbol {
+  width: 100%;
+}
+
+.symbol-x {
+  scale: 1;
+}
+
+.symbol-o {
+  scale: 1.5;
+}
+
+.strike {
+  background-color: seashell;
+}
