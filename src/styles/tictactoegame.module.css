@@ -1,10 +1,10 @@
 .game {
+  max-width: fit-content;
+  padding: 4px;
+  outline: 1px solid slategray;
   display: flex;
   flex-direction: column;
   gap: 5px;
-  outline: 1px solid slategray;
-  max-width: fit-content;
-  padding: 4px;
 }
 
 .row {
@@ -15,13 +15,25 @@
 .square {
   width: 5em;
   height: 5em;
-  background-color: transparent;
-  outline: 1px solid slategray;
-  outline: collapse;
+  padding: 1em;
   border: none;
-  cursor: pointer;
+  background: transparent;
+  outline: 1px solid slategray;
 }
 
-.square:hover {
+.square:hover:not(:disabled) {
+  cursor: pointer;
   background-color: darkslategray;
+}
+
+.symbol {
+  width: 100%;
+}
+
+.symbol-x {
+  scale: 1;
+}
+
+.symbol-o {
+  scale: 1.5;
 }
