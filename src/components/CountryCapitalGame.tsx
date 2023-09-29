@@ -1,6 +1,6 @@
 import useCountryCapitalGameState from "@/hooks/useCountryCapitalGameState"
 
-import classes from "@/styles/capitalsgame.module.css"
+import classes from "@/styles/countrycapitalgame.module.css"
 
 export default function CountryCapitalGame() {
   const { getPhase, handleClick, restartGame, unmatcheds } =
