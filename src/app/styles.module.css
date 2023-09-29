@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.select {
+  padding: 1em;
+  position: relative;
+  border: none;
+  border: 0.2em solid darkslategray;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.option {
+  background-color: darkslategray;
+}
