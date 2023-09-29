@@ -29,6 +29,14 @@
   cursor: pointer;
 }
 
-.square-clicked {
-  background-color: cadetblue;
+.square-selected {
+  background-color: goldenrod;
+}
+
+.square-possible {
+  background-color: burlywood;
+}
+
+.square-capturable {
+  background-color: coral;
 }
