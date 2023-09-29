@@ -1,12 +1,12 @@
-import empty from "../utils/empty"
+import type { ColorNotation } from "./getColorNotation"
+import type { EmptySquare } from "./getEmptySquare"
+import type { PieceNotation } from "./getPieceNotation"
 
-export type Color = "dark" | "light"
+import getEmpty from "./getEmptySquare"
 
-export type Category = "bishop" | "king" | "knight" | "pawn" | "queen" | "rook"
+export type Piece = `${ColorNotation}:${PieceNotation}`
 
-export type Piece = `${Color}:${Category}`
-
-export type Square = Piece | typeof empty
+export type Square = Piece | EmptySquare
 
 export type Board = Square[][]
 
@@ -23,10 +23,10 @@ export default function createBoard(): Board {
       "dark:rook",
     ],
     Array<Square>(8).fill("dark:pawn"),
-    Array<Square>(8).fill(empty),
-    Array<Square>(8).fill(empty),
-    Array<Square>(8).fill(empty),
-    Array<Square>(8).fill(empty),
+    Array<Square>(8).fill(getEmpty()),
+    Array<Square>(8).fill(getEmpty()),
+    Array<Square>(8).fill(getEmpty()),
+    Array<Square>(8).fill(getEmpty()),
     Array<Square>(8).fill("light:pawn"),
     [
       "light:rook",
