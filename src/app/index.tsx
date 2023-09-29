@@ -3,24 +3,17 @@ import { useState } from "react"
 import CountryCapitalGame from "@/country-capital/CountryCapitalGame"
 import TicTacToeGame from "@/tic-tac-toe/TicTacToeGame"
 
-import classes from "./styles.module.css"
+import classes from "./styles/app.module.css"
 
 const games: Record<string, () => JSX.Element> = {
   CountryCapitalGame,
   TicTacToeGame,
 }
 
-const keys = Object.keys(games)
+const gameNames = Object.keys(games)
 
 export default function App() {
-  const [selected, setSelected] = useState(keys[0])
-
-  function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    setSelected(e.target.value)
-  }
-
-  const Game = games[selected]
-
+  const { Game, handleChange, selected } = useAppState()
   return (
     <div className={classes["wrapper"]}>
       <select
@@ -28,16 +21,28 @@ export default function App() {
         value={selected}
         onChange={handleChange}
       >
-        {keys.map(key => (
+        {gameNames.map(gameName => (
           <option
-            key={key}
+            key={gameName}
             className={classes["option"]}
-            label={key.split(/(?=[A-Z])/g).join(" ")}
-            value={key}
+            label={gameName.split(/(?=[A-Z])/g).join(" ")}
+            value={gameName}
           />
         ))}
       </select>
       <Game />
     </div>
   )
+}
+
+function useAppState() {
+  const [selected, setSelected] = useState(gameNames[0])
+
+  function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    setSelected(e.target.value)
+  }
+
+  const Game = games[selected]
+
+  return { Game, handleChange, selected } as const
 }
