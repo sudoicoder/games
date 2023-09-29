@@ -1,4 +1,4 @@
-const COUNTRY_CAPITAL_RECORD = {
+const COUNTRY_CAPITAL_RECORD: Record<string, string> = {
   Australia: "Canberra",
   Argentina: "Buenos Aires",
   Azerbaijan: "Baku",
