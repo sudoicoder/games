@@ -1,4 +1,4 @@
-import type { TicTacToeSymbol } from "./getTicTacToeSymbols"
+import type { TicTacToeSymbol } from "./symbols"
 
 export type TicTacToeGrid = ("" | TicTacToeSymbol)[][]
 
