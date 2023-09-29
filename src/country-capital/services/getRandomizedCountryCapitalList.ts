@@ -1,9 +1,9 @@
 import randomize from "../utils/randomize"
 
-import getCountryCapitalRecord from "./getCountryCapitalRecord"
+import countryCapitalRecord from "./countryCapitalRecord"
 
-const COUNTRY_CAPITAL_LIST = Object.entries(getCountryCapitalRecord())
+const countryCapitalList = Object.entries(countryCapitalRecord)
 
 export default function getRandomizedCountryCapitalList() {
-  return COUNTRY_CAPITAL_LIST.flat().sort(randomize)
+  return countryCapitalList.flat().sort(randomize)
 }

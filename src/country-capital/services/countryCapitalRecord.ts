@@ -1,4 +1,4 @@
-const COUNTRY_CAPITAL_RECORD: Record<string, string> = {
+const countryCapitalRecord: Record<string, string> = {
   Australia: "Canberra",
   Argentina: "Buenos Aires",
   Azerbaijan: "Baku",
@@ -36,6 +36,4 @@ const COUNTRY_CAPITAL_RECORD: Record<string, string> = {
   Vietnam: "Hanoi",
 }
 
-export default function getCountryCapitalRecord() {
-  return COUNTRY_CAPITAL_RECORD
-}
+export default countryCapitalRecord
