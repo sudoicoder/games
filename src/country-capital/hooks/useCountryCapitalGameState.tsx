@@ -1,7 +1,7 @@
 import { useState } from "react"
 
-import getRandomizedCountryCapitalList from "@/services/getRandomizedCountryCapitalList"
-import isCountryCapitalMatched from "@/services/isCountryCapitalMatched"
+import getRandomizedCountryCapitalList from "../services/getRandomizedCountryCapitalList"
+import isCountryCapitalMatched from "../services/isCountryCapitalMatched"
 
 export default function useCountryCapitalGameState() {
   const [unmatcheds, setUnmatched] = useState(getRandomizedCountryCapitalList)

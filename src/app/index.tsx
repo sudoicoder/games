@@ -1,9 +1,9 @@
-import CountryCapitalGame from "@/components/CountryCapitalGame"
+import TicTacToeGame from "@/tic-tac-toe/TicTacToeGame"
 
 export default function App() {
   return (
     <div>
-      <CountryCapitalGame />
+      <TicTacToeGame />
     </div>
   )
 }
