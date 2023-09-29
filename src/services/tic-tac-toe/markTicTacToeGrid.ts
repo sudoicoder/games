@@ -1,5 +1,5 @@
-import type { TicTacToeGrid } from "./create"
-import type { TicTacToeSymbol } from "./symbols"
+import type { TicTacToeGrid } from "./createTicTacToeGrid"
+import type { TicTacToeSymbol } from "./getTicTacToeSymbols"
 
 export default function markTicTacToeGridWithSymbol(
   grid: TicTacToeGrid,

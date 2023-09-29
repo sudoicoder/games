@@ -1,12 +1,12 @@
 import { useRef, useState } from "react"
 
-import type { TicTacToeSymbol } from "@/services/tic-tac-toe/symbols"
-import type { TicTacToeStrike } from "@/services/tic-tac-toe/strike"
+import type { TicTacToeSymbol } from "@/services/tic-tac-toe/getTicTacToeSymbols"
+import type { TicTacToeStrike } from "@/services/tic-tac-toe/getTicTacToeStrike"
 
-import createTicTacToeGrid from "@/services/tic-tac-toe/create"
-import getTicTacToeStrike from "@/services/tic-tac-toe/strike"
-import markTicTacToeGridWithSymbol from "@/services/tic-tac-toe/mark"
-import flipTicTacToeTurn from "@/services/tic-tac-toe/flip"
+import createTicTacToeGrid from "@/services/tic-tac-toe/createTicTacToeGrid"
+import getTicTacToeStrike from "@/services/tic-tac-toe/getTicTacToeStrike"
+import markTicTacToeGridWithSymbol from "@/services/tic-tac-toe/markTicTacToeGrid"
+import flipTicTacToeTurn from "@/services/tic-tac-toe/flipTicTacToeTurn"
 
 export default function useTicTacToeGameState() {
   const [grid, setGrid] = useState(() => createTicTacToeGrid(3))

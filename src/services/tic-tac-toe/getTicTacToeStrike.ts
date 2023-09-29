@@ -1,4 +1,4 @@
-import type { TicTacToeGrid } from "./create"
+import type { TicTacToeGrid } from "./createTicTacToeGrid"
 
 export type TicTacToeStrike = [number, number][]
 
