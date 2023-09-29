@@ -23,7 +23,7 @@ export default function useCountryCapitalGameState() {
     if (previous === current) {
       return
     }
-    if (isCountryCapitalMatched(previous, current)) {
+    if (!isCountryCapitalMatched(previous, current)) {
       setClicked([previous, current])
       return
     }
@@ -35,5 +35,13 @@ export default function useCountryCapitalGameState() {
     setUnmatched(getRandomizedCountryCapitalList)
   }
 
-  return { getPhase, handleClick, restartGame, unmatcheds }
+  const isGameCompleted = unmatcheds.length === 0
+
+  return {
+    getPhase,
+    handleClick,
+    isGameCompleted,
+    restartGame,
+    unmatcheds,
+  } as const
 }

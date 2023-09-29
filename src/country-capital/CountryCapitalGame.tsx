@@ -3,10 +3,8 @@ import classes from "./styles/country-capital-game.module.css"
 import useCountryCapitalGameState from "./hooks/useCountryCapitalGameState"
 
 export default function CountryCapitalGame() {
-  const { getPhase, handleClick, restartGame, unmatcheds } =
+  const { getPhase, handleClick, isGameCompleted, restartGame, unmatcheds } =
     useCountryCapitalGameState()
-
-  const isGameComplete = unmatcheds.length <= 0
 
   return (
     <div className={classes.game}>
@@ -23,7 +21,7 @@ export default function CountryCapitalGame() {
           </button>
         )
       })}
-      {isGameComplete && (
+      {isGameCompleted && (
         <div className={classes.success}>
           <span className={classes["success-message"]}>Congratulations!!!</span>
           <button
