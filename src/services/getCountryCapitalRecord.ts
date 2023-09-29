@@ -37,5 +37,5 @@ const countryCapitalRecord = {
   Turkiye: "Ankara",
   "United Kingdom of Great Britain and Northern Ireland": "London",
   "United States of America": "Washington DC",
-  Vietnam: "",
+  Vietnam: "Hanoi",
 }
