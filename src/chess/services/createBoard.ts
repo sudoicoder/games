@@ -1,3 +1,5 @@
+import empty from "../utils/empty"
+
 export type Color = "light" | "dark"
 
 export type Category = "king" | "queen" | "rook" | "bishop" | "knight" | "pawn"
@@ -7,12 +9,12 @@ export type Piece = {
   color: Color
 }
 
-export type Square = Piece | null
+export type Square = Piece | typeof empty
 
 export type Board = Square[][]
 
 export default function createBoard(): Board {
-  const board = Array<(Piece | null)[]>(8)
+  const board = Array<Square[]>(8)
   for (let rank = 0; rank < board.length; rank++) {
     board[rank] = createRank(rank)
   }
@@ -33,7 +35,7 @@ function createRank(rank: number): Square[] {
   if (rank === 7) {
     return createRoyals("light")
   }
-  return squares.fill(null)
+  return squares.fill(empty)
 }
 
 function createRoyals(color: Color): Piece[] {
