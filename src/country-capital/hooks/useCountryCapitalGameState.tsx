@@ -21,6 +21,7 @@ export default function useCountryCapitalGameState() {
     }
     const previous = clicked[0]
     if (previous === current) {
+      setClicked([])
       return
     }
     if (!isCountryCapitalMatched(previous, current)) {
