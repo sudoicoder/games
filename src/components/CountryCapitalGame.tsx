@@ -3,58 +3,32 @@ import { useState } from "react"
 import classes from "@/styles/capitalsgame.module.css"
 
 export default function CountryCapitalGame({ data }: CapitalsGameProps) {
-  const [unmatcheds, setUnmatched] = useState(() => generateUnmatchedList(data))
-  const [clicked, setClicked] = useState<Unmatched[]>([])
+  const { getPhase, handleClick, restartGame, unmatcheds } =
+    useCountryCapitalGameState(data)
 
-  function handleClick(unmatched: Unmatched) {
-    if (clicked.length !== 1) {
-      setClicked([unmatched])
-      return
-    }
-    const previous = clicked[0]
-    if (previous === unmatched) {
-      return
-    }
-    if (previous.kind === unmatched.kind) {
-      setClicked([previous, unmatched])
-      return
-    }
-    const country = previous.kind === "country" ? previous.name : unmatched.name
-    const capital = previous.kind === "capital" ? previous.name : unmatched.name
-    if (data[country] !== capital) {
-      setClicked([previous, unmatched])
-      return
-    }
-    setClicked([])
-    setUnmatched(ums => ums.filter(um => um !== previous && um !== unmatched))
-  }
-
-  const success = unmatcheds.length <= 0 ? "Congratulations!!!" : null
+  const isGameComplete = unmatcheds.length <= 0
 
   return (
     <div className={classes.game}>
       {unmatcheds.map(unmatched => {
-        const extraClasses = !clicked.includes(unmatched)
-          ? null
-          : clicked.length < 2
-          ? classes["tile-selected"]
-          : classes["tile-mismatched"]
+        const phase = getPhase(unmatched)
+        const extraClasses = phase === "default" ? "" : classes[`tile-${phase}`]
         return (
           <button
-            key={`${unmatched.kind}:${unmatched.name}`}
-            className={`${classes.tile} ${extraClasses ?? ""}`.trim()}
+            key={unmatched}
+            className={`${classes.tile} ${extraClasses}`.trim()}
             onClick={() => handleClick(unmatched)}
           >
-            {unmatched.name}
+            {unmatched}
           </button>
         )
       })}
-      {!!success && (
+      {isGameComplete && (
         <div className={classes.success}>
-          <span className={classes["success-message"]}>{success}</span>
+          <span className={classes["success-message"]}>Congratulations!!!</span>
           <button
             className={classes.restart}
-            onClick={() => setUnmatched(generateUnmatchedList(data))}
+            onClick={restartGame}
           >
             Restart
           </button>
@@ -65,27 +39,48 @@ export default function CountryCapitalGame({ data }: CapitalsGameProps) {
 }
 
 interface CapitalsGameProps {
-  data: Record<Country, Capital>
+  data: Record<string, string>
 }
 
-function generateUnmatchedList(data: CapitalsGameProps["data"]): Unmatched[] {
-  return Object.entries(data)
-    .flatMap(([country, capital]): Unmatched[] => [
-      { kind: "country", name: country },
-      { kind: "capital", name: capital },
-    ])
-    .sort(() => Math.random() - 0.5)
+function useCountryCapitalGameState(data: CapitalsGameProps["data"]) {
+  const [unmatcheds, setUnmatched] = useState(() => generateUnmatchedList(data))
+  const [clicked, setClicked] = useState<string[]>([])
+
+  function getPhase(value: string) {
+    if (clicked.includes(value)) {
+      return clicked.length < 2 ? "selected" : "mismatched"
+    }
+    return "default"
+  }
+
+  function handleClick(value: string) {
+    if (clicked.length !== 1) {
+      setClicked([value])
+      return
+    }
+    const previous = clicked[0]
+    if (previous === value) {
+      return
+    }
+    if (data[previous] !== value && data[value] !== previous) {
+      setClicked([previous, value])
+      return
+    }
+    setClicked([])
+    setUnmatched(ums => ums.filter(um => um !== previous && um !== value))
+  }
+
+  function restartGame() {
+    setUnmatched(generateUnmatchedList(data))
+  }
+
+  return { getPhase, handleClick, restartGame, unmatcheds }
 }
 
-type Unmatched =
-  | {
-      kind: "country"
-      name: Country
-    }
-  | {
-      kind: "capital"
-      name: Capital
-    }
+function generateUnmatchedList(data: CapitalsGameProps["data"]) {
+  return Object.entries(data).flat().sort(randamize)
+}
 
-type Country = string
-type Capital = string
+function randamize() {
+  return Math.random() - 0.5
+}
