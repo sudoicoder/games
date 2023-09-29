@@ -1,7 +1,5 @@
 import type { TicTacToeGrid } from "./createTicTacToeGrid"
 
-type Position = [number, number]
-
 export function getTicTacToeStrike(grid: TicTacToeGrid) {
   let strike = getMainDiagonalStrike(grid)
   if (strike) return strike
@@ -59,3 +57,5 @@ function getColStrike(grid: TicTacToeGrid, col: number) {
   }
   return strike
 }
+
+type Position = [number, number]

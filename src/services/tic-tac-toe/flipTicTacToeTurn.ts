@@ -1,4 +1,4 @@
-import assertUnreachable from "@/utils/assertUnreachable"
+import AssertUnreachableError from "@/utils/AssertUnreachableError"
 
 import type { TicTacToeSymbol } from "./getTicTacToeSymbols"
 
@@ -9,6 +9,6 @@ export default function flipTicTacToeTurn(symbol: TicTacToeSymbol) {
     case "O":
       return "X"
     default:
-      assertUnreachable(symbol)
+      throw new AssertUnreachableError(symbol)
   }
 }
