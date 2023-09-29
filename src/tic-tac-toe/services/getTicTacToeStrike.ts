@@ -13,18 +13,18 @@ export default function getTicTacToeStrike(grid: TicTacToeGrid) {
     strike = getColStrike(grid, k)
     if (strike) return strike
   }
-  return []
+  return null
 }
 
 function getMainDiagonalStrike(grid: TicTacToeGrid) {
   const symbol = grid[0][0]
   if (symbol === "") {
-    return []
+    return null
   }
   const strike: TicTacToeStrike = []
   for (let k = 0; k < grid.length; k++) {
     if (grid[k][k] !== symbol) {
-      return []
+      return null
     }
     strike.push([k, k])
   }
@@ -34,12 +34,12 @@ function getMainDiagonalStrike(grid: TicTacToeGrid) {
 function getOffDiagonalStrike(grid: TicTacToeGrid) {
   const symbol = grid[0][grid.length - 1]
   if (symbol === "") {
-    return []
+    return null
   }
   const strike: TicTacToeStrike = []
   for (let k = 0; k < grid.length; k++) {
     if (grid[k][grid.length - 1 - k] !== symbol) {
-      return []
+      return null
     }
     strike.push([k, grid.length - 1 - k])
   }
@@ -49,12 +49,12 @@ function getOffDiagonalStrike(grid: TicTacToeGrid) {
 function getRowStrike(grid: TicTacToeGrid, row: number) {
   const symbol = grid[row][0]
   if (symbol === "") {
-    return []
+    return null
   }
   const strike: TicTacToeStrike = []
   for (let k = 0; k < grid[row].length; k++) {
     if (grid[row][k] !== symbol) {
-      return []
+      return null
     }
     strike.push([row, k])
   }
@@ -64,12 +64,12 @@ function getRowStrike(grid: TicTacToeGrid, row: number) {
 function getColStrike(grid: TicTacToeGrid, col: number) {
   const symbol = grid[0][col]
   if (symbol === "") {
-    return []
+    return null
   }
   const strike: TicTacToeStrike = []
   for (let k = 0; k < grid.length; k++) {
     if (grid[k][col] !== symbol) {
-      return []
+      return null
     }
     strike.push([k, col])
   }
