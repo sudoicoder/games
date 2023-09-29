@@ -16,7 +16,7 @@ export default function getTicTacToeStrike(grid: TicTacToeGrid) {
   return []
 }
 
-function getMainDiagonalStrike(grid: TicTacToeGrid) {
+export function getMainDiagonalStrike(grid: TicTacToeGrid) {
   const strike: TicTacToeStrike = []
   for (let k = 0; k < grid.length; k++) {
     if (grid[k][k] !== grid[0][0]) {
@@ -27,7 +27,7 @@ function getMainDiagonalStrike(grid: TicTacToeGrid) {
   return strike
 }
 
-function getOffDiagonalStrike(grid: TicTacToeGrid) {
+export function getOffDiagonalStrike(grid: TicTacToeGrid) {
   const strike: TicTacToeStrike = []
   for (let k = 0; k < grid.length; k++) {
     if (grid[k][grid.length - 1 - k] !== grid[0][grid.length - 1]) {
@@ -38,7 +38,7 @@ function getOffDiagonalStrike(grid: TicTacToeGrid) {
   return strike
 }
 
-function getRowStrike(grid: TicTacToeGrid, row: number) {
+export function getRowStrike(grid: TicTacToeGrid, row: number) {
   const strike: TicTacToeStrike = []
   for (let k = 0; k < grid[row].length; k++) {
     if (grid[row][k] !== grid[row][0]) {
@@ -49,7 +49,7 @@ function getRowStrike(grid: TicTacToeGrid, row: number) {
   return strike
 }
 
-function getColStrike(grid: TicTacToeGrid, col: number) {
+export function getColStrike(grid: TicTacToeGrid, col: number) {
   const strike: TicTacToeStrike = []
   for (let k = 0; k < grid.length; k++) {
     if (grid[k][col] !== grid[0][col]) {
