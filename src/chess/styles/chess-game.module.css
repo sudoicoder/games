@@ -1,0 +1,33 @@
+.board {
+  display: grid;
+}
+
+.rank {
+  display: flex;
+}
+
+.square {
+  width: 5em;
+  height: 5em;
+  padding: 0.5em;
+}
+
+.square-light {
+  background-color: antiquewhite;
+}
+
+.square-dark {
+  background-color: darkseagreen;
+}
+
+.piece {
+  width: 100%;
+}
+
+.square:has(.piece:hover) {
+  background-color: burlywood;
+}
+
+.square-clicked {
+  background-color: cadetblue;
+}
