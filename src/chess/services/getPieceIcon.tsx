@@ -1,3 +1,5 @@
+import AssertUnreachableError from "@/utils/AssertUnreachableError"
+
 import lightBishop from "../assets/light-bishop.svg"
 import lightKing from "../assets/light-king.svg"
 import lightKnight from "../assets/light-knight.svg"
@@ -10,6 +12,7 @@ import darkKnight from "../assets/dark-knight.svg"
 import darkPawn from "../assets/dark-pawn.svg"
 import darkQueen from "../assets/dark-queen.svg"
 import darkRook from "../assets/dark-rook.svg"
+
 import type { Piece } from "./createBoard"
 
 export default function getPieceIcon(piece: Piece) {
@@ -26,5 +29,7 @@ export default function getPieceIcon(piece: Piece) {
       return piece.color === "light" ? lightQueen : darkQueen
     case "rook":
       return piece.color === "light" ? lightRook : darkRook
+    default:
+      throw new AssertUnreachableError(piece.category)
   }
 }
