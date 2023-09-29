@@ -16,10 +16,14 @@ export default function getTicTacToeStrike(grid: TicTacToeGrid) {
   return []
 }
 
-export function getMainDiagonalStrike(grid: TicTacToeGrid) {
+function getMainDiagonalStrike(grid: TicTacToeGrid) {
+  const symbol = grid[0][0]
+  if (symbol === "") {
+    return []
+  }
   const strike: TicTacToeStrike = []
   for (let k = 0; k < grid.length; k++) {
-    if (grid[k][k] !== grid[0][0]) {
+    if (grid[k][k] !== symbol) {
       return []
     }
     strike.push([k, k])
@@ -27,10 +31,14 @@ export function getMainDiagonalStrike(grid: TicTacToeGrid) {
   return strike
 }
 
-export function getOffDiagonalStrike(grid: TicTacToeGrid) {
+function getOffDiagonalStrike(grid: TicTacToeGrid) {
+  const symbol = grid[0][grid.length - 1]
+  if (symbol === "") {
+    return []
+  }
   const strike: TicTacToeStrike = []
   for (let k = 0; k < grid.length; k++) {
-    if (grid[k][grid.length - 1 - k] !== grid[0][grid.length - 1]) {
+    if (grid[k][grid.length - 1 - k] !== symbol) {
       return []
     }
     strike.push([k, grid.length - 1 - k])
@@ -38,10 +46,14 @@ export function getOffDiagonalStrike(grid: TicTacToeGrid) {
   return strike
 }
 
-export function getRowStrike(grid: TicTacToeGrid, row: number) {
+function getRowStrike(grid: TicTacToeGrid, row: number) {
+  const symbol = grid[row][0]
+  if (symbol === "") {
+    return []
+  }
   const strike: TicTacToeStrike = []
   for (let k = 0; k < grid[row].length; k++) {
-    if (grid[row][k] !== grid[row][0]) {
+    if (grid[row][k] !== symbol) {
       return []
     }
     strike.push([row, k])
@@ -49,10 +61,14 @@ export function getRowStrike(grid: TicTacToeGrid, row: number) {
   return strike
 }
 
-export function getColStrike(grid: TicTacToeGrid, col: number) {
+function getColStrike(grid: TicTacToeGrid, col: number) {
+  const symbol = grid[0][col]
+  if (symbol === "") {
+    return []
+  }
   const strike: TicTacToeStrike = []
   for (let k = 0; k < grid.length; k++) {
-    if (grid[k][col] !== grid[0][col]) {
+    if (grid[k][col] !== symbol) {
       return []
     }
     strike.push([k, col])
