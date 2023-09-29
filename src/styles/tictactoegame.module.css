@@ -1,0 +1,27 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  outline: 1px solid slategray;
+  max-width: fit-content;
+  padding: 4px;
+}
+
+.row {
+  display: flex;
+  gap: 5px;
+}
+
+.square {
+  width: 5em;
+  height: 5em;
+  background-color: transparent;
+  outline: 1px solid slategray;
+  outline: collapse;
+  border: none;
+  cursor: pointer;
+}
+
+.square:hover {
+  background-color: darkslategray;
+}
