@@ -2,7 +2,10 @@ export type Color = "light" | "dark"
 
 export type Category = "king" | "queen" | "rook" | "bishop" | "knight" | "pawn"
 
-export type Piece = `${Color}/${Category}`
+export type Piece = {
+  category: Category
+  color: Color
+}
 
 export type Square = Piece | null
 
@@ -35,17 +38,21 @@ function createRank(rank: number): Square[] {
 
 function createRoyals(color: Color): Piece[] {
   const royals = Array<Piece>(8)
-  royals[0] = `${color}/rook`
-  royals[1] = `${color}/knight`
-  royals[2] = `${color}/bishop`
-  royals[3] = `${color}/queen`
-  royals[4] = `${color}/king`
-  royals[5] = `${color}/bishop`
-  royals[6] = `${color}/knight`
-  royals[7] = `${color}/rook`
+  royals[0] = { category: "rook", color }
+  royals[1] = { category: "knight", color }
+  royals[2] = { category: "bishop", color }
+  royals[3] = { category: "queen", color }
+  royals[4] = { category: "king", color }
+  royals[5] = { category: "bishop", color }
+  royals[6] = { category: "knight", color }
+  royals[7] = { category: "rook", color }
   return royals
 }
 
 function createPawns(color: Color): Piece[] {
-  return Array<Piece>(8).fill(`${color}/pawn`)
+  const pawns = Array<Piece>(8)
+  for (let file = 0; file < pawns.length; file++) {
+    pawns[file] = { category: "pawn", color }
+  }
+  return pawns
 }
