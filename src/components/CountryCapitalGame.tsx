@@ -1,10 +1,10 @@
-import { useState } from "react"
+import useCountryCapitalGameState from "@/hooks/useCountryCapitalGameState"
 
 import classes from "@/styles/capitalsgame.module.css"
 
-export default function CountryCapitalGame({ data }: CapitalsGameProps) {
+export default function CountryCapitalGame() {
   const { getPhase, handleClick, restartGame, unmatcheds } =
-    useCountryCapitalGameState(data)
+    useCountryCapitalGameState()
 
   const isGameComplete = unmatcheds.length <= 0
 
@@ -36,51 +36,4 @@ export default function CountryCapitalGame({ data }: CapitalsGameProps) {
       )}
     </div>
   )
-}
-
-interface CapitalsGameProps {
-  data: Record<string, string>
-}
-
-function useCountryCapitalGameState(data: CapitalsGameProps["data"]) {
-  const [unmatcheds, setUnmatched] = useState(() => generateUnmatchedList(data))
-  const [clicked, setClicked] = useState<string[]>([])
-
-  function getPhase(value: string) {
-    if (clicked.includes(value)) {
-      return clicked.length < 2 ? "selected" : "mismatched"
-    }
-    return "default"
-  }
-
-  function handleClick(value: string) {
-    if (clicked.length !== 1) {
-      setClicked([value])
-      return
-    }
-    const previous = clicked[0]
-    if (previous === value) {
-      return
-    }
-    if (data[previous] !== value && data[value] !== previous) {
-      setClicked([previous, value])
-      return
-    }
-    setClicked([])
-    setUnmatched(ums => ums.filter(um => um !== previous && um !== value))
-  }
-
-  function restartGame() {
-    setUnmatched(generateUnmatchedList(data))
-  }
-
-  return { getPhase, handleClick, restartGame, unmatcheds }
-}
-
-function generateUnmatchedList(data: CapitalsGameProps["data"]) {
-  return Object.entries(data).flat().sort(randamize)
-}
-
-function randamize() {
-  return Math.random() - 0.5
 }
