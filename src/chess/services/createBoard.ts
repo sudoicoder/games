@@ -1,8 +1,8 @@
 import empty from "../utils/empty"
 
-export type Color = "light" | "dark"
+export type Color = "dark" | "light"
 
-export type Category = "king" | "queen" | "rook" | "bishop" | "knight" | "pawn"
+export type Category = "bishop" | "king" | "knight" | "pawn" | "queen" | "rook"
 
 export type Piece = {
   category: Category
