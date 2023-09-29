@@ -1,16 +1,16 @@
 # Game
 
-# Available Games
+## Available Games
 
-## Country Capital Game
+### Country Capital Game
 
 - A game that requires you to match countries with their capital
 
-## Tic Tac Toe
+### Tic Tac Toe
 
 - An X-O game
 
-# Developed With
+## Developed With
 
 1. React
 2. Vite
