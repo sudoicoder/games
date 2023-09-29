@@ -1,8 +1,11 @@
 import AssertUnreachableError from "@/utils/AssertUnreachableError"
 
+import offset from "../utils/offset"
 import empty from "../utils/empty"
 
 import type { Board } from "./createBoard"
+import type { Direction } from "./directions"
+import directions from "./directions"
 
 export type PossibleMove = [number, number]
 
@@ -36,9 +39,49 @@ export default function getPossibleMoves(
 function getBishopPossibleMoves(
   board: Board,
   row: number,
-  col: number
+  col: number,
+  limit?: number
 ): PossibleMove[] {
-  return []
+  return [
+    ...generatePossibleMoves(
+      board,
+      row,
+      col,
+      directions.upwardDiagonals,
+      limit
+    ),
+    ...generatePossibleMoves(
+      board,
+      row,
+      col,
+      directions.downwardDiagonals,
+      limit
+    ),
+  ]
+}
+
+function getRookPossibleMoves(
+  board: Board,
+  row: number,
+  col: number,
+  limit?: number
+): PossibleMove[] {
+  return [
+    ...generatePossibleMoves(board, row, col, directions.horizontals, limit),
+    ...generatePossibleMoves(board, row, col, directions.verticals, limit),
+  ]
+}
+
+function getQueenPossibleMoves(
+  board: Board,
+  row: number,
+  col: number,
+  limit?: number
+): PossibleMove[] {
+  return [
+    ...getBishopPossibleMoves(board, row, col, limit),
+    ...getRookPossibleMoves(board, row, col, limit),
+  ]
 }
 
 function getKingPossibleMoves(
@@ -46,7 +89,7 @@ function getKingPossibleMoves(
   row: number,
   col: number
 ): PossibleMove[] {
-  return []
+  return getQueenPossibleMoves(board, row, col, 1)
 }
 
 function getKnightPossibleMoves(
@@ -54,7 +97,7 @@ function getKnightPossibleMoves(
   row: number,
   col: number
 ): PossibleMove[] {
-  return []
+  return generatePossibleMoves(board, row, col, directions.jumps, 1)
 }
 
 function getPawnPossibleMoves(
@@ -62,21 +105,60 @@ function getPawnPossibleMoves(
   row: number,
   col: number
 ): PossibleMove[] {
-  return []
+  const piece = board[row][col]
+  if (piece === empty) {
+    return []
+  }
+  const walks = generatePossibleMoves(
+    board,
+    row,
+    col,
+    [directions.verticals[piece.color === "light" ? 0 : 1]],
+    row === 1 || row === 7 ? 2 : 1
+  )
+  const attacks = generatePossibleMoves(
+    board,
+    row,
+    col,
+    directions[
+      piece.color === "light" ? "upwardDiagonals" : "downwardDiagonals"
+    ],
+    1
+  )
+  return [
+    ...walks.filter(w => board[w[0]][w[1]] === empty),
+    ...attacks.filter(a => board[a[0]][a[1]] !== empty),
+  ]
 }
 
-function getQueenPossibleMoves(
+function generatePossibleMoves(
   board: Board,
   row: number,
-  col: number
+  col: number,
+  directions: Readonly<Direction[]>,
+  limit?: number
 ): PossibleMove[] {
-  return []
-}
-
-function getRookPossibleMoves(
-  board: Board,
-  row: number,
-  col: number
-): PossibleMove[] {
-  return []
+  const self = board[row][col]
+  if (self === empty) {
+    return []
+  }
+  const moves: PossibleMove[] = []
+  for (const direction of directions) {
+    let next = offset(row, col, direction)
+    while (next) {
+      const [r, c] = next
+      const piece = board[r][c]
+      if (piece !== empty) {
+        if (piece.color === self.color) {
+          break
+        }
+      }
+      moves.push(next)
+      if (limit && moves.length === limit) {
+        break
+      }
+      next = offset(next[0], next[1], direction)
+    }
+  }
+  return moves
 }
