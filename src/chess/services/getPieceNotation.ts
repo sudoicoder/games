@@ -7,10 +7,9 @@ const NOTATIONS = {
   rook: "rook",
 } as const
 
-export type PieceType = keyof typeof NOTATIONS
-
-export type PieceNotation = (typeof NOTATIONS)[PieceType]
-
 export default function getPieceNotation(pieceType: PieceType) {
   return NOTATIONS[pieceType]
 }
+
+export type PieceType = keyof typeof NOTATIONS
+export type PieceNotation = (typeof NOTATIONS)[PieceType]

@@ -4,12 +4,6 @@ import type { PieceNotation } from "./getPieceNotation"
 
 import getEmpty from "./getEmptySquare"
 
-export type Piece = `${ColorNotation}:${PieceNotation}`
-
-export type Square = Piece | EmptySquare
-
-export type Board = Square[][]
-
 export default function createBoard(): Board {
   return [
     [
@@ -40,3 +34,7 @@ export default function createBoard(): Board {
     ],
   ]
 }
+
+export type Piece = `${ColorNotation}:${PieceNotation}`
+export type Square = Piece | EmptySquare
+export type Board = Square[][]
