@@ -8,16 +8,18 @@ import getTicTacToeStrike from "../services/getTicTacToeStrike"
 import markTicTacToeGridWithSymbol from "../services/markTicTacToeGrid"
 import flipTicTacToeTurn from "../services/flipTicTacToeTurn"
 
+import draw from "../utils/draw"
+
 export default function useTicTacToeGameState() {
   const [grid, setGrid] = useState(() => createTicTacToeGrid(3))
-  const [strike, setStrike] = useState<TicTacToeStrike>([])
+  const [strike, setStrike] = useState<TicTacToeStrike | null>(null)
 
   const turn = useRef<TicTacToeSymbol>("X")
 
-  const isGameCompleted = strike.length !== 0
-
   function shouldStrike(r: number, c: number) {
-    return strike.some(([row, col]) => row === r && col === c)
+    return (
+      strike !== null && strike.some(([row, col]) => row === r && col === c)
+    )
   }
 
   function handleClick(r: number, c: number) {
@@ -32,9 +34,28 @@ export default function useTicTacToeGameState() {
 
   function restartGame() {
     setGrid(createTicTacToeGrid(3))
-    setStrike([])
+    setStrike(null)
     turn.current = "X"
   }
 
-  return { grid, handleClick, isGameCompleted, restartGame, shouldStrike }
+  function getWinner() {
+    return strike
+      ? grid[strike[0][0]][strike[0][1]]
+      : grid.every(r => r.every(v => v !== ""))
+      ? draw
+      : ""
+  }
+
+  const winner = getWinner()
+
+  const isGameCompleted = winner === draw || winner !== ""
+
+  return {
+    grid,
+    handleClick,
+    isGameCompleted,
+    restartGame,
+    shouldStrike,
+    winner,
+  } as const
 }

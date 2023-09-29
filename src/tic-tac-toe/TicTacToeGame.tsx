@@ -4,12 +4,22 @@ import cross from "./assets/cross.svg"
 import classes from "./styles/tic-tac-toe-game.module.css"
 
 import useTicTacToeGameState from "./hooks/useTicTacToeGameState"
+import draw from "./utils/draw"
 
 export default function TicTacToeGame() {
-  const { grid, handleClick, isGameCompleted, restartGame, shouldStrike } =
-    useTicTacToeGameState()
+  const {
+    grid,
+    handleClick,
+    isGameCompleted,
+    restartGame,
+    shouldStrike,
+    winner,
+  } = useTicTacToeGameState()
   return (
     <div className={classes.game}>
+      {winner !== "" && (
+        <div>{winner === draw ? "Draw!" : `${winner} won!`}</div>
+      )}
       {grid.map((row, ri) => {
         return (
           <div
