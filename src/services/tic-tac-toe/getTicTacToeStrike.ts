@@ -1,6 +1,6 @@
 import type { TicTacToeGrid } from "./createTicTacToeGrid"
 
-export function getTicTacToeStrike(grid: TicTacToeGrid) {
+export default function getTicTacToeStrike(grid: TicTacToeGrid) {
   let strike = getMainDiagonalStrike(grid)
   if (strike) return strike
   strike = getOffDiagonalStrike(grid)
