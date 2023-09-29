@@ -1,4 +1,4 @@
-import randomize from "@/utils/randomize"
+import randomize from "@/services/country-capital/randomize"
 
 import getCountryCapitalRecord from "./getCountryCapitalRecord"
 
