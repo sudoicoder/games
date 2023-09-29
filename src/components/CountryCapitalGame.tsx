@@ -2,7 +2,7 @@ import { useState } from "react"
 
 import classes from "@/styles/capitalsgame.module.css"
 
-export default function CapitalsGame({ data }: CapitalsGameProps) {
+export default function CountryCapitalGame({ data }: CapitalsGameProps) {
   const [unmatcheds, setUnmatched] = useState(() => generateUnmatchedList(data))
   const [clicked, setClicked] = useState<Unmatched[]>([])
 

@@ -1,10 +1,10 @@
-import CapitalsGame from "@/components/CapitalsGame"
+import CountryCapitalGame from "@/components/CountryCapitalGame"
 import getCountryCapitalRecord from "@/services/getCountryCapitalRecord"
 
 export default function App() {
   return (
     <div>
-      <CapitalsGame data={getCountryCapitalRecord()} />
+      <CountryCapitalGame data={getCountryCapitalRecord()} />
     </div>
   )
 }
