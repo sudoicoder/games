@@ -26,6 +26,7 @@
 
 .square:has(.piece:hover) {
   background-color: burlywood;
+  cursor: pointer;
 }
 
 .square-clicked {
