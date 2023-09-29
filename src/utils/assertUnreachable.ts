@@ -1,5 +1,5 @@
 export default function assertUnreachable(indicator: never) {
-  throw new Error(
+  return new Error(
     `This part should never be reachable!! [indicator=${indicator}]`
   )
 }
