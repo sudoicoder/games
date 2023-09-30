@@ -1,12 +1,11 @@
 import classes from "./styles/chess-game.module.css"
 
-import getEmptySquare from "./services/getEmptySquare"
 import getPieceIcon from "./services/getPieceIcon"
 
 import useChessGameState from "./hooks/useChessGameState"
 
 export default function ChessGame() {
-  const { board, getSquarePhase, handleClick } = useChessGameState()
+  const { board, getPhase, handleClick } = useChessGameState()
   return (
     <div>
       <div className={classes["board"]}>
@@ -17,7 +16,7 @@ export default function ChessGame() {
               className={classes["rank"]}
             >
               {rank.map((piece, col) => {
-                const phase = getSquarePhase(row, col)
+                const phase = getPhase(row, col)
                 const extraClass =
                   phase !== "default"
                     ? classes[`square-${phase}`]
@@ -30,7 +29,7 @@ export default function ChessGame() {
                     className={[classes["square"], extraClass].join(" ")}
                     onClick={() => handleClick(row, col)}
                   >
-                    {piece !== getEmptySquare() && (
+                    {piece !== null && (
                       <img
                         className={classes["piece"]}
                         src={getPieceIcon(piece)}
