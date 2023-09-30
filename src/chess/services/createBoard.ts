@@ -1,40 +1,37 @@
-import type { ColorNotation } from "./getColorNotation"
-import type { EmptySquare } from "./getEmptySquare"
-import type { PieceNotation } from "./getPieceNotation"
+import type { Piece } from "./getPiece"
 
-import getEmpty from "./getEmptySquare"
+import getPiece from "./getPiece"
 
-export default function createBoard(): Board {
+export function createBoard(): Board {
   return [
     [
-      "dark:rook",
-      "dark:knight",
-      "dark:bishop",
-      "dark:queen",
-      "dark:king",
-      "dark:bishop",
-      "dark:knight",
-      "dark:rook",
+      getPiece("Dark", "Rook"),
+      getPiece("Dark", "Knight"),
+      getPiece("Dark", "Bishop"),
+      getPiece("Dark", "Queen"),
+      getPiece("Dark", "King"),
+      getPiece("Dark", "Bishop"),
+      getPiece("Dark", "Knight"),
+      getPiece("Dark", "Rook"),
     ],
-    Array<Square>(8).fill("dark:pawn"),
-    Array<Square>(8).fill(getEmpty()),
-    Array<Square>(8).fill(getEmpty()),
-    Array<Square>(8).fill(getEmpty()),
-    Array<Square>(8).fill(getEmpty()),
-    Array<Square>(8).fill("light:pawn"),
+    Array<Square>(8).fill(getPiece("Dark", "Pawn")),
+    Array<Square>(8).fill(null),
+    Array<Square>(8).fill(null),
+    Array<Square>(8).fill(null),
+    Array<Square>(8).fill(null),
+    Array<Square>(8).fill(getPiece("Dark", "Pawn")),
     [
-      "light:rook",
-      "light:knight",
-      "light:bishop",
-      "light:queen",
-      "light:king",
-      "light:bishop",
-      "light:knight",
-      "light:rook",
+      getPiece("Light", "Rook"),
+      getPiece("Light", "Knight"),
+      getPiece("Light", "Bishop"),
+      getPiece("Light", "Queen"),
+      getPiece("Light", "King"),
+      getPiece("Light", "Bishop"),
+      getPiece("Light", "Knight"),
+      getPiece("Light", "Rook"),
     ],
   ]
 }
 
-export type Piece = `${ColorNotation}:${PieceNotation}`
-export type Square = Piece | EmptySquare
+export type Square = Piece | null
 export type Board = Square[][]

@@ -11,22 +11,24 @@ import lightPawn from "../assets/light-pawn.svg"
 import lightQueen from "../assets/light-queen.svg"
 import lightRook from "../assets/light-rook.svg"
 
-import type { Piece } from "./createBoard"
+import type { Piece } from "./getPiece"
 
-const ICONS: Record<Piece, string> = {
-  "dark:bishop": darkBishop,
-  "dark:king": darkKing,
-  "dark:knight": darkKnight,
-  "dark:pawn": darkPawn,
-  "dark:queen": darkQueen,
-  "dark:rook": darkRook,
-  "light:bishop": lightBishop,
-  "light:king": lightKing,
-  "light:knight": lightKnight,
-  "light:pawn": lightPawn,
-  "light:queen": lightQueen,
-  "light:rook": lightRook,
-}
+import getPiece from "./getPiece"
+
+const ICONS = {
+  [getPiece("Dark", "Bishop")]: darkBishop,
+  [getPiece("Dark", "King")]: darkKing,
+  [getPiece("Dark", "Knight")]: darkKnight,
+  [getPiece("Dark", "Pawn")]: darkPawn,
+  [getPiece("Dark", "Queen")]: darkQueen,
+  [getPiece("Dark", "Rook")]: darkRook,
+  [getPiece("Light", "Bishop")]: lightBishop,
+  [getPiece("Light", "King")]: lightKing,
+  [getPiece("Light", "Knight")]: lightKnight,
+  [getPiece("Light", "Pawn")]: lightPawn,
+  [getPiece("Light", "Queen")]: lightQueen,
+  [getPiece("Light", "Rook")]: lightRook,
+} as const
 
 export default function getPieceIcon(piece: Piece) {
   return ICONS[piece]
