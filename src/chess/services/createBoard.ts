@@ -2,7 +2,7 @@ import type { Piece } from "./getPiece"
 
 import getPiece from "./getPiece"
 
-export function createBoard(): Board {
+export default function createBoard(): Board {
   return [
     [
       getPiece("Dark", "Rook"),
