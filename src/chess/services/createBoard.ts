@@ -19,7 +19,7 @@ export default function createBoard(): Board {
     Array<Square>(8).fill(null),
     Array<Square>(8).fill(null),
     Array<Square>(8).fill(null),
-    Array<Square>(8).fill(getPiece("Dark", "Pawn")),
+    Array<Square>(8).fill(getPiece("Light", "Pawn")),
     [
       getPiece("Light", "Rook"),
       getPiece("Light", "Knight"),
