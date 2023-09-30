@@ -1,10 +1,10 @@
 const NOTATIONS = {
-  bishop: "bishop",
-  king: "king",
-  knight: "knight",
-  pawn: "pawn",
-  queen: "queen",
-  rook: "rook",
+  Bishop: "Bishop",
+  King: "King",
+  Knight: "Knight",
+  Pawn: "Pawn",
+  Queen: "Queen",
+  Rook: "Rook",
 } as const
 
 export default function getPieceNotation(pieceType: PieceType) {
