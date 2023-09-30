@@ -36,12 +36,12 @@ export function _getPossibleMoves(
         }
         continue
       }
-      if (other.includes(alliance)) {
-        break
+      if (!other.includes(alliance)) {
+        if (behaviors.includes("Attack")) {
+          moves.push(offsetted)
+        }
       }
-      if (behaviors.includes("Attack")) {
-        moves.push(offsetted)
-      }
+      break
     }
   }
   return moves
