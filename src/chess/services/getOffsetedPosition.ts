@@ -1,3 +1,4 @@
+import type { Position } from "./getPosition"
 import type { Steps } from "./getStepsAlong"
 
 export default function getOffsetedPosition(
@@ -14,5 +15,3 @@ export default function getOffsetedPosition(
   }
   return [r, c]
 }
-
-export type Position = [number, number]
