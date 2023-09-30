@@ -1,12 +1,12 @@
 import getAlliance from "../services/getAlliance"
 import getPosition from "../services/getPosition"
 
-import useTurn from "./useTurn"
+import useBoard from "./useBoard"
 import usePossibleMoves from "./usePossibleMoves"
 import useSelectedPosition from "./useSelectedPosition"
-import useBoard from "./useBoard"
+import useTurn from "./useTurn"
 
-export default function useChess() {
+export default function useChessGame() {
   const { board, move, capture } = useBoard()
   const { selectedPosition, select, deselect } = useSelectedPosition()
   const { turn, flip } = useTurn()

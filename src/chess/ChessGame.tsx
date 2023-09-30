@@ -2,10 +2,10 @@ import classes from "./styles/chess-game.module.css"
 
 import getPieceIcon from "./services/getPieceIcon"
 
-import useChessGameState from "./hooks/useChessGameState"
+import useChessGame from "./hooks/useChessGame"
 
 export default function ChessGame() {
-  const { board, getPhase, handleClick } = useChessGameState()
+  const { board, getPhase, handleClick } = useChessGame()
   return (
     <div>
       <div className={classes["board"]}>
