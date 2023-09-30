@@ -1,5 +1,6 @@
-import { getOffsetedPosition } from "@/chess/services/getOffsetedPosition"
 import { describe } from "vitest"
+
+import getOffsetedPosition from "@/chess/services/getOffsetedPosition"
 
 describe(`${getOffsetedPosition.name}`, it => {
   it("[0,0] + [-1,-1] = null", ({ expect }) => {
