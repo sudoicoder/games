@@ -1,18 +1,18 @@
-import { useRef } from "react"
+import { useState } from "react"
 
 import type { AllianceType } from "../services/getAlliance"
 
 export default function useTurn() {
-  const turn = useRef<AllianceType>("Light")
+  const [turn, setTurn] = useState<AllianceType>("Light")
 
   function flip() {
-    if (turn.current === "Light") {
-      turn.current = "Dark"
+    if (turn === "Light") {
+      return void setTurn("Dark")
     }
-    if (turn.current === "Dark") {
-      turn.current = "Light"
+    if (turn === "Dark") {
+      return void setTurn("Light")
     }
   }
 
-  return { turn: turn.current, flip } as const
+  return { turn, flip } as const
 }
