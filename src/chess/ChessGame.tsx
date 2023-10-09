@@ -15,6 +15,7 @@ export default function ChessGame() {
               <div
                 key={`${row}-${col}`}
                 className={classes["square"]}
+                data-shade={square.shade}
                 data-phase={getSquarePhase(row, col)}
                 onClick={() => handleSquareClick(row, col)}
               >
