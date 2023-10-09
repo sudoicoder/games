@@ -1,8 +1,29 @@
-declare type Position = number
-declare type Offset = number
+declare type Position = [number, number]
+declare type Offset = [number, number]
 declare type Extent = number
 
-declare type Direction = "NORTH" | "EAST" | "SOUTH" | "WEST"
+type North = "NORTH"
+type South = "SOUTH"
+type East = "EAST"
+type West = "WEST"
+declare type Direction =
+  | North
+  | East
+  | South
+  | West
+  | `${North} > ${East}`
+  | `${North} > ${West}`
+  | `${South} > ${East}`
+  | `${South} > ${West}`
+  | `${North} > ${East} > ${North}`
+  | `${North} > ${East} > ${East}`
+  | `${North} > ${West} > ${North}`
+  | `${North} > ${West} > ${West}`
+  | `${South} > ${East} > ${South}`
+  | `${South} > ${East} > ${East}`
+  | `${South} > ${West} > ${South}`
+  | `${South} > ${West} > ${West}`
+
 declare type Behaviour = "WALK" | "ATTACK"
 
 declare type MoveStrategy = [Offset, Extent, Behaviour[]]
@@ -21,7 +42,7 @@ declare type Square = {
 declare type Board = {
   getKingPosition(alliance: Piece["alliance"]): Position
   getPiece(position: Position): Square["piece"]
-  getSquares(): Square[]
+  getSquares(): Square[][]
   hasPieceMoved(piece: Piece): boolean
   movePiece(from: Position, to: Position): Square["piece"]
 }
