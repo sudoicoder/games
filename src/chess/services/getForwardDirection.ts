@@ -1,6 +1,6 @@
 export default function getForwardDirection(
   alliance: Piece["alliance"]
-): Direction {
+): North | South {
   switch (alliance) {
     case "DARK":
       return "SOUTH"
