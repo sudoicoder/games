@@ -1,6 +1,6 @@
 import classes from "./styles/chess-game.module.css"
 
-import getPieceIcon from "./services/getPieceIcon"
+import getPieceIconPath from "./services/getPieceIcon"
 
 import useChessGame from "./hooks/useChessGame"
 
@@ -9,36 +9,23 @@ export default function ChessGame() {
   return (
     <div>
       <div className={classes["board"]}>
-        {board.map((rank, row) => {
+        {board.getSquares().map((square, position) => {
           return (
             <div
-              key={row}
-              className={classes["rank"]}
+              key={position}
+              className={classes["square"]}
+              data-phase={getPhase(position)}
+              aria-disabled={square.piece === null}
+              onClick={() => handleClick(position)}
             >
-              {rank.map((piece, col) => {
-                const phase = getPhase(row, col)
-                const extraClass =
-                  phase !== "default"
-                    ? classes[`square-${phase}`]
-                    : (row + col) % 2
-                    ? classes["square-light"]
-                    : classes["square-dark"]
-                return (
-                  <div
-                    key={col}
-                    className={[classes["square"], extraClass].join(" ")}
-                    onClick={() => handleClick(row, col)}
-                  >
-                    {piece !== null && (
-                      <img
-                        className={classes["piece"]}
-                        src={getPieceIcon(piece)}
-                        alt={piece}
-                      />
-                    )}
-                  </div>
-                )
-              })}
+              {square.piece !== null && (
+                <img
+                  key={position}
+                  className={classes["piece"]}
+                  src={getPieceIconPath(square.piece)}
+                  alt={`${square.piece.alliance}/${square.piece.type}`}
+                />
+              )}
             </div>
           )
         })}

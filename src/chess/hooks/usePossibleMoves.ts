@@ -1,16 +1,16 @@
 import { useMemo } from "react"
 
-import type { Board } from "../services/createBoard"
-import type { Position } from "../services/getPosition"
-
 import getPossibleMoves from "../services/getPossibleMoves"
 
 export default function usePossibleMoves(
   board: Board,
-  selectedPosition: Position | undefined
-) {
+  selectedPosition: Position
+): Set<Position> {
   return useMemo(
-    () => (selectedPosition ? getPossibleMoves(board, selectedPosition) : []),
+    () =>
+      selectedPosition !== -1
+        ? getPossibleMoves(board, selectedPosition)
+        : new Set(),
     [board, selectedPosition]
   )
 }

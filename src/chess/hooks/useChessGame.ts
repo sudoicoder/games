@@ -1,6 +1,3 @@
-import getAlliance from "../services/getAlliance"
-import getPosition from "../services/getPosition"
-
 import useBoard from "./useBoard"
 import usePossibleMoves from "./usePossibleMoves"
 import useSelectedPosition from "./useSelectedPosition"
@@ -9,48 +6,46 @@ import useTurn from "./useTurn"
 export default function useChessGame() {
   const { board, move, capture } = useBoard()
   const { selectedPosition, select, deselect } = useSelectedPosition()
-  const { turn, flip } = useTurn()
+  const { turn, flipTurn } = useTurn()
 
   const possibleMoves = usePossibleMoves(board, selectedPosition)
 
-  function getPhase(row: number, col: number) {
-    if (selectedPosition === undefined) {
+  function getPhase(position: Position) {
+    if (selectedPosition === -1) {
       return "default"
     }
-    const position = getPosition(row, col)
     if (selectedPosition === position) {
       return "selected"
     }
-    if (possibleMoves.includes(position)) {
-      return board[row][col] !== null ? "capturable" : "possible"
+    if (possibleMoves.has(position)) {
+      return board.getPiece(position) !== null ? "capturable" : "possible"
     }
     return "default"
   }
 
-  function handleClick(row: number, col: number) {
-    const position = getPosition(row, col)
-    const piece = board[row][col]
-    if (selectedPosition === undefined) {
-      if (piece !== null) {
-        if (piece.includes(getAlliance(turn))) {
-          select(position)
-        }
+  function handleClick(position: Position) {
+    const piece = board.getPiece(position)
+    if (selectedPosition === -1) {
+      if (piece === null) {
+        return
       }
-      return
+      if (piece.alliance !== turn) {
+        return
+      }
+      return void select(position)
     }
     if (selectedPosition === position) {
       return void deselect()
     }
-    if (!possibleMoves.includes(position)) {
+    if (!possibleMoves.has(position)) {
       return void deselect()
     }
     if (piece === null) {
       move(selectedPosition, position)
-      flip()
-      return
+    } else {
+      capture(selectedPosition, position)
     }
-    capture(selectedPosition, position)
-    flip()
+    flipTurn()
     return
   }
 

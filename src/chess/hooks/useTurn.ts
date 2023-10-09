@@ -1,18 +1,12 @@
 import { useState } from "react"
-
-import type { AllianceType } from "../services/getAlliance"
+import getOpposition from "../services/getOpposition"
 
 export default function useTurn() {
-  const [turn, setTurn] = useState<AllianceType>("Light")
+  const [turn, setTurn] = useState<Piece["alliance"]>("LIGHT")
 
-  function flip() {
-    if (turn === "Light") {
-      return void setTurn("Dark")
-    }
-    if (turn === "Dark") {
-      return void setTurn("Light")
-    }
+  function flipTurn() {
+    setTurn(getOpposition(turn))
   }
 
-  return { turn, flip } as const
+  return { turn, flipTurn } as const
 }
