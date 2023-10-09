@@ -67,6 +67,7 @@ export default function useChessGame() {
     } else {
       addToCaptured(turn, capture(selected, clicked)!)
     }
+    deselect()
     flipTurn()
     return
   }
