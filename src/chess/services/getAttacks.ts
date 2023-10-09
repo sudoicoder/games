@@ -8,13 +8,14 @@ export default function getAttacks(
 ): Set<Position> {
   const attacks = new Set<Position>()
   const attackStrategies = getAttackStrategies(alliance)
-  for (let [offset, extent, againsts] of attackStrategies) {
-    let offsetted = position
+  for (const [offset, extent, againsts] of attackStrategies) {
+    let offsetted: Nullish<Position> = position
+    let currentExtent = extent
     while (
-      extent > 0 &&
-      (offsetted = getOffsettedPosition(offsetted, offset)) !== -1
+      currentExtent > 0 &&
+      (offsetted = getOffsettedPosition(offsetted, offset)) !== null
     ) {
-      extent--
+      currentExtent--
       const piece = board.getPiece(offsetted)
       if (piece === null) {
         continue
