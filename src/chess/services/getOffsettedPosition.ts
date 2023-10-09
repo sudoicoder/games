@@ -1,12 +1,10 @@
-import getRoyalOrder from "./getRoyalOrder"
+import getPosition from "./getPosition"
 
 export default function getOffsettedPosition(
   position: Position,
   offset: Offset
-): Position {
-  const order = getRoyalOrder()
-  const offsetted = position + offset
-  return offsetted >= 0 && offsetted < order.length * order.length
-    ? offsetted
-    : -1
+): Nullish<Position> {
+  const [row, col] = position
+  const [rowOffset, colOffset] = offset
+  return getPosition(row + rowOffset, col + colOffset)
 }
