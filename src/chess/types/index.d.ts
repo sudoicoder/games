@@ -1,4 +1,4 @@
-declare type Position = [number, number]
+declare type Position = number
 declare type Offset = [number, number]
 declare type Extent = number
 
@@ -24,7 +24,7 @@ declare type Direction =
   | `${South} > ${West} > ${South}`
   | `${South} > ${West} > ${West}`
 
-declare type Behaviour = "WALK" | "ATTACK"
+declare type Behaviour = "WALK" | "ATTACK" | "CASTLE"
 
 declare type MoveStrategy = [Offset, Extent, Behaviour[]]
 declare type AttackStrategy = [Offset, Extent, Piece["type"][]]
@@ -43,7 +43,7 @@ declare type Board = {
   getCapturedPieces(): Piece[]
   getKingPosition(alliance: Piece["alliance"]): Position
   getPiece(position: Position): Square["piece"]
-  getSquares(): Square[][]
+  getSquares(): Square[]
   hasPieceMoved(piece: Piece): boolean
   movePiece(from: Position, to: Position): Square["piece"]
 }

@@ -13,7 +13,7 @@ export default function getAttacks(
     let currentExtent = extent
     while (
       currentExtent > 0 &&
-      (offsetted = getOffsettedPosition(offsetted, offset)) !== null
+      (offsetted = getOffsettedPosition(offsetted, offset)) !== -1
     ) {
       currentExtent--
       const piece = board.getPiece(offsetted)

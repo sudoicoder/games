@@ -1,19 +1,20 @@
-import createPiece from "./createPiece"
+import createInitialPiece from "./createInitialPiece"
 import createSquare from "./createSquare"
 import getBoardSize from "./getBoardSize"
-import getRoyalOrder from "./getRoyalOrder"
+import getColIndex from "./getColIndex"
+import getRowIndex from "./getRowIndex"
 
 export default function createBoard(): Board {
-  const squares = Array<Square[]>(getBoardSize())
-  for (let row = 0; row < squares.length; row++) {
-    squares[row] = Array<Square>(getBoardSize())
-    for (let col = 0; col < squares[row].length; col++) {
-      squares[row][col] = createSquare(row, col, createInitialPiece(row, col))
-    }
-  }
+  const squares = Array(getBoardSize() * getBoardSize())
+    .fill(null)
+    .map((_, position) => {
+      const row = getRowIndex(position)
+      const col = getColIndex(position)
+      return createSquare(row, col, createInitialPiece(row, col))
+    })
   const kingsPosition: Record<Piece["alliance"], Position> = {
-    DARK: [0, 4],
-    LIGHT: [getBoardSize() - 1, 4],
+    DARK: 4,
+    LIGHT: 60,
   }
   const movedPieces = new Set<Piece>()
   const captured = new Array<Piece>()
@@ -25,8 +26,7 @@ export default function createBoard(): Board {
       return kingsPosition[alliance]
     },
     getPiece(position) {
-      const [row, col] = position
-      return squares[row][col].piece
+      return squares[position].piece
     },
     getSquares() {
       return squares
@@ -35,11 +35,9 @@ export default function createBoard(): Board {
       return movedPieces.has(piece)
     },
     movePiece(from, to) {
-      const [fromRow, fromCol] = from
-      const [toRow, toCol] = to
-      const fromSquare = squares[fromRow][fromCol]
+      const fromSquare = squares[from]
       const fromPiece = fromSquare.piece
-      const toSquare = squares[toRow][toCol]
+      const toSquare = squares[to]
       const toPiece = toSquare.piece
       toSquare.piece = fromPiece
       fromSquare.piece = null
@@ -56,20 +54,4 @@ export default function createBoard(): Board {
       return toPiece
     },
   }
-}
-
-function createInitialPiece(row: number, col: number): Nullish<Piece> {
-  if (row === 0) {
-    return createPiece("DARK", getRoyalOrder()[col])
-  }
-  if (row === 1) {
-    return createPiece("DARK", "PAWN")
-  }
-  if (row === getBoardSize() - 2) {
-    return createPiece("LIGHT", "PAWN")
-  }
-  if (row === getBoardSize() - 1) {
-    return createPiece("LIGHT", getRoyalOrder()[col])
-  }
-  return null
 }

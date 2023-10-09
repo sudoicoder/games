@@ -16,7 +16,7 @@ export default function getPossibleMoves(
     let currentExtent = extent
     while (
       currentExtent > 0 &&
-      (offsetted = getOffsettedPosition(offsetted, offset)) !== null
+      (offsetted = getOffsettedPosition(offsetted, offset)) !== -1
     ) {
       currentExtent--
       const other = board.getPiece(offsetted)

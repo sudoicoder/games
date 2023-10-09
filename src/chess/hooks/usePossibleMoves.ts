@@ -4,11 +4,11 @@ import getPossibleMoves from "../services/getPossibleMoves"
 
 export default function usePossibleMoves(
   board: Board,
-  selectedPosition: Nullish<Position>
+  selectedPosition: Position
 ): Map<Position, Move> {
   return useMemo(
     () =>
-      selectedPosition !== null
+      selectedPosition !== -1
         ? getPossibleMoves(board, selectedPosition)
         : new Map(),
     [board, selectedPosition]

@@ -1,4 +1,3 @@
-import getPosition from "../services/getPosition"
 import useBoard from "./useBoard"
 import usePossibleMoves from "./usePossibleMoves"
 import useSelectedPosition from "./useSelectedPosition"
@@ -11,12 +10,8 @@ export default function useChessGame() {
 
   const possibleMoves = usePossibleMoves(board, selectedPosition)
 
-  function getSquarePhase(row: number, col: number): SquarePhase {
-    const position = getPosition(row, col)
-    if (position === null) {
-      throw new Error(`${getSquarePhase.name}(): [position] is null!`)
-    }
-    if (selectedPosition === null) {
+  function getSquarePhase(position: Position): SquarePhase {
+    if (selectedPosition === -1) {
       return "DEFAULT"
     }
     if (selectedPosition === position) {
@@ -31,7 +26,7 @@ export default function useChessGame() {
     return "CAPTURABLE"
   }
 
-  function handleFirstClick(position: Position) {
+  function handleFirstClick(position: Position): void {
     const piece = board.getPiece(position)
     if (piece === null) {
       return
@@ -42,7 +37,7 @@ export default function useChessGame() {
     select(position)
   }
 
-  function handleFollowClick(selected: Position, clicked: Position) {
+  function handleFollowClick(selected: Position, clicked: Position): void {
     if (selected === clicked) {
       return void deselect()
     }
@@ -59,19 +54,15 @@ export default function useChessGame() {
     }
   }
 
-  function handleMove(move: Move) {
+  function handleMove(move: Move): void {
     executeMove(move)
     deselect()
     flipTurn()
     return
   }
 
-  function handleSquareClick(row: number, col: number) {
-    const position = getPosition(row, col)
-    if (position === null) {
-      throw new Error(`${handleSquareClick.name}(): [position] is null!`)
-    }
-    if (selectedPosition === null) {
+  function handleSquareClick(position: Position): void {
+    if (selectedPosition === -1) {
       handleFirstClick(position)
     } else {
       handleFollowClick(selectedPosition, position)
