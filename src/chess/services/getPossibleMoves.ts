@@ -11,13 +11,14 @@ export default function getPossibleMoves(
     return possibleMoves
   }
   const moveStrategies = getMoveStrategies(piece, board.hasPieceMoved(piece))
-  for (let [offset, extent, behaviours] of moveStrategies) {
-    let offsetted = position
+  for (const [offset, extent, behaviours] of moveStrategies) {
+    let offsetted: Nullish<Position> = position
+    let currentExtent = extent
     while (
-      extent > 0 &&
-      (offsetted = getOffsettedPosition(offsetted, offset)) !== -1
+      currentExtent > 0 &&
+      (offsetted = getOffsettedPosition(offsetted, offset)) !== null
     ) {
-      extent--
+      currentExtent--
       const other = board.getPiece(offsetted)
       if (other === null) {
         if (behaviours.includes("WALK")) {
