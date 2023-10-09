@@ -46,3 +46,5 @@ declare type Board = {
   hasPieceMoved(piece: Piece): boolean
   movePiece(from: Position, to: Position): Square["piece"]
 }
+
+declare type SquarePhase = "DEFAULT" | "SELECTED" | "MOVABLE" | "CAPTURABLE"
