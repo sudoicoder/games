@@ -4,8 +4,8 @@ import getOffsettedPosition from "./getOffsettedPosition"
 export default function getPossibleMoves(
   board: Board,
   position: Position
-): Set<Position> {
-  const possibleMoves = new Set<Position>()
+): Map<Position, Move> {
+  const possibleMoves = new Map<Position, Move>()
   const piece = board.getPiece(position)
   if (piece === null) {
     return possibleMoves
@@ -22,13 +22,13 @@ export default function getPossibleMoves(
       const other = board.getPiece(offsetted)
       if (other === null) {
         if (behaviours.includes("WALK")) {
-          possibleMoves.add(offsetted)
+          possibleMoves.set(offsetted, [[position, offsetted]])
         }
         continue
       }
       if (other.alliance !== piece.alliance) {
         if (behaviours.includes("ATTACK")) {
-          possibleMoves.add(offsetted)
+          possibleMoves.set(offsetted, [[position, offsetted]])
         }
       }
       break
