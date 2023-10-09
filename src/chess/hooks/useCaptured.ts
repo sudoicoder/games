@@ -7,7 +7,7 @@ export default function useCaptured() {
     captured[alliance].push(piece)
   }
 
-  return { captured, addToCaptured }
+  return { captured, addToCaptured } as const
 }
 
 function createCaptured(): Record<Piece["alliance"], Piece[]> {
