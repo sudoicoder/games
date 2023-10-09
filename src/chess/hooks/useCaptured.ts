@@ -4,15 +4,15 @@ export default function useCaptured() {
   const [captured] = useState(createCaptured)
 
   function addToCaptured(alliance: Piece["alliance"], piece: Piece) {
-    captured[alliance].add(piece)
+    captured[alliance].push(piece)
   }
 
   return { captured, addToCaptured }
 }
 
-function createCaptured(): Record<Piece["alliance"], Set<Piece>> {
+function createCaptured(): Record<Piece["alliance"], Piece[]> {
   return {
-    DARK: new Set(),
-    LIGHT: new Set(),
+    DARK: [],
+    LIGHT: [],
   }
 }
