@@ -1,42 +1,44 @@
 .board {
   display: grid;
-}
-
-.rank {
-  display: flex;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 1px;
 }
 
 .square {
-  width: 5em;
-  height: 5em;
+  width: 3em;
+  height: 3em;
   padding: 0.5em;
-}
-
-.square-light {
-  background-color: antiquewhite;
-}
-
-.square-dark {
-  background-color: darkseagreen;
+  cursor: pointer;
 }
 
 .piece {
   width: 100%;
 }
 
-.square:has(.piece:hover) {
-  background-color: burlywood;
-  cursor: pointer;
+.square[data-shade="LIGHT"] {
+  background-color: antiquewhite;
 }
 
-.square-selected {
+.square[data-shade="DARK"] {
+  background-color: darkseagreen;
+}
+
+.square[data-phase="DEFAULT"]:not(:has(.piece)) {
+  cursor: unset;
+}
+
+.square[data-phase="DEFAULT"]:has(.piece):hover {
+  background-color: burlywood;
+}
+
+.square[data-phase="SELECTED"] {
   background-color: goldenrod;
 }
 
-.square-possible {
-  background-color: burlywood;
+.square[data-phase="MOVABLE"] {
+  background-color: lightskyblue;
 }
 
-.square-capturable {
+.square[data-phase="CAPTURABLE"] {
   background-color: coral;
 }
