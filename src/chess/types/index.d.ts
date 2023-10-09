@@ -40,6 +40,7 @@ declare type Square = {
 }
 
 declare type Board = {
+  getCapturedPieces(): Piece[]
   getKingPosition(alliance: Piece["alliance"]): Position
   getPiece(position: Position): Square["piece"]
   getSquares(): Square[][]
@@ -48,3 +49,5 @@ declare type Board = {
 }
 
 declare type SquarePhase = "DEFAULT" | "SELECTED" | "MOVABLE" | "CAPTURABLE"
+
+declare type Move = [Position, Position][]

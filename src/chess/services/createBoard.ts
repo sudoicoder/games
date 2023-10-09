@@ -16,7 +16,11 @@ export default function createBoard(): Board {
     LIGHT: [getBoardSize() - 1, 4],
   }
   const movedPieces = new Set<Piece>()
+  const captured = new Array<Piece>()
   return {
+    getCapturedPieces() {
+      return captured
+    },
     getKingPosition(alliance) {
       return kingsPosition[alliance]
     },
@@ -41,6 +45,9 @@ export default function createBoard(): Board {
       fromSquare.piece = null
       if (fromPiece === null) {
         return toPiece
+      }
+      if (toPiece !== null) {
+        captured.push(toPiece)
       }
       movedPieces.add(fromPiece)
       if (fromPiece.type === "KING") {
