@@ -65,7 +65,7 @@ export default function useChessGame() {
     if (piece === null) {
       move(selected, clicked)
     } else {
-      addToCaptured(turn, capture(selected, clicked)!)
+      addToCaptured(piece.alliance, capture(selected, clicked)!)
     }
     deselect()
     flipTurn()
