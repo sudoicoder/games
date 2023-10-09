@@ -46,10 +46,16 @@ export default function useChessGame() {
     if (selected === clicked) {
       return void deselect()
     }
-    if (!possibleMoves.has(clicked)) {
+    if (possibleMoves.has(clicked)) {
+      return void handleMove(selected, clicked)
+    }
+    const piece = board.getPiece(clicked)
+    if (piece === null) {
       return void deselect()
     }
-    handleMove(selected, clicked)
+    if (piece.alliance === turn) {
+      return void select(clicked)
+    }
   }
 
   function handleMove(selected: Position, clicked: Position) {
