@@ -1,5 +1,6 @@
 import getPosition from "../services/getPosition"
 import useBoard from "./useBoard"
+import useCaptured from "./useCaptured"
 import usePossibleMoves from "./usePossibleMoves"
 import useSelectedPosition from "./useSelectedPosition"
 import useTurn from "./useTurn"
@@ -8,6 +9,7 @@ export default function useChessGame() {
   const { board, move, capture } = useBoard()
   const { selectedPosition, select, deselect } = useSelectedPosition()
   const { turn, flipTurn } = useTurn()
+  const { captured, addToCaptured } = useCaptured()
 
   const possibleMoves = usePossibleMoves(board, selectedPosition)
 
@@ -63,7 +65,7 @@ export default function useChessGame() {
     if (piece === null) {
       move(selected, clicked)
     } else {
-      capture(selected, clicked)
+      addToCaptured(turn, capture(selected, clicked)!)
     }
     flipTurn()
     return
@@ -83,6 +85,7 @@ export default function useChessGame() {
 
   return {
     board,
+    captured,
     getSquarePhase,
     handleSquareClick,
   } as const
