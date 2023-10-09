@@ -1,14 +1,15 @@
 import { useState } from "react"
 
 export default function useSelectedPosition() {
-  const [selectedPosition, setSelectedPosition] = useState<Position>(-1)
+  const [selectedPosition, setSelectedPosition] =
+    useState<Nullish<Position>>(null)
 
   function select(position: Position) {
     return void setSelectedPosition(position)
   }
 
   function deselect() {
-    return void setSelectedPosition(-1)
+    return void setSelectedPosition(null)
   }
 
   return { selectedPosition, select, deselect } as const
