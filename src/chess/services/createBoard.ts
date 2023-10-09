@@ -1,38 +1,19 @@
+import createPiece from "./createPiece"
+import createSquare from "./createSquare"
+import getBoardSize from "./getBoardSize"
 import getRoyalOrder from "./getRoyalOrder"
 
 export default function createBoard(): Board {
-  const order = getRoyalOrder()
-  const squares = Array<Square>(order.length * order.length)
-  for (let index = 0; index < squares.length; index++) {
-    squares[index] = {
-      shade:
-        (Math.floor(index / order.length) + (index % order.length)) % 2
-          ? "DARK"
-          : "LIGHT",
-      piece: null,
+  const squares = Array<Square[]>(getBoardSize())
+  for (let row = 0; row < squares.length; row++) {
+    squares[row] = Array<Square>(getBoardSize())
+    for (let col = 0; col < squares[row].length; col++) {
+      squares[row][col] = createSquare(row, col, createInitialPiece(row, col))
     }
   }
-  order.forEach((type, col) => {
-    squares[0 * order.length + col]["piece"] = {
-      alliance: "DARK",
-      type,
-    }
-    squares[1 * order.length + col]["piece"] = {
-      alliance: "DARK",
-      type: "PAWN",
-    }
-    squares[(order.length - 2) * order.length + col]["piece"] = {
-      alliance: "LIGHT",
-      type: "PAWN",
-    }
-    squares[(order.length - 1) * order.length + col]["piece"] = {
-      alliance: "LIGHT",
-      type,
-    }
-  })
   const kingsPosition: Record<Piece["alliance"], Position> = {
-    DARK: 0 * order.length + 4,
-    LIGHT: (order.length - 1) * order.length + 4,
+    DARK: [0, 4],
+    LIGHT: [getBoardSize() - 1, 4],
   }
   const movedPieces = new Set<Piece>()
   return {
@@ -40,7 +21,8 @@ export default function createBoard(): Board {
       return kingsPosition[alliance]
     },
     getPiece(position) {
-      return squares[position]["piece"]
+      const [row, col] = position
+      return squares[row][col].piece
     },
     getSquares() {
       return squares
@@ -49,18 +31,38 @@ export default function createBoard(): Board {
       return movedPieces.has(piece)
     },
     movePiece(from, to) {
-      const moving = squares[from]["piece"]
-      const existing = squares[to]["piece"]
-      squares[to]["piece"] = moving
-      squares[from]["piece"] = null
-      if (moving === null) {
-        return existing
+      const [fromRow, fromCol] = from
+      const [toRow, toCol] = to
+      const fromSquare = squares[fromRow][fromCol]
+      const fromPiece = fromSquare.piece
+      const toSquare = squares[toRow][toCol]
+      const toPiece = toSquare.piece
+      toSquare.piece = fromPiece
+      fromSquare.piece = null
+      if (fromPiece === null) {
+        return toPiece
       }
-      movedPieces.add(moving)
-      if (moving.type === "KING") {
-        kingsPosition[moving.alliance] = to
+      movedPieces.add(fromPiece)
+      if (fromPiece.type === "KING") {
+        kingsPosition[fromPiece.alliance] = to
       }
-      return existing
+      return toPiece
     },
   }
+}
+
+function createInitialPiece(row: number, col: number): Nullish<Piece> {
+  if (row === 0) {
+    return createPiece("DARK", getRoyalOrder()[col])
+  }
+  if (row === 1) {
+    return createPiece("DARK", "PAWN")
+  }
+  if (row === getBoardSize() - 2) {
+    return createPiece("LIGHT", "PAWN")
+  }
+  if (row === getBoardSize() - 1) {
+    return createPiece("LIGHT", getRoyalOrder()[col])
+  }
+  return null
 }
