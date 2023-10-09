@@ -1,15 +1,13 @@
 import getPosition from "../services/getPosition"
 import useBoard from "./useBoard"
-import useCaptured from "./useCaptured"
 import usePossibleMoves from "./usePossibleMoves"
 import useSelectedPosition from "./useSelectedPosition"
 import useTurn from "./useTurn"
 
 export default function useChessGame() {
-  const { board, move, capture } = useBoard()
+  const { board, executeMove } = useBoard()
   const { selectedPosition, select, deselect } = useSelectedPosition()
   const { turn, flipTurn } = useTurn()
-  const { captured, addToCaptured } = useCaptured()
 
   const possibleMoves = usePossibleMoves(board, selectedPosition)
 
@@ -48,8 +46,9 @@ export default function useChessGame() {
     if (selected === clicked) {
       return void deselect()
     }
-    if (possibleMoves.has(clicked)) {
-      return void handleMove(selected, clicked)
+    const move = possibleMoves.get(clicked)
+    if (move !== undefined) {
+      return void handleMove(move)
     }
     const piece = board.getPiece(clicked)
     if (piece === null) {
@@ -60,13 +59,8 @@ export default function useChessGame() {
     }
   }
 
-  function handleMove(selected: Position, clicked: Position) {
-    const piece = board.getPiece(clicked)
-    if (piece === null) {
-      move(selected, clicked)
-    } else {
-      addToCaptured(piece.alliance, capture(selected, clicked)!)
-    }
+  function handleMove(move: Move) {
+    executeMove(move)
     deselect()
     flipTurn()
     return
@@ -84,10 +78,5 @@ export default function useChessGame() {
     }
   }
 
-  return {
-    board,
-    captured,
-    getSquarePhase,
-    handleSquareClick,
-  } as const
+  return { board, getSquarePhase, handleSquareClick } as const
 }
