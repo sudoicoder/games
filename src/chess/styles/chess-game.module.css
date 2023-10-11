@@ -28,19 +28,19 @@
 }
 
 .square[data-phase="DEFAULT"]:has(.piece):hover {
-  background-color: burlywood;
+  box-shadow: inset 0 0 1em burlywood;
 }
 
 .square[data-phase="SELECTED"] {
-  background-color: goldenrod;
+  box-shadow: inset 0 0 1em goldenrod;
 }
 
 .square[data-phase="MOVABLE"] {
-  background-color: lightskyblue;
+  box-shadow: inset 0 0 1em dodgerblue;
 }
 
 .square[data-phase="CAPTURABLE"] {
-  background-color: coral;
+  box-shadow: inset 0 0 1em coral;
 }
 
 .captured {
