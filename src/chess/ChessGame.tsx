@@ -30,6 +30,26 @@ export default function ChessGame() {
           )
         })}
       </div>
+      {board.getCapturedPieces().some(pieces => pieces.length > 0) && (
+        <div className={classes["captured"]}>
+          {board.getCapturedPieces().map(pieces => {
+            return (
+              <div>
+                {pieces.map((piece, i) => {
+                  return (
+                    <img
+                      key={`${piece.alliance}/${piece.type}/${i}`}
+                      className={classes["piece"]}
+                      src={getPieceIconPath(piece)}
+                      alt={`${piece.alliance}/${piece.type}`}
+                    />
+                  )
+                })}
+              </div>
+            )
+          })}
+        </div>
+      )}
     </div>
   )
 }
