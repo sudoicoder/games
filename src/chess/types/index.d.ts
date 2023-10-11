@@ -40,7 +40,7 @@ declare type Square = {
 }
 
 declare type Board = {
-  getCapturedPieces(): Piece[]
+  getCapturedPieces(): Map<Piece["alliance"], Piece[]>
   getKingPosition(alliance: Piece["alliance"]): Position
   getPiece(position: Position): Square["piece"]
   getSquares(): Square[]
