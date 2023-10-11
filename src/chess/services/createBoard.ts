@@ -17,7 +17,10 @@ export default function createBoard(): Board {
     LIGHT: 60,
   }
   const movedPieces = new Set<Piece>()
-  const captured = new Array<Piece>()
+  const captured = new Map<Piece["alliance"], Piece[]>([
+    ["DARK", []],
+    ["LIGHT", []],
+  ])
   return {
     getCapturedPieces() {
       return captured
@@ -45,7 +48,7 @@ export default function createBoard(): Board {
         return toPiece
       }
       if (toPiece !== null) {
-        captured.push(toPiece)
+        captured.get(toPiece.alliance)?.push(toPiece)
       }
       movedPieces.add(fromPiece)
       if (fromPiece.type === "KING") {
