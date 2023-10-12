@@ -29,7 +29,7 @@ export default function computePossibleMoves(
     return possibleMoves
   }
   const isUnderMultipleChecks = opponentInfluence.checking.length > 1
-  const isKing = self.designation !== "king"
+  const isKing = self.designation === "king"
   if (isUnderMultipleChecks && !isKing) {
     return possibleMoves
   }
