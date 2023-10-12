@@ -13,7 +13,7 @@ import createPromotionCapture from "./createPromotionCapture"
 import createPromotionWalk from "./createPromotionWalk"
 import createWalk from "./createWalk"
 import generatePossibleMoveStrategies from "./generatePossibleMoveStrategies"
-import computeIncomingAttacks from "./computeIncomingAttacks"
+import computeIncomingAttacks from "../attacks/computeIncomingAttacks"
 import getKingSquare from "../board/getKingSquare"
 
 export default function computePossibleMoves(
