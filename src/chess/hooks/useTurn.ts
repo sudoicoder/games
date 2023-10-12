@@ -7,9 +7,11 @@ import getOpposition from "../services/alliance/getOpposition"
 export default function useTurn() {
   const [turn, setTurn] = useState<Piece["alliance"]>("light")
 
+  const opposition = getOpposition(turn)
+
   function flipTurn() {
-    setTurn(getOpposition(turn))
+    setTurn(opposition)
   }
 
-  return { turn, flipTurn } as const
+  return { turn, opposition, flipTurn } as const
 }
