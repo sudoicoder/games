@@ -1,16 +1,19 @@
 import { useMemo } from "react"
 
-import getPossibleMoves from "../services/getPossibleMoves"
+import type Board from "../services/board/types/Board"
+import type Square from "../services/square/types/Square"
+
+import computePossibleMoves from "../services/move/computePossibleMoves"
 
 export default function usePossibleMoves(
   board: Board,
-  selectedPosition: Position
-): Map<Position, Move> {
+  selectedSquare: Nullish<Square>
+): ReturnType<typeof computePossibleMoves> {
   return useMemo(
     () =>
-      selectedPosition !== -1
-        ? getPossibleMoves(board, selectedPosition)
+      selectedSquare !== null
+        ? computePossibleMoves(board, selectedSquare)
         : new Map(),
-    [board, selectedPosition]
+    [board, selectedSquare]
   )
 }

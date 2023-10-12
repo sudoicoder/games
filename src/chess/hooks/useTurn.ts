@@ -1,8 +1,11 @@
 import { useState } from "react"
-import getOpposition from "../services/getOpposition"
+
+import type Piece from "../services/piece/types/Piece"
+
+import getOpposition from "../services/alliance/getOpposition"
 
 export default function useTurn() {
-  const [turn, setTurn] = useState<Piece["alliance"]>("LIGHT")
+  const [turn, setTurn] = useState<Piece["alliance"]>("light")
 
   function flipTurn() {
     setTurn(getOpposition(turn))

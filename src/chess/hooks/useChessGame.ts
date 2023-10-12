@@ -1,51 +1,64 @@
+import type PossibleMove from "../services/move/types/PossibleMove"
+import type Square from "../services/square/types/Square"
+
 import useBoard from "./useBoard"
 import usePossibleMoves from "./usePossibleMoves"
-import useSelectedPosition from "./useSelectedPosition"
+import usePromotionPrompt from "./usePromotionPrompt"
+import useSelectedSquare from "./useSelectedSquare"
 import useTurn from "./useTurn"
 
 export default function useChessGame() {
-  const { board, executeMove } = useBoard()
-  const { selectedPosition, select, deselect } = useSelectedPosition()
+  const { selectedSquare, select, deselect } = useSelectedSquare()
   const { turn, flipTurn } = useTurn()
 
-  const possibleMoves = usePossibleMoves(board, selectedPosition)
+  const board = useBoard()
+  const possibleMoves = usePossibleMoves(board, selectedSquare)
 
-  function getSquarePhase(position: Position): SquarePhase {
-    if (selectedPosition === -1) {
-      return "DEFAULT"
+  const { PromotionPrompt, promptDesignation } = usePromotionPrompt()
+
+  function getSquarePhase(square: Square) {
+    if (selectedSquare === null) {
+      return "default"
     }
-    if (selectedPosition === position) {
-      return "SELECTED"
+    if (selectedSquare === square) {
+      return "selected"
     }
-    if (!possibleMoves.has(position)) {
-      return "DEFAULT"
+    const possibleMove = possibleMoves.get(square)
+    if (possibleMove === undefined) {
+      return "default"
     }
-    if (board.getPiece(position) === null) {
-      return "MOVABLE"
+    switch (possibleMove.type) {
+      case "walk":
+      case "castle":
+      case "promotion/walk":
+        return "walkable"
+      case "capture":
+      case "enpassant":
+      case "promotion/capture":
+        return "capturable"
     }
-    return "CAPTURABLE"
   }
 
-  function handleFirstClick(position: Position): void {
-    const piece = board.getPiece(position)
+  async function handleFirstClick(square: Square) {
+    const piece = square.piece
     if (piece === null) {
       return
     }
     if (piece.alliance !== turn) {
       return
     }
-    select(position)
+    return void select(square)
   }
 
-  function handleFollowClick(selected: Position, clicked: Position): void {
+  async function handleFollowClick(selected: Square, clicked: Square) {
     if (selected === clicked) {
       return void deselect()
     }
     const move = possibleMoves.get(clicked)
     if (move !== undefined) {
-      return void handleMove(move)
+      return await handleMove(move)
     }
-    const piece = board.getPiece(clicked)
+    const piece = clicked.piece
     if (piece === null) {
       return void deselect()
     }
@@ -54,20 +67,31 @@ export default function useChessGame() {
     }
   }
 
-  function handleMove(move: Move): void {
-    executeMove(move)
+  async function handleMove(possibleMove: PossibleMove) {
+    switch (possibleMove.type) {
+      case "walk":
+      case "capture":
+      case "castle":
+      case "enpassant":
+        possibleMove.execute()
+        break
+      case "promotion/walk":
+      case "promotion/capture":
+        possibleMove.execute(await promptDesignation(turn))
+        break
+    }
     deselect()
     flipTurn()
     return
   }
 
-  function handleSquareClick(position: Position): void {
-    if (selectedPosition === -1) {
-      handleFirstClick(position)
+  async function handleSquareClick(square: Square) {
+    if (selectedSquare === null) {
+      await handleFirstClick(square)
     } else {
-      handleFollowClick(selectedPosition, position)
+      await handleFollowClick(selectedSquare, square)
     }
   }
 
-  return { board, getSquarePhase, handleSquareClick } as const
+  return { board, getSquarePhase, handleSquareClick, PromotionPrompt } as const
 }
