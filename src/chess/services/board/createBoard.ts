@@ -11,5 +11,5 @@ export default function createBoard(): Board {
       squares[row][column] = createSquare({ row, column })
     }
   }
-  return squares
+  return { squares }
 }

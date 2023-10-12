@@ -6,7 +6,7 @@ export default function getKingSquare(
   board: Board,
   alliance: Piece["alliance"]
 ): Optional<Square> {
-  for (const rank of board) {
+  for (const rank of board.squares) {
     for (const square of rank) {
       if (
         square.piece &&

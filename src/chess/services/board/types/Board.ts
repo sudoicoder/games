@@ -1,5 +1,7 @@
 import type Square from "../../square/types/Square"
 
-type Board = Square[][]
+type Board = {
+  get squares(): Square[][]
+}
 
 export default Board

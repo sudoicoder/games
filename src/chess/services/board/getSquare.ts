@@ -5,5 +5,5 @@ export default function getSquare(
   board: Board,
   position: Square["position"]
 ): Optional<Square> {
-  return board[position.row]?.[position.column]
+  return board.squares[position.row]?.[position.column]
 }
