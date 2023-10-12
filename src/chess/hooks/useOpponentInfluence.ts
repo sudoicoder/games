@@ -8,11 +8,11 @@ import computeInfluence from "../services/influence/computeInfluence"
 
 export default function useOpponentInfluence(
   board: Board,
-  opponent: Piece["alliance"],
+  opposition: Piece["alliance"],
   opponentSquares: Map<Piece["designation"], Set<Square>>
 ) {
   return useMemo(
-    () => computeInfluence(board, opponent, opponentSquares),
-    [board, opponent, opponentSquares]
+    () => computeInfluence(board, opposition, opponentSquares),
+    [board, opposition, opponentSquares]
   )
 }
