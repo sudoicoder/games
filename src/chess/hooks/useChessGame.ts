@@ -2,6 +2,8 @@ import type PossibleMove from "../services/move/types/PossibleMove"
 import type Square from "../services/square/types/Square"
 
 import useBoard from "./useBoard"
+import useOpponentInfluence from "./useOpponentInfluence"
+import useOccupiedSquares from "./useOccupiedSquares"
 import usePossibleMoves from "./usePossibleMoves"
 import usePromotionPrompt from "./usePromotionPrompt"
 import useSelectedSquare from "./useSelectedSquare"
@@ -9,10 +11,20 @@ import useTurn from "./useTurn"
 
 export default function useChessGame() {
   const { selectedSquare, select, deselect } = useSelectedSquare()
-  const { turn, flipTurn } = useTurn()
+  const { turn, opposition, flipTurn } = useTurn()
 
   const board = useBoard()
-  const possibleMoves = usePossibleMoves(board, selectedSquare)
+  const occupiedSquares = useOccupiedSquares(board, opposition)
+  const opponentInfluence = useOpponentInfluence(
+    board,
+    opposition,
+    occupiedSquares
+  )
+  const possibleMoves = usePossibleMoves(
+    board,
+    selectedSquare,
+    opponentInfluence
+  )
 
   const { PromotionPrompt, promptDesignation } = usePromotionPrompt()
 
@@ -23,11 +35,13 @@ export default function useChessGame() {
     if (selectedSquare === square) {
       return "selected"
     }
-    const possibleMove = possibleMoves.get(square)
+    const possibleMove = possibleMoves.find(
+      ([possibleSquare]) => possibleSquare === square
+    )
     if (possibleMove === undefined) {
       return "default"
     }
-    switch (possibleMove.type) {
+    switch (possibleMove[1].type) {
       case "walk":
       case "castle":
       case "promotion/walk":
@@ -54,9 +68,9 @@ export default function useChessGame() {
     if (selected === clicked) {
       return void deselect()
     }
-    const move = possibleMoves.get(clicked)
+    const move = possibleMoves.find(([square]) => square === clicked)
     if (move !== undefined) {
-      return await handleMove(move)
+      return await handleMove(move[1])
     }
     const piece = clicked.piece
     if (piece === null) {
