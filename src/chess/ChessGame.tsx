@@ -11,7 +11,7 @@ export default function ChessGame() {
     <div>
       <PromotionPrompt />
       <div className={classes["board"]}>
-        {board.squares.map(rank => {
+        {board.map(rank => {
           return rank.map(square => {
             return (
               <div

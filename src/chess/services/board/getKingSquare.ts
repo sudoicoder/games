@@ -5,8 +5,8 @@ import type Board from "./types/Board"
 export default function getKingSquare(
   board: Board,
   alliance: Piece["alliance"]
-): Optional<Square> {
-  for (const rank of board.squares) {
+): Square {
+  for (const rank of board) {
     for (const square of rank) {
       if (
         square.piece &&
@@ -17,5 +17,5 @@ export default function getKingSquare(
       }
     }
   }
-  return undefined
+  throw new Error(`No ${alliance} king found on the board ${board}`)
 }
