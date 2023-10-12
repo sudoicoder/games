@@ -10,7 +10,9 @@ export default function usePromotionPrompt() {
   const [show, setShow] = useState(false)
   const promotables = useRef<JSX.Element[]>([])
   function PromotionPrompt() {
-    return show && <div>{promotables.current}</div>
+    return (
+      show && <div className={classes["promotion"]}>{promotables.current}</div>
+    )
   }
   async function promptDesignation(alliance: Piece["alliance"]) {
     return await new Promise<Piece["designation"]>(resolve => {
@@ -24,6 +26,7 @@ export default function usePromotionPrompt() {
           onClick={() => selectDesignation("knight")}
         >
           <img
+            className={classes["piece"]}
             src={getPieceIconPath(alliance, "knight")}
             alt={`${alliance}/knight`}
           />
@@ -33,6 +36,7 @@ export default function usePromotionPrompt() {
           onClick={() => selectDesignation("bishop")}
         >
           <img
+            className={classes["piece"]}
             src={getPieceIconPath(alliance, "bishop")}
             alt={`${alliance}/bishop`}
           />
@@ -42,6 +46,7 @@ export default function usePromotionPrompt() {
           onClick={() => selectDesignation("rook")}
         >
           <img
+            className={classes["piece"]}
             src={getPieceIconPath(alliance, "rook")}
             alt={`${alliance}/rook`}
           />
@@ -51,6 +56,7 @@ export default function usePromotionPrompt() {
           onClick={() => selectDesignation("queen")}
         >
           <img
+            className={classes["piece"]}
             src={getPieceIconPath(alliance, "queen")}
             alt={`${alliance}/queen`}
           />
