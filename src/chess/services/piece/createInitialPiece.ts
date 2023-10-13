@@ -1,8 +1,7 @@
+import type Square from "../square/types/Square"
 import type Piece from "./types/Piece"
 
 import getRoyalPieceDesignation from "../designation/getRoyalPieceDesignation"
-
-import Square from "../square/types/Square"
 import createPiece from "./createPiece"
 
 export default function createInitialPiece(

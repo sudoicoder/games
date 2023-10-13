@@ -1,4 +1,4 @@
-import Piece from "./types/Piece"
+import type Piece from "./types/Piece"
 
 export default function getPieceIconPath(
   alliance: Piece["alliance"],
