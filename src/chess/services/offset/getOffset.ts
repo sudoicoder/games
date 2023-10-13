@@ -1,5 +1,5 @@
 import type Direction from "../direction/types/Direction"
-import Offset from "./types/Offset"
+import type Offset from "./types/Offset"
 
 export default function getOffset(direction: Direction) {
   return offsets[direction]

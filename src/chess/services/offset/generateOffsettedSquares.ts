@@ -2,6 +2,7 @@ import type Board from "../board/types/Board"
 import type Extent from "./types/Extent"
 import type Offset from "./types/Offset"
 import type Square from "../square/types/Square"
+
 import getOffsettedPosition from "../position/getOffsettedPosition"
 import getSquare from "../board/getSquare"
 
