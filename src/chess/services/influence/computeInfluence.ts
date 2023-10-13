@@ -30,17 +30,20 @@ export default function computeInfluence(
       let pinnable: Nullish<Piece> = null
       for (const offsetted of offsetteds) {
         if (offsetted.piece === null) {
-          controlsForStrategy.add(offsetted)
+          if (pinnable === null) {
+            controlsForStrategy.add(offsetted)
+          }
           continue
         }
         if (offsetted.piece.alliance === alliance) {
-          controlsForStrategy.add(offsetted)
+          if (pinnable === null) {
+            controlsForStrategy.add(offsetted)
+          }
           break
         }
         if (pinnable === null) {
           if (offsetted.piece.designation === "king") {
             checks.set(piece, controlsForStrategy)
-            controlsForStrategy.clear()
             break
           }
           pinnable = offsetted.piece
