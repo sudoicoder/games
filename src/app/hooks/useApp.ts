@@ -2,19 +2,25 @@ import { useState } from "react"
 
 import type Game from "../types/Game"
 
+import getAvailableGameNames from "../services/getAvailableGameNames"
 import getAvailableGames from "../services/getAvailableGames"
-import getRandomAvailableGame from "../services/getRandomAvailableGame"
+import getRandomAvailableGameName from "../services/getRandomAvailableGameName"
 
 export default function useApp() {
-  const [SelectedGame, setSelectedGame] = useState(getRandomAvailableGame)
+  const [selectedGameName, setSelectedGameName] = useState<Game["name"]>(
+    getRandomAvailableGameName
+  )
 
-  function selectGame(Game: Game) {
-    setSelectedGame(Game)
+  function selectGameName(gameName: Game["name"]) {
+    setSelectedGameName(gameName)
   }
+
+  const SelectedGame = getAvailableGames()[selectedGameName]
 
   return {
     SelectedGame,
-    getAvailableGames,
-    selectGame,
+    getAvailableGameNames,
+    selectGameName,
+    selectedGameName,
   } as const
 }
