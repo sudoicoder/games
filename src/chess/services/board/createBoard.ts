@@ -22,5 +22,5 @@ export default function createBoard(): Board {
       }
     }
   }
-  return { squares, pieces }
+  return { pieces, squares }
 }
