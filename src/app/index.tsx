@@ -3,24 +3,24 @@ import classes from "./styles/app.module.css"
 import useApp from "./hooks/useApp"
 
 export default function App() {
-  const { Game, availableGameNames, handleChange, selectedGameName } = useApp()
+  const { SelectedGame, getAvailableGames, selectGame } = useApp()
   return (
     <div className={classes["wrapper"]}>
       <select
         className={classes["select"]}
-        value={selectedGameName}
-        onChange={handleChange}
+        value={SelectedGame.name}
       >
-        {availableGameNames.map(gameName => (
+        {getAvailableGames().map(Game => (
           <option
-            key={gameName}
+            key={Game.name}
             className={classes["option"]}
-            label={gameName.split(/(?=[A-Z])/g).join(" ")}
-            value={gameName}
+            label={Game.name.split(/(?=[A-Z])/g).join(" ")}
+            value={Game.name}
+            onClick={() => selectGame(Game)}
           />
         ))}
       </select>
-      <Game />
+      <SelectedGame />
     </div>
   )
 }
