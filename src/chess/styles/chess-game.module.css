@@ -1,0 +1,55 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 1px;
+}
+
+.square {
+  width: 3em;
+  height: 3em;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+.piece {
+  width: 100%;
+}
+
+.square[data-shade="light"] {
+  background-color: antiquewhite;
+}
+
+.square[data-shade="dark"] {
+  background-color: darkseagreen;
+}
+
+.square[data-phase="default"]:not(:has(.piece)) {
+  cursor: unset;
+}
+
+.square[data-phase="default"]:has(.piece):hover {
+  box-shadow: inset 0 0 1em burlywood;
+}
+
+.square[data-phase="selected"] {
+  box-shadow: inset 0 0 1em goldenrod;
+}
+
+.square[data-phase="walkable"] {
+  box-shadow: inset 0 0 1em dodgerblue;
+}
+
+.square[data-phase="capturable"] {
+  box-shadow: inset 0 0 1em coral;
+}
+
+.promotion {
+  display: flex;
+  gap: 1px;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+.promotion .square {
+  background-color: antiquewhite;
+}

@@ -1,11 +1,13 @@
 import { useState } from "react"
 
+import ChessGame from "@/chess/ChessGame"
 import CountryCapitalGame from "@/country-capital/CountryCapitalGame"
 import TicTacToeGame from "@/tic-tac-toe/TicTacToeGame"
 
 import classes from "./styles/app.module.css"
 
 const games: Record<string, () => JSX.Element> = {
+  ChessGame,
   CountryCapitalGame,
   TicTacToeGame,
 }
