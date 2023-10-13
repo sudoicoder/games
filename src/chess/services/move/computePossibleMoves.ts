@@ -3,6 +3,7 @@ import type Influence from "../influence/types/Influence"
 import type Piece from "../piece/types/Piece"
 import type Square from "../square/types/Square"
 import type ExecutableMove from "./types/ExecutableMove"
+import type PossibleMoves from "./types/PossibleMoves"
 
 import getSquare from "../board/getSquare"
 import generateOffsettedSquares from "../offset/generateOffsettedSquares"
@@ -21,7 +22,7 @@ export default function computePossibleMoves(
   board: Board,
   piece: Piece,
   opponentInfluence: Influence
-): Map<Square, ExecutableMove> {
+): PossibleMoves {
   const possibleMoves = new Map<Square, ExecutableMove>()
   const square = piece.square
   if (square === null) {
