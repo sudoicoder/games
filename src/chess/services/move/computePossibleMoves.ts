@@ -84,6 +84,11 @@ export default function computePossibleMoves(
               board,
               getOffsettedPosition(square.position, offset)
             )!
+            for (const controlled of opponentInfluence.controls.values()) {
+              if (controlled.has(rookTo)) {
+                break
+              }
+            }
             const kingTo = getSquare(
               board,
               getOffsettedPosition(rookTo.position, offset)
