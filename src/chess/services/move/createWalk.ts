@@ -1,12 +1,12 @@
 import type Piece from "../piece/types/Piece"
 import type Square from "../square/types/Square"
-import type PossibleMove from "./types/PossibleMove"
+import type ExecutableMove from "./types/ExecutableMove"
 
 export default function createWalk(
   fromPiece: Piece,
   fromSquare: Square,
   toSquare: Square
-): PossibleMove {
+): ExecutableMove {
   return {
     type: "walk",
     execute: () => {

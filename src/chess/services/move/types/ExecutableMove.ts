@@ -1,7 +1,7 @@
 import type Piece from "../../piece/types/Piece"
 import type Move from "./Move"
 
-type PossibleMove =
+type ExecutableMove =
   | {
       type: "walk" | "capture" | "castle" | "enpassant"
       execute: () => Move
@@ -11,4 +11,4 @@ type PossibleMove =
       execute: (designation: Piece["designation"]) => Move
     }
 
-export default PossibleMove
+export default ExecutableMove

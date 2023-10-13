@@ -1,6 +1,6 @@
 import type Piece from "../piece/types/Piece"
 import type Square from "../square/types/Square"
-import type PossibleMove from "./types/PossibleMove"
+import type ExecutableMove from "./types/ExecutableMove"
 
 export default function createCastle(
   king: Piece,
@@ -9,7 +9,7 @@ export default function createCastle(
   kingToSquare: Square,
   rookFromSquare: Square,
   rookToSquare: Square
-): PossibleMove {
+): ExecutableMove {
   return {
     type: "castle",
     execute: () => {
