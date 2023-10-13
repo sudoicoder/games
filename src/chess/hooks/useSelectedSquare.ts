@@ -1,17 +1,17 @@
 import { useState } from "react"
 
-import type Square from "../services/square/types/Square"
+import type Piece from "../services/piece/types/Piece"
 
-export default function useSelectedSquare() {
-  const [selectedSquare, setSelectedSquare] = useState<Nullish<Square>>(null)
+export default function useSelectedPiece() {
+  const [selectedPiece, setSelectedPiece] = useState<Nullish<Piece>>(null)
 
-  function select(square: Square) {
-    return void setSelectedSquare(square)
+  function select(piece: Piece) {
+    return void setSelectedPiece(piece)
   }
 
   function deselect() {
-    return void setSelectedSquare(null)
+    return void setSelectedPiece(null)
   }
 
-  return { selectedSquare, select, deselect } as const
+  return { selectedPiece, select, deselect } as const
 }
