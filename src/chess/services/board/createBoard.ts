@@ -16,10 +16,12 @@ export default function createBoard(): Board {
     for (let column = 0; column < squares[row].length; column++) {
       const position = { row, column }
       const piece = createInitialPiece(position)
-      squares[row][column] = createSquare(position, piece)
+      const square = createSquare(position, piece)
       if (piece !== null) {
+        piece.square = square
         pieces[piece.alliance].add(piece)
       }
+      squares[row][column] = square
     }
   }
   return { pieces, squares }
