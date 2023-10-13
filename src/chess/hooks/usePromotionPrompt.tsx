@@ -2,7 +2,7 @@ import { useRef, useState } from "react"
 
 import type Piece from "../services/piece/types/Piece"
 
-import getPieceIconPath from "../services/piece/getPieceIconPath"
+import getPieceIcon from "../services/piece/getPieceIcon"
 
 import classes from "../styles/chess-game.module.css"
 
@@ -27,7 +27,7 @@ export default function usePromotionPrompt() {
         >
           <img
             className={classes["piece"]}
-            src={getPieceIconPath(alliance, "knight")}
+            src={getPieceIcon(alliance, "knight")}
             alt={`${alliance}/knight`}
           />
         </span>,
@@ -37,7 +37,7 @@ export default function usePromotionPrompt() {
         >
           <img
             className={classes["piece"]}
-            src={getPieceIconPath(alliance, "bishop")}
+            src={getPieceIcon(alliance, "bishop")}
             alt={`${alliance}/bishop`}
           />
         </span>,
@@ -47,7 +47,7 @@ export default function usePromotionPrompt() {
         >
           <img
             className={classes["piece"]}
-            src={getPieceIconPath(alliance, "rook")}
+            src={getPieceIcon(alliance, "rook")}
             alt={`${alliance}/rook`}
           />
         </span>,
@@ -57,7 +57,7 @@ export default function usePromotionPrompt() {
         >
           <img
             className={classes["piece"]}
-            src={getPieceIconPath(alliance, "queen")}
+            src={getPieceIcon(alliance, "queen")}
             alt={`${alliance}/queen`}
           />
         </span>,
