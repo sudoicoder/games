@@ -17,6 +17,7 @@ import createWalk from "./createWalk"
 import generatePossibleMoveStrategies from "./generatePossibleMoveStrategies"
 import isEnPassant from "./isEnPassant"
 import isPromotion from "./isPromotion"
+import isSquareUnderOpponentControl from "./isSquareUnderOpponentControl"
 
 export default function computePossibleMoves(
   board: Board,
@@ -84,10 +85,8 @@ export default function computePossibleMoves(
               board,
               getOffsettedPosition(square.position, offset)
             )!
-            for (const controlled of opponentInfluence.controls.values()) {
-              if (controlled.has(rookTo)) {
-                break
-              }
+            if (!isSquareUnderOpponentControl(rookTo, opponentInfluence)) {
+              break
             }
             const kingTo = getSquare(
               board,
@@ -123,10 +122,8 @@ export default function computePossibleMoves(
     return possibleMoves
   }
   for (const square of possibleMoves.keys()) {
-    for (const controlled of opponentInfluence.controls.values()) {
-      if (controlled.has(square)) {
-        possibleMoves.delete(square)
-      }
+    if (isSquareUnderOpponentControl(square, opponentInfluence)) {
+      possibleMoves.delete(square)
     }
   }
   return possibleMoves
