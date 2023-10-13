@@ -1,9 +1,10 @@
+import type Piece from "../../piece/types/Piece"
 import type Square from "../../square/types/Square"
 
-type Influence = {
-  pinned: Square[]
-  checking: Square[]
-  controlled: [Square, Square[]][]
-}
+type Influence = Readonly<{
+  checking: ReadonlyMap<Piece, ReadonlySet<Square>>
+  controlled: ReadonlyMap<Piece, ReadonlySet<Square>>
+  pinned: ReadonlySet<Piece>
+}>
 
 export default Influence
