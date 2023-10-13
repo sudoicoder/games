@@ -1,13 +1,14 @@
 import type Piece from "../../piece/types/Piece"
 
-type Square = {
-  position: {
+type Square = Readonly<{
+  notation: string
+  position: Readonly<{
     row: number
     column: number
-  }
-  notation: string
-  piece: Nullish<Piece>
+  }>
   shade: "dark" | "light"
+}> & {
+  piece: Nullish<Piece>
 }
 
 export default Square
