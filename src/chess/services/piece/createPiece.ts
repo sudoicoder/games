@@ -11,5 +11,6 @@ export default function createPiece(
     designation,
     moves: 0,
     notation: getPieceNotation(alliance, designation),
+    square: null,
   }
 }
