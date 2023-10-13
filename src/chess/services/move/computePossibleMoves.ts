@@ -3,6 +3,7 @@ import type Influence from "../influence/types/Influence"
 import type Square from "../square/types/Square"
 import type PossibleMove from "./types/PossibleMove"
 
+import getSquare from "../board/getSquare"
 import generateOffsettedSquares from "../offset/generateOffsettedSquares"
 import getOffsettedPosition from "../position/getOffsettedPosition"
 import createCapture from "./createCapture"
@@ -12,9 +13,8 @@ import createPromotionCapture from "./createPromotionCapture"
 import createPromotionWalk from "./createPromotionWalk"
 import createWalk from "./createWalk"
 import generatePossibleMoveStrategies from "./generatePossibleMoveStrategies"
-import getSquare from "../board/getSquare"
-import isPromotion from "./isPromotion"
 import isEnPassant from "./isEnPassant"
+import isPromotion from "./isPromotion"
 
 export default function computePossibleMoves(
   board: Board,
