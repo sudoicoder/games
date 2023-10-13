@@ -6,8 +6,8 @@ export default function getAvailableGames() {
   return availableGames
 }
 
-const availableGames: Record<string, () => JSX.Element> = {
+const availableGames: (() => React.JSX.Element)[] = [
   ChessGame,
   CountryCapitalGame,
   TicTacToeGame,
-}
+]
