@@ -1,12 +1,15 @@
-import classes from "./styles/chess-game.module.css"
-
-import getPieceIconPath from "./services/piece/getPieceIconPath"
-
 import useChessGame from "./hooks/useChessGame"
 
+import classes from "./styles/chess-game.module.css"
+
 export default function ChessGame() {
-  const { board, getSquarePhase, handleSquareClick, PromotionPrompt } =
-    useChessGame()
+  const {
+    PromotionPrompt,
+    board,
+    getPieceIconPath,
+    getSquarePhase,
+    handleSquareClick,
+  } = useChessGame()
   return (
     <div>
       <PromotionPrompt />

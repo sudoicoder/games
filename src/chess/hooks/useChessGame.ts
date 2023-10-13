@@ -1,6 +1,8 @@
 import type ExecutableMove from "../services/move/types/ExecutableMove"
-import Piece from "../services/piece/types/Piece"
+import type Piece from "../services/piece/types/Piece"
 import type Square from "../services/square/types/Square"
+
+import getPieceIconPath from "../services/piece/getPieceIconPath"
 
 import useBoard from "./useBoard"
 import useOpponentInfluence from "./useOpponentInfluence"
@@ -100,5 +102,11 @@ export default function useChessGame() {
     }
   }
 
-  return { board, getSquarePhase, handleSquareClick, PromotionPrompt } as const
+  return {
+    PromotionPrompt,
+    board,
+    getPieceIconPath,
+    getSquarePhase,
+    handleSquareClick,
+  } as const
 }
