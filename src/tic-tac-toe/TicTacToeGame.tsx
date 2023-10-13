@@ -1,10 +1,9 @@
 import circle from "./assets/circle.svg"
 import cross from "./assets/cross.svg"
-
 import classes from "./styles/tic-tac-toe-game.module.css"
+import draw from "./utils/draw"
 
 import useTicTacToeGameState from "./hooks/useTicTacToeGameState"
-import draw from "./utils/draw"
 
 export default function TicTacToeGame() {
   const {

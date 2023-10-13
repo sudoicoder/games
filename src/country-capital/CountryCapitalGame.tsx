@@ -5,7 +5,6 @@ import useCountryCapitalGameState from "./hooks/useCountryCapitalGameState"
 export default function CountryCapitalGame() {
   const { getPhase, handleClick, isGameCompleted, restartGame, unmatcheds } =
     useCountryCapitalGameState()
-
   return (
     <div className={classes.game}>
       {unmatcheds.map(unmatched => {

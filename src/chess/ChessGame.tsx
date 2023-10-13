@@ -1,6 +1,6 @@
-import useChessGame from "./hooks/useChessGame"
-
 import classes from "./styles/chess-game.module.css"
+
+import useChessGame from "./hooks/useChessGame"
 
 export default function ChessGame() {
   const {
