@@ -4,13 +4,20 @@ import getAvailableGameNames from "../services/getAvailableGameNames"
 import getAvailableGames from "../services/getAvailableGames"
 
 export default function useApp() {
-  const [selected, setSelected] = useState(getAvailableGameNames()[0])
+  const [selectedGameName, setSelectedGameName] = useState(
+    getAvailableGameNames()[0]
+  )
 
   function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    setSelected(e.target.value)
+    setSelectedGameName(e.target.value)
   }
 
-  const Game = getAvailableGames()[selected]
+  const Game = getAvailableGames()[selectedGameName]
 
-  return { Game, handleChange, selected } as const
+  return {
+    Game,
+    availableGameNames: getAvailableGameNames(),
+    handleChange,
+    selectedGameName,
+  } as const
 }

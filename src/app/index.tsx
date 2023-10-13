@@ -1,19 +1,17 @@
-import getAvailableGameNames from "./services/getAvailableGameNames"
-
 import useApp from "./hooks/useApp"
 
 import classes from "./styles/app.module.css"
 
 export default function App() {
-  const { Game, handleChange, selected } = useApp()
+  const { Game, availableGameNames, handleChange, selectedGameName } = useApp()
   return (
     <div className={classes["wrapper"]}>
       <select
         className={classes["select"]}
-        value={selected}
+        value={selectedGameName}
         onChange={handleChange}
       >
-        {getAvailableGameNames().map(gameName => (
+        {availableGameNames.map(gameName => (
           <option
             key={gameName}
             className={classes["option"]}
