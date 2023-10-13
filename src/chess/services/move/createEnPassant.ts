@@ -3,7 +3,7 @@ import type Square from "../square/types/Square"
 import type PossibleMove from "./types/PossibleMove"
 
 export default function createEnPassant(
-  capturingPiece: Piece,
+  fromPiece: Piece,
   capturePiece: Piece,
   fromSquare: Square,
   toSquare: Square,
@@ -13,22 +13,26 @@ export default function createEnPassant(
     type: "enpassant",
     execute: () => {
       fromSquare.piece = null
+      toSquare.piece = fromPiece
       captureSquare.piece = null
-      toSquare.piece = capturingPiece
-      capturingPiece.moves++
+      fromPiece.square = toSquare
+      capturePiece.square = null
+      fromPiece.moves++
       return {
         description: description(
-          capturingPiece,
+          fromPiece,
           capturePiece,
           fromSquare,
           toSquare,
           captureSquare
         ),
         undo: () => {
+          fromSquare.piece = fromPiece
           toSquare.piece = null
           captureSquare.piece = capturePiece
-          fromSquare.piece = capturingPiece
-          capturingPiece.moves--
+          fromPiece.square = fromSquare
+          capturePiece.square = captureSquare
+          fromPiece.moves--
         },
       }
     },
@@ -36,11 +40,11 @@ export default function createEnPassant(
 }
 
 function description(
-  capturingPiece: Piece,
+  fromPiece: Piece,
   capturePiece: Piece,
   fromSquare: Square,
   toSquare: Square,
   captureSquare: Square
 ): string {
-  return `Moved ${capturingPiece.notation} from ${fromSquare.notation} to ${toSquare.notation} with capture of ${capturePiece.notation} at ${captureSquare.notation} enpassant`
+  return `Moved ${fromPiece.notation} from ${fromSquare.notation} to ${toSquare.notation} with capture of ${capturePiece.notation} at ${captureSquare.notation} enpassant`
 }

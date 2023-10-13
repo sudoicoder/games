@@ -3,8 +3,8 @@ import type Square from "../square/types/Square"
 import type PossibleMove from "./types/PossibleMove"
 
 export default function createCapture(
-  capturingPiece: Piece,
-  capturePiece: Piece,
+  fromPiece: Piece,
+  toPiece: Piece,
   fromSquare: Square,
   toSquare: Square
 ): PossibleMove {
@@ -12,19 +12,18 @@ export default function createCapture(
     type: "capture",
     execute: () => {
       fromSquare.piece = null
-      toSquare.piece = capturingPiece
-      capturingPiece.moves++
+      toSquare.piece = fromPiece
+      fromPiece.square = toSquare
+      toPiece.square = null
+      fromPiece.moves++
       return {
-        description: description(
-          capturingPiece,
-          capturePiece,
-          fromSquare,
-          toSquare
-        ),
+        description: description(fromPiece, toPiece, fromSquare, toSquare),
         undo: () => {
-          toSquare.piece = capturePiece
-          fromSquare.piece = capturingPiece
-          capturingPiece.moves--
+          fromSquare.piece = fromPiece
+          toSquare.piece = toPiece
+          fromPiece.square = fromSquare
+          toPiece.square = toSquare
+          fromPiece.moves--
         },
       }
     },
@@ -32,10 +31,10 @@ export default function createCapture(
 }
 
 function description(
-  capturingPiece: Piece,
-  capturePiece: Piece,
+  fromPiece: Piece,
+  toPiece: Piece,
   fromSquare: Square,
   toSquare: Square
 ): string {
-  return `Moved ${capturingPiece.notation} from ${fromSquare.notation} to ${toSquare.notation} with capture of ${capturePiece.notation}`
+  return `Moved ${fromPiece.notation} from ${fromSquare.notation} to ${toSquare.notation} with capture of ${toPiece.notation}`
 }

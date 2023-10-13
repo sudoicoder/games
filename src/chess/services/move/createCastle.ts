@@ -17,17 +17,21 @@ export default function createCastle(
       kingToSquare.piece = king
       rookFromSquare.piece = null
       rookToSquare.piece = rook
+      king.square = kingToSquare
+      rook.square = rookToSquare
       king.moves++
       rook.moves++
       return {
         description: description(kingFromSquare, rookFromSquare),
         undo: () => {
-          rookToSquare.piece = null
-          rookFromSquare.piece = rook
-          kingToSquare.piece = null
           kingFromSquare.piece = king
-          rook.moves--
+          kingToSquare.piece = null
+          rookFromSquare.piece = rook
+          rookToSquare.piece = null
+          king.square = kingFromSquare
+          rook.square = rookFromSquare
           king.moves--
+          rook.moves--
         },
       }
     },

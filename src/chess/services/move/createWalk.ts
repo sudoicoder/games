@@ -12,12 +12,14 @@ export default function createWalk(
     execute: () => {
       fromSquare.piece = null
       toSquare.piece = fromPiece
+      fromPiece.square = toSquare
       fromPiece.moves++
       return {
         description: description(fromPiece, fromSquare, toSquare),
         undo: () => {
-          toSquare.piece = null
           fromSquare.piece = fromPiece
+          toSquare.piece = null
+          fromPiece.square = fromSquare
           fromPiece.moves--
         },
       }

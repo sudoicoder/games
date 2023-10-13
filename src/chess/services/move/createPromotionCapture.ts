@@ -2,8 +2,6 @@ import type Piece from "../piece/types/Piece"
 import type Square from "../square/types/Square"
 import type PossibleMove from "./types/PossibleMove"
 
-import createPiece from "../piece/createPiece"
-
 export default function createPromotionCapture(
   fromPiece: Piece,
   toPiece: Piece,
@@ -13,8 +11,13 @@ export default function createPromotionCapture(
   return {
     type: "promotion/capture",
     execute: designation => {
+      const designationBeforePromotion = fromPiece.designation
       fromSquare.piece = null
-      toSquare.piece = createPiece(fromPiece.alliance, designation)
+      toSquare.piece = fromPiece
+      fromPiece.designation = designation
+      fromPiece.square = toSquare
+      toPiece.square = null
+      fromPiece.moves++
       return {
         description: description(
           fromPiece,
@@ -24,8 +27,12 @@ export default function createPromotionCapture(
           designation
         ),
         undo: () => {
-          toSquare.piece = toPiece
           fromSquare.piece = fromPiece
+          toSquare.piece = toPiece
+          fromPiece.designation = designationBeforePromotion
+          fromPiece.square = fromSquare
+          toPiece.square = toSquare
+          fromPiece.moves--
         },
       }
     },
