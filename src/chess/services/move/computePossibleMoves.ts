@@ -1,5 +1,6 @@
 import type Board from "../board/types/Board"
 import type Influence from "../influence/types/Influence"
+import type Piece from "../piece/types/Piece"
 import type Square from "../square/types/Square"
 import type PossibleMove from "./types/PossibleMove"
 
@@ -18,33 +19,33 @@ import isPromotion from "./isPromotion"
 
 export default function computePossibleMoves(
   board: Board,
-  square: Square,
+  piece: Piece,
   opponentInfluence: Influence
 ): Map<Square, PossibleMove> {
   const possibleMoves = new Map<Square, PossibleMove>()
-  const self = square.piece
-  if (self === null) {
+  const square = piece.square
+  if (square === null) {
     return possibleMoves
   }
-  if (opponentInfluence.pins.has(self)) {
+  if (opponentInfluence.pins.has(piece)) {
     return possibleMoves
   }
   const isUnderMultipleChecks = opponentInfluence.checks.size > 1
-  const isKing = self.designation === "king"
+  const isKing = piece.designation === "king"
   if (isUnderMultipleChecks && !isKing) {
     return possibleMoves
   }
-  const possibleMoveStrategies = generatePossibleMoveStrategies(self)
+  const possibleMoveStrategies = generatePossibleMoveStrategies(piece)
   for (const [offset, extent, behaviours] of possibleMoveStrategies) {
     const offsetteds = generateOffsettedSquares(board, square, offset, extent)
     for (const offsetted of offsetteds) {
       const other = offsetted.piece
       if (other === null) {
         if (behaviours.includes("walk")) {
-          const create = isPromotion(self, offsetted)
+          const create = isPromotion(piece, offsetted)
             ? createPromotionWalk
             : createWalk
-          const possible = create(self, square, offsetted)
+          const possible = create(piece, square, offsetted)
           possibleMoves.set(offsetted, possible)
         }
         if (behaviours.includes("attack")) {
@@ -55,7 +56,7 @@ export default function computePossibleMoves(
             })!
             const capturePiece = captureSquare.piece!
             const possible = createEnPassant(
-              self,
+              piece,
               capturePiece,
               square,
               offsetted,
@@ -66,17 +67,17 @@ export default function computePossibleMoves(
         }
         continue
       }
-      if (other.alliance !== self.alliance) {
+      if (other.alliance !== piece.alliance) {
         if (behaviours.includes("attack")) {
-          const create = isPromotion(self, offsetted)
+          const create = isPromotion(piece, offsetted)
             ? createPromotionCapture
             : createCapture
-          const possible = create(self, other, square, offsetted)
+          const possible = create(piece, other, square, offsetted)
           possibleMoves.set(offsetted, possible)
         }
       }
       if (behaviours.includes("castle")) {
-        if (self.designation === "king" && other.designation === "rook") {
+        if (piece.designation === "king" && other.designation === "rook") {
           if (other.moves <= 0) {
             const rookTo = getSquare(
               board,
@@ -87,7 +88,7 @@ export default function computePossibleMoves(
               getOffsettedPosition(rookTo.position, offset)
             )!
             const possible = createCastle(
-              self,
+              piece,
               other,
               square,
               kingTo,
