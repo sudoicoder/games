@@ -1,5 +1,5 @@
-import type Square from "./types/Square"
 import type Piece from "../piece/types/Piece"
+import type Square from "./types/Square"
 
 import getSquareNotation from "./getSquareNotation"
 import getSquareShade from "./getSquareShade"
@@ -9,9 +9,9 @@ export default function createSquare(
   piece: Nullish<Piece>
 ): Square {
   return {
-    position,
     notation: getSquareNotation(position),
-    shade: getSquareShade(position),
+    position,
     piece,
+    shade: getSquareShade(position),
   }
 }
