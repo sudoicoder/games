@@ -26,18 +26,18 @@
   background-color: darkslategray;
 }
 
-.symbol {
+.marker {
   width: 100%;
 }
 
-.symbol[data-symbol="X"] {
+.marker[data-marker="X"] {
   scale: 1;
 }
 
-.symbol[data-symbol="O"] {
+.marker[data-marker="O"] {
   scale: 1.5;
 }
 
-.square[data-strike="true"] {
+.square[data-striken="true"] {
   background-color: seashell;
 }
