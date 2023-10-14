@@ -30,14 +30,14 @@
   width: 100%;
 }
 
-.symbol-x {
+.symbol[data-symbol="X"] {
   scale: 1;
 }
 
-.symbol-o {
+.symbol[data-symbol="O"] {
   scale: 1.5;
 }
 
-.strike {
+.square[data-strike="true"] {
   background-color: seashell;
 }
