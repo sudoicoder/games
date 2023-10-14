@@ -20,5 +20,5 @@ export default function createGrid(size: number): Grid {
     }
   }
 
-  return { reset, squares }
+  return { reset, size, squares }
 }
