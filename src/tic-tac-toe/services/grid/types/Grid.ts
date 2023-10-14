@@ -1,5 +1,8 @@
-import type Marker from "../../marker/types/Marker"
+import type Square from "../../square/types/Square"
 
-type Grid = ("" | Marker)[][]
+type Grid = Readonly<{
+  reset: () => void
+  squares: ReadonlyArray<ReadonlyArray<Square>>
+}>
 
 export default Grid
