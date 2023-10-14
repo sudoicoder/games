@@ -5,13 +5,13 @@ import type Piece from "../services/piece/types/Piece"
 export default function useSelectedPiece() {
   const [selectedPiece, setSelectedPiece] = useState<Nullish<Piece>>(null)
 
-  function select(piece: Piece) {
+  function selectPiece(piece: Piece) {
     return void setSelectedPiece(piece)
   }
 
-  function deselect() {
+  function deselectPiece() {
     return void setSelectedPiece(null)
   }
 
-  return { selectedPiece, select, deselect } as const
+  return { selectedPiece, selectPiece, deselectPiece } as const
 }
