@@ -12,12 +12,8 @@ export default function createEnPassant(
   return {
     type: "enpassant",
     execute: () => {
-      fromSquare.piece = null
-      toSquare.piece = fromPiece
-      captureSquare.piece = null
-      fromPiece.square = toSquare
-      capturePiece.square = null
-      fromPiece.moves++
+      fromPiece.move(toSquare, "increment/moves")
+      capturePiece.stash()
       return {
         description: description(
           fromPiece,
@@ -27,12 +23,8 @@ export default function createEnPassant(
           captureSquare
         ),
         undo: () => {
-          fromSquare.piece = fromPiece
-          toSquare.piece = null
-          captureSquare.piece = capturePiece
-          fromPiece.square = fromSquare
-          capturePiece.square = captureSquare
-          fromPiece.moves--
+          capturePiece.place(captureSquare)
+          fromPiece.move(fromSquare, "decrement/moves")
         },
       }
     },

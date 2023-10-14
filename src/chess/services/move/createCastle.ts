@@ -13,25 +13,13 @@ export default function createCastle(
   return {
     type: "castle",
     execute: () => {
-      kingFromSquare.piece = null
-      kingToSquare.piece = king
-      rookFromSquare.piece = null
-      rookToSquare.piece = rook
-      king.square = kingToSquare
-      rook.square = rookToSquare
-      king.moves++
-      rook.moves++
+      king.move(kingToSquare, "increment/moves")
+      rook.move(rookToSquare, "increment/moves")
       return {
         description: description(kingFromSquare, rookFromSquare),
         undo: () => {
-          kingFromSquare.piece = king
-          kingToSquare.piece = null
-          rookFromSquare.piece = rook
-          rookToSquare.piece = null
-          king.square = kingFromSquare
-          rook.square = rookFromSquare
-          king.moves--
-          rook.moves--
+          rook.move(rookFromSquare, "decrement/moves")
+          king.move(kingFromSquare, "decrement/moves")
         },
       }
     },

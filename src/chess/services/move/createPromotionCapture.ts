@@ -12,12 +12,9 @@ export default function createPromotionCapture(
     type: "promotion/capture",
     execute: designation => {
       const designationBeforePromotion = fromPiece.designation
-      fromSquare.piece = null
-      toSquare.piece = fromPiece
-      fromPiece.designation = designation
-      fromPiece.square = toSquare
-      toPiece.square = null
-      fromPiece.moves++
+      toPiece.stash()
+      fromPiece.move(toSquare, "increment/moves")
+      fromPiece.designate(designation)
       return {
         description: description(
           fromPiece,
@@ -27,12 +24,9 @@ export default function createPromotionCapture(
           designation
         ),
         undo: () => {
-          fromSquare.piece = fromPiece
-          toSquare.piece = toPiece
-          fromPiece.designation = designationBeforePromotion
-          fromPiece.square = fromSquare
-          toPiece.square = toSquare
-          fromPiece.moves--
+          fromPiece.designate(designationBeforePromotion)
+          fromPiece.move(fromSquare, "decrement/moves")
+          toPiece.place(toSquare)
         },
       }
     },

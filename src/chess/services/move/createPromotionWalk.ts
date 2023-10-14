@@ -11,19 +11,13 @@ export default function createPromotionWalk(
     type: "promotion/walk",
     execute: designation => {
       const designationBeforePromotion = fromPiece.designation
-      fromSquare.piece = null
-      toSquare.piece = fromPiece
-      fromPiece.designation = designation
-      fromPiece.square = toSquare
-      fromPiece.moves++
+      fromPiece.move(toSquare, "increment/moves")
+      fromPiece.designate(designation)
       return {
         description: description(fromPiece, fromSquare, toSquare, designation),
         undo: () => {
-          fromSquare.piece = fromPiece
-          toSquare.piece = null
-          fromPiece.designation = designationBeforePromotion
-          fromPiece.square = fromSquare
-          fromPiece.moves--
+          fromPiece.designate(designationBeforePromotion)
+          fromPiece.move(fromSquare, "decrement/moves")
         },
       }
     },

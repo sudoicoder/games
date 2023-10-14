@@ -10,17 +10,11 @@ export default function createWalk(
   return {
     type: "walk",
     execute: () => {
-      fromSquare.piece = null
-      toSquare.piece = fromPiece
-      fromPiece.square = toSquare
-      fromPiece.moves++
+      fromPiece.move(toSquare, "increment/moves")
       return {
         description: description(fromPiece, fromSquare, toSquare),
         undo: () => {
-          fromSquare.piece = fromPiece
-          toSquare.piece = null
-          fromPiece.square = fromSquare
-          fromPiece.moves--
+          fromPiece.move(fromSquare, "decrement/moves")
         },
       }
     },

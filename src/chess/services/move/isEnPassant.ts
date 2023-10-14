@@ -1,8 +1,6 @@
 import type Board from "../board/types/Board"
 import type Square from "../square/types/Square"
 
-import getSquare from "../board/getSquare"
-
 export default function isEnPassant(
   board: Board,
   from: Square,
@@ -25,7 +23,7 @@ export default function isEnPassant(
   if (toPiece !== null) {
     return false
   }
-  const offSquare = getSquare(board, {
+  const offSquare = board.square({
     row: from.position.row,
     column: to.position.column,
   })

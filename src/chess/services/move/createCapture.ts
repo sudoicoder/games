@@ -11,19 +11,13 @@ export default function createCapture(
   return {
     type: "capture",
     execute: () => {
-      fromSquare.piece = null
-      toSquare.piece = fromPiece
-      fromPiece.square = toSquare
-      toPiece.square = null
-      fromPiece.moves++
+      toPiece.stash()
+      fromPiece.move(toSquare, "increment/moves")
       return {
         description: description(fromPiece, toPiece, fromSquare, toSquare),
         undo: () => {
-          fromSquare.piece = fromPiece
-          toSquare.piece = toPiece
-          fromPiece.square = fromSquare
-          toPiece.square = toSquare
-          fromPiece.moves--
+          fromPiece.move(fromSquare, "decrement/moves")
+          toPiece.place(toSquare)
         },
       }
     },

@@ -5,7 +5,6 @@ import type Square from "../square/types/Square"
 import type ExecutableMove from "./types/ExecutableMove"
 import type PossibleMoves from "./types/PossibleMoves"
 
-import getSquare from "../board/getSquare"
 import generateOffsettedSquares from "../offset/generateOffsettedSquares"
 import getOffsettedPosition from "../position/getOffsettedPosition"
 import createCapture from "./createCapture"
@@ -52,7 +51,7 @@ export default function computePossibleMoves(
         }
         if (behaviours.includes("attack")) {
           if (isEnPassant(board, square, offsetted)) {
-            const captureSquare = getSquare(board, {
+            const captureSquare = board.square({
               row: square.position.row,
               column: offsetted.position.column,
             })!
@@ -81,15 +80,13 @@ export default function computePossibleMoves(
       if (behaviours.includes("castle")) {
         if (piece.designation === "king" && other.designation === "rook") {
           if (other.moves <= 0) {
-            const rookTo = getSquare(
-              board,
+            const rookTo = board.square(
               getOffsettedPosition(square.position, offset)
             )!
             if (!isSquareUnderOpponentControl(rookTo, opponentInfluence)) {
               break
             }
-            const kingTo = getSquare(
-              board,
+            const kingTo = board.square(
               getOffsettedPosition(rookTo.position, offset)
             )!
             const possible = createCastle(
