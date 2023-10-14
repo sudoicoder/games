@@ -33,7 +33,7 @@ export default function useCountryCapitalGame() {
   }
 
   function restartGame() {
-    setUnmatched(getRandomizedCountryCapitalList)
+    setUnmatched(getRandomizedCountryCapitalList())
   }
 
   const isGameCompleted = unmatcheds.length === 0
