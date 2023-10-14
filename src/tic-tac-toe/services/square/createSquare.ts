@@ -21,7 +21,9 @@ export default function createSquare(
     },
     column,
     mark,
-    marker,
+    get marker() {
+      return marker
+    },
     reset,
     row,
   }

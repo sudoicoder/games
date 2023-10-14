@@ -4,7 +4,7 @@ type Square = Readonly<{
   get isMarked(): boolean
   column: number
   mark: (marker: Marker) => void
-  marker: Nullish<Marker>
+  get marker(): Nullish<Marker>
   reset: () => void
   row: number
 }>
