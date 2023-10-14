@@ -8,7 +8,7 @@ import useWinner from "./useWinner"
 export default function useTicTacToeGame() {
   const [marker, flipMarker, resetMarker] = useMarker()
 
-  const grid = useGrid()
+  const { grid, resetGrid } = useGrid(3)
 
   const strike = useStrike(grid, marker)
   const winner = useWinner(grid, strike)
@@ -26,7 +26,7 @@ export default function useTicTacToeGame() {
   }
 
   function restartGame() {
-    grid.reset()
+    resetGrid()
     resetMarker()
   }
 
