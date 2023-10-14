@@ -1,9 +1,8 @@
-import circle from "./assets/circle.svg"
-import cross from "./assets/cross.svg"
 import classes from "./styles/tic-tac-toe-game.module.css"
 import draw from "./utils/draw"
 
 import useTicTacToeGameState from "./hooks/useTicTacToeGameState"
+import getSymbolIcon from "./assets/getSymbolIcon"
 
 export default function TicTacToeGame() {
   const {
@@ -15,7 +14,7 @@ export default function TicTacToeGame() {
     winner,
   } = useTicTacToeGameState()
   return (
-    <div className={classes.game}>
+    <div className={classes["game"]}>
       {winner !== "" && (
         <div>{winner === draw ? "Draw!" : `${winner} won!`}</div>
       )}
@@ -23,27 +22,24 @@ export default function TicTacToeGame() {
         return (
           <div
             key={`${ri}:${row}`}
-            className={classes.row}
+            className={classes["row"]}
           >
             {row.map((square, ci) => {
               const isOccupied = square !== ""
-              const extraClasses = shouldStrike(ri, ci) ? classes.strike : ""
               return (
                 <button
                   key={`${ci}:${square}`}
-                  className={`${classes.square} ${extraClasses}`.trim()}
+                  className={classes["square"]}
                   disabled={isGameCompleted || isOccupied}
                   onClick={() => handleClick(ri, ci)}
+                  data-strike={shouldStrike(ri, ci)}
                 >
                   {isOccupied && (
                     <img
                       key={square}
-                      className={`${classes.symbol} ${
-                        classes[`symbol-${square.toLowerCase()}`]
-                      }`}
-                      src={
-                        square === "X" ? cross : square === "O" ? circle : ""
-                      }
+                      className={classes["symbol"]}
+                      src={getSymbolIcon(square)}
+                      data-symbol={square}
                     />
                   )}
                 </button>
@@ -54,7 +50,7 @@ export default function TicTacToeGame() {
       })}
       {isGameCompleted && (
         <button
-          className={classes.restart}
+          className={classes["restart"]}
           onClick={restartGame}
         >
           Restart
