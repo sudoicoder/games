@@ -1,4 +1,4 @@
-import type Marker from "../../marker/Marker"
+import type Marker from "../../marker/types/Marker"
 
 type Grid = ("" | Marker)[][]
 

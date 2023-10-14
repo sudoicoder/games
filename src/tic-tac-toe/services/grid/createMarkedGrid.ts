@@ -1,5 +1,5 @@
 import type Grid from "./types/Grid"
-import type Marker from "../marker/Marker"
+import type Marker from "../marker/types/Marker"
 
 export default function createMarkedGrid(
   grid: Grid,

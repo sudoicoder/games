@@ -1,4 +1,4 @@
-import type Marker from "./Marker"
+import type Marker from "./types/Marker"
 
 export default function getNextSymbol(symbol: Marker) {
   switch (symbol) {

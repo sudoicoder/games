@@ -1,4 +1,4 @@
-import type Marker from "../services/marker/Marker"
+import type Marker from "../services/marker/types/Marker"
 
 import circle from "./circle.svg"
 import cross from "./cross.svg"
