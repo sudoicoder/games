@@ -4,7 +4,7 @@ import getRandomizedCountryCapitalList from "../services/getRandomizedCountryCap
 import isCountryCapitalMatched from "../services/isCountryCapitalMatched"
 
 export default function useCountryCapitalGame() {
-  const [unmatcheds, setUnmatched] = useState(getRandomizedCountryCapitalList)
+  const [unmatched, setUnmatched] = useState(getRandomizedCountryCapitalList)
   const [clicked, setClicked] = useState<string[]>([])
 
   function getTilePhase(value: string) {
@@ -36,13 +36,13 @@ export default function useCountryCapitalGame() {
     setUnmatched(getRandomizedCountryCapitalList())
   }
 
-  const isGameCompleted = unmatcheds.length === 0
+  const isGameCompleted = unmatched.length === 0
 
   return {
     getTilePhase,
     handleClick,
     isGameCompleted,
     restartGame,
-    unmatcheds,
+    unmatched,
   } as const
 }
