@@ -7,11 +7,11 @@ import useOpponentInfluence from "./useOpponentInfluence"
 import usePossibleMoves from "./usePossibleMoves"
 import usePromotionPrompt from "./usePromotionPrompt"
 import useSelectedPiece from "./useSelectedPiece"
-import useTurn from "./useTurn"
+import useAlliance from "./useAlliance"
 
 export default function useChessGame() {
   const { selectedPiece, select, deselect } = useSelectedPiece()
-  const { turn, opposition, flipTurn } = useTurn()
+  const { turn, opposition, flipTurn } = useAlliance()
 
   const board = useBoard()
   const opponentInfluence = useOpponentInfluence(board, opposition)
