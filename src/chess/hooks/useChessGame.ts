@@ -54,23 +54,27 @@ export default function useChessGame() {
     if (piece.alliance !== alliance) {
       return
     }
-    return void selectPiece(piece)
+    selectPiece(piece)
   }
 
   async function clickAsFollowSquare(selectedPiece: Piece, clicked: Square) {
     if (selectedPiece === clicked.piece) {
-      return void deselectPiece()
+      deselectPiece()
+      return
     }
     const executableMove = possibleMoves.get(clicked)
     if (executableMove !== undefined) {
-      return await executeMove(executableMove)
+      await executeMove(executableMove)
+      return
     }
     const piece = clicked.piece
     if (piece === null) {
-      return void deselectPiece()
+      deselectPiece()
+      return
     }
     if (piece.alliance === alliance) {
-      return void selectPiece(piece)
+      selectPiece(piece)
+      return
     }
   }
 
@@ -89,7 +93,6 @@ export default function useChessGame() {
     }
     deselectPiece()
     flipAlliance()
-    return
   }
 
   async function clickSquare(square: Square) {
