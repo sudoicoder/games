@@ -3,23 +3,23 @@ import draw from "./utils/draw"
 
 import getSymbolIcon from "./assets/getSymbolIcon"
 
-import useTicTacToeGameState from "./hooks/useTicTacToeGameState"
+import useTicTacToeGame from "./hooks/useTicTacToeGame"
 
 export default function TicTacToeGame() {
   const {
+    clickSquare,
     grid,
-    handleClick,
     isGameCompleted,
     restartGame,
     shouldStrike,
     winner,
-  } = useTicTacToeGameState()
+  } = useTicTacToeGame()
   return (
     <div className={classes["game"]}>
-      {winner !== "" && (
-        <div>{winner === draw ? "Draw!" : `${winner} won!`}</div>
+      {isGameCompleted && (
+        <div>{winner === null ? "Draw!" : `${winner} won!`}</div>
       )}
-      {grid.map((row, ri) => {
+      {grid.squares.map((row, ri) => {
         return (
           <div
             key={`${ri}:${row}`}
@@ -32,7 +32,7 @@ export default function TicTacToeGame() {
                   key={`${ci}:${square}`}
                   className={classes["square"]}
                   disabled={isGameCompleted || isOccupied}
-                  onClick={() => handleClick(ri, ci)}
+                  onClick={() => clickSquare(ri, ci)}
                   data-strike={shouldStrike(ri, ci)}
                 >
                   {isOccupied && (

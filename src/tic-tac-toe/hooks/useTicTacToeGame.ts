@@ -5,7 +5,7 @@ import useMarker from "./useMarker"
 import useStrike from "./useStrike"
 import useWinner from "./useWinner"
 
-export default function useTicTacToeGameState() {
+export default function useTicTacToeGame() {
   const [marker, flipMarker, resetMarker] = useMarker()
 
   const grid = useGrid()
