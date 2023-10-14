@@ -8,28 +8,55 @@ export default function useCountryCapitalGame() {
   const [clicked, setClicked] = useState<string[]>([])
 
   function getTilePhase(value: string) {
-    if (clicked.includes(value)) {
-      return clicked.length < 2 ? "selected" : "mismatched"
+    if (!clicked.includes(value)) {
+      return "default"
     }
-    return "default"
+    if (clicked.length > 1) {
+      return "mismatched"
+    }
+    return "selected"
   }
 
-  function handleClick(current: string) {
-    if (clicked.length !== 1) {
-      setClicked([current])
-      return
-    }
-    const previous = clicked[0]
-    if (previous === current) {
-      setClicked([])
-      return
-    }
-    if (!isCountryCapitalMatched(previous, current)) {
-      setClicked([previous, current])
-      return
-    }
+  function resetClicked() {
     setClicked([])
-    setUnmatched(ums => ums.filter(um => um !== previous && um !== current))
+  }
+
+  function saveAsFirstTile(tile: string) {
+    setClicked([tile])
+  }
+
+  function saveAsMismatch(previous: string, current: string) {
+    setClicked([previous, current])
+  }
+
+  function clickAsPairingTile(current: string) {
+    const previous = clicked[0]
+    if (previous !== current) {
+      checkForMatching(previous, current)
+    } else {
+      resetClicked()
+    }
+  }
+
+  function checkForMatching(previous: string, current: string) {
+    if (isCountryCapitalMatched(previous, current)) {
+      filterOutPairFromUnmatched(previous, current)
+      resetClicked()
+    } else {
+      saveAsMismatch(previous, current)
+    }
+  }
+
+  function filterOutPairFromUnmatched(previous: string, current: string) {
+    setUnmatched(um => um.filter(t => t !== previous && t !== current))
+  }
+
+  function clickTile(tile: string) {
+    if (clicked.length !== 1) {
+      saveAsFirstTile(tile)
+    } else {
+      clickAsPairingTile(tile)
+    }
   }
 
   function restartGame() {
@@ -40,7 +67,7 @@ export default function useCountryCapitalGame() {
 
   return {
     getTilePhase,
-    handleClick,
+    clickTile,
     isGameCompleted,
     restartGame,
     unmatched,
