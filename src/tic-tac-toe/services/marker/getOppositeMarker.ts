@@ -1,7 +1,7 @@
 import type Marker from "./types/Marker"
 
-export default function getNextSymbol(symbol: Marker) {
-  switch (symbol) {
+export default function getOppositeMarker(marker: Marker) {
+  switch (marker) {
     case "X":
       return "O"
     case "O":
