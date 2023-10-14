@@ -12,11 +12,11 @@
   cursor: pointer;
 }
 
-.tile-selected {
+.tile[data-phase="selected"] {
   background-color: slateblue;
 }
 
-.tile-mismatched {
+.tile[data-phase="mismatched"] {
   background-color: salmon;
 }
 
