@@ -6,11 +6,11 @@ export default function useSelectedPiece() {
   const [selectedPiece, setSelectedPiece] = useState<Nullish<Piece>>(null)
 
   function selectPiece(piece: Piece) {
-    return void setSelectedPiece(piece)
+    setSelectedPiece(piece)
   }
 
   function deselectPiece() {
-    return void setSelectedPiece(null)
+    setSelectedPiece(null)
   }
 
   return { selectedPiece, selectPiece, deselectPiece } as const
