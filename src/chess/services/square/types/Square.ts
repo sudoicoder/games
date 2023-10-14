@@ -7,8 +7,13 @@ type Square = Readonly<{
     column: number
   }>
   shade: "dark" | "light"
-}> & {
-  piece: Nullish<Piece>
-}
+}> &
+  Readonly<{
+    get piece(): Nullish<Piece>
+  }> &
+  Readonly<{
+    occupy: (piece: Piece) => void
+    vacate: () => void
+  }>
 
 export default Square
