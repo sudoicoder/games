@@ -10,10 +10,10 @@ import useSelectedPiece from "./useSelectedPiece"
 import useAlliance from "./useAlliance"
 
 export default function useChessGame() {
+  const { board } = useBoard()
   const { selectedPiece, selectPiece, deselectPiece } = useSelectedPiece()
   const [alliance, flipAlliance] = useAlliance()
 
-  const board = useBoard()
   const opponentInfluence = useOpponentInfluence(board, alliance)
   const possibleMoves = usePossibleMoves(
     board,
