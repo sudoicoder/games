@@ -1,6 +1,6 @@
-import type TicTacToeSymbol from "../getTicTacToeSymbols"
+import type Marker from "../marker/Marker"
 
-export type TicTacToeGrid = ("" | TicTacToeSymbol)[][]
+export type TicTacToeGrid = ("" | Marker)[][]
 
 export default function createGrid(size: number): TicTacToeGrid {
   return Array(size)
