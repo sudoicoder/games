@@ -6,9 +6,6 @@ type Grid = Readonly<{
 }> &
   Readonly<{
     get hasUnmarkedSquares(): boolean
-  }> &
-  Readonly<{
-    reset: () => void
   }>
 
 export default Grid

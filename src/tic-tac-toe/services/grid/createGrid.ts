@@ -12,20 +12,11 @@ export default function createGrid(size: number): Grid {
     }
   }
 
-  function reset() {
-    for (const row of squares) {
-      for (const square of row) {
-        square.reset()
-      }
-    }
-  }
-
   return {
     size,
     squares,
     get hasUnmarkedSquares() {
       return squares.some(row => row.some(squares => squares.marker === null))
     },
-    reset,
   }
 }
