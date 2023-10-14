@@ -1,4 +1,4 @@
-import type Game from "@/app/types/Game"
+import type Game from "@/app/services/types/Game"
 
 import ChessGame from "@/chess/ChessGame"
 import CountryCapitalGame from "@/country-capital/CountryCapitalGame"

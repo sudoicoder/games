@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import type Game from "../types/Game"
+import type Game from "../services/types/Game"
 
 import getAvailableGameNames from "../services/getAvailableGameNames"
 import getAvailableGames from "../services/getAvailableGames"
