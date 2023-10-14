@@ -2,9 +2,9 @@ import { useRef, useState } from "react"
 
 import type Piece from "../services/piece/types/Piece"
 
-import getPieceIcon from "../services/piece/getPieceIcon"
-
 import classes from "../styles/chess-game.module.css"
+
+import getPieceIcon from "../assets/getPieceIcon"
 
 export default function usePromotionPrompt() {
   const [show, setShow] = useState(false)

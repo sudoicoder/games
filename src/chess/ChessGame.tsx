@@ -1,15 +1,12 @@
 import classes from "./styles/chess-game.module.css"
 
+import getPieceIcon from "./assets/getPieceIcon"
+
 import useChessGame from "./hooks/useChessGame"
 
 export default function ChessGame() {
-  const {
-    PromotionPrompt,
-    board,
-    getPieceIconPath,
-    getSquarePhase,
-    handleSquareClick,
-  } = useChessGame()
+  const { PromotionPrompt, board, getSquarePhase, handleSquareClick } =
+    useChessGame()
   return (
     <div>
       <PromotionPrompt />
@@ -28,7 +25,7 @@ export default function ChessGame() {
                   <img
                     key={square.piece.notation}
                     className={classes["piece"]}
-                    src={getPieceIconPath(
+                    src={getPieceIcon(
                       square.piece.alliance,
                       square.piece.designation
                     )}
