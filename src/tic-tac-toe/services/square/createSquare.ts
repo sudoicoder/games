@@ -16,6 +16,9 @@ export default function createSquare(
   }
 
   return {
+    get isMarked() {
+      return marker !== null
+    },
     column,
     mark,
     marker,
