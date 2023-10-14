@@ -5,8 +5,7 @@ import getPieceIcon from "./assets/getPieceIcon"
 import useChessGame from "./hooks/useChessGame"
 
 export default function ChessGame() {
-  const { PromotionPrompt, board, getSquarePhase, handleSquareClick } =
-    useChessGame()
+  const { PromotionPrompt, board, clickSquare, getSquarePhase } = useChessGame()
   return (
     <div>
       <PromotionPrompt />
@@ -19,7 +18,7 @@ export default function ChessGame() {
                 className={classes["square"]}
                 data-shade={square.shade}
                 data-phase={getSquarePhase(square)}
-                onClick={() => handleSquareClick(square)}
+                onClick={() => clickSquare(square)}
               >
                 {square.piece !== null && (
                   <img

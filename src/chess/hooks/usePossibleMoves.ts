@@ -17,5 +17,5 @@ export default function usePossibleMoves(
       return new Map()
     }
     return computePossibleMoves(board, selectedPiece, opponentInfluence)
-  }, [board, selectedPiece])
+  }, [board, selectedPiece, opponentInfluence])
 }

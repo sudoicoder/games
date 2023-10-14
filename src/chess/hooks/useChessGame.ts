@@ -10,11 +10,11 @@ import useSelectedPiece from "./useSelectedPiece"
 import useAlliance from "./useAlliance"
 
 export default function useChessGame() {
-  const { selectedPiece, select, deselect } = useSelectedPiece()
-  const { turn, opposition, flipTurn } = useAlliance()
+  const { selectedPiece, selectPiece, deselectPiece } = useSelectedPiece()
+  const [alliance, flipAlliance] = useAlliance()
 
   const board = useBoard()
-  const opponentInfluence = useOpponentInfluence(board, opposition)
+  const opponentInfluence = useOpponentInfluence(board, alliance)
   const possibleMoves = usePossibleMoves(
     board,
     selectedPiece,
@@ -46,20 +46,20 @@ export default function useChessGame() {
     }
   }
 
-  async function handleFirstClick(square: Square) {
+  async function clickAsFirstSquare(square: Square) {
     const piece = square.piece
     if (piece === null) {
       return
     }
-    if (piece.alliance !== turn) {
+    if (piece.alliance !== alliance) {
       return
     }
-    return void select(piece)
+    return void selectPiece(piece)
   }
 
-  async function handleFollowClick(selectedPiece: Piece, clicked: Square) {
+  async function clickAsFollowSquare(selectedPiece: Piece, clicked: Square) {
     if (selectedPiece === clicked.piece) {
-      return void deselect()
+      return void deselectPiece()
     }
     const executableMove = possibleMoves.get(clicked)
     if (executableMove !== undefined) {
@@ -67,10 +67,10 @@ export default function useChessGame() {
     }
     const piece = clicked.piece
     if (piece === null) {
-      return void deselect()
+      return void deselectPiece()
     }
-    if (piece.alliance === turn) {
-      return void select(piece)
+    if (piece.alliance === alliance) {
+      return void selectPiece(piece)
     }
   }
 
@@ -84,26 +84,26 @@ export default function useChessGame() {
         break
       case "promotion/walk":
       case "promotion/capture":
-        executableMove.execute(await promptDesignation(turn))
+        executableMove.execute(await promptDesignation(alliance))
         break
     }
-    deselect()
-    flipTurn()
+    deselectPiece()
+    flipAlliance()
     return
   }
 
-  async function handleSquareClick(square: Square) {
+  async function clickSquare(square: Square) {
     if (selectedPiece === null) {
-      await handleFirstClick(square)
+      await clickAsFirstSquare(square)
     } else {
-      await handleFollowClick(selectedPiece, square)
+      await clickAsFollowSquare(selectedPiece, square)
     }
   }
 
   return {
     PromotionPrompt,
     board,
+    clickSquare,
     getSquarePhase,
-    handleSquareClick,
   } as const
 }
