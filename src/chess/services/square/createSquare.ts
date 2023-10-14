@@ -8,6 +8,9 @@ export default function createSquare(
   position: Square["position"],
   piece: Nullish<Piece>
 ): Square {
+  const notation = getSquareNotation(position)
+  const shade = getSquareShade(position)
+
   function occupy(p: Piece) {
     piece = p
   }
@@ -17,13 +20,13 @@ export default function createSquare(
   }
 
   return {
-    notation: getSquareNotation(position),
-    occupy,
+    notation,
     position,
+    shade,
     get piece() {
       return piece
     },
-    shade: getSquareShade(position),
+    occupy,
     vacate,
   }
 }
