@@ -1,7 +1,6 @@
 import classes from "./styles/tic-tac-toe-game.module.css"
-import draw from "./utils/draw"
 
-import getSymbolIcon from "./assets/getSymbolIcon"
+import getMarkerIcon from "./assets/getMarkerIcon"
 
 import useTicTacToeGame from "./hooks/useTicTacToeGame"
 
@@ -10,8 +9,8 @@ export default function TicTacToeGame() {
     clickSquare,
     grid,
     isGameCompleted,
+    isStrikenSquare,
     restartGame,
-    shouldStrike,
     winner,
   } = useTicTacToeGame()
   return (
@@ -26,21 +25,20 @@ export default function TicTacToeGame() {
             className={classes["row"]}
           >
             {row.map((square, ci) => {
-              const isOccupied = square !== ""
               return (
                 <button
                   key={`${ci}:${square}`}
                   className={classes["square"]}
-                  disabled={isGameCompleted || isOccupied}
-                  onClick={() => clickSquare(ri, ci)}
-                  data-strike={shouldStrike(ri, ci)}
+                  disabled={isGameCompleted || square.isMarked}
+                  onClick={() => clickSquare(square)}
+                  data-striken={isStrikenSquare(square)}
                 >
-                  {isOccupied && (
+                  {square.marker !== null && (
                     <img
-                      key={square}
-                      className={classes["symbol"]}
-                      src={getSymbolIcon(square)}
-                      data-symbol={square}
+                      key={square.marker}
+                      className={classes["marker"]}
+                      src={getMarkerIcon(square.marker)}
+                      data-marker={square.marker}
                     />
                   )}
                 </button>

@@ -13,7 +13,7 @@ export default function useTicTacToeGame() {
   const strike = useStrike(grid, marker)
   const winner = useWinner(grid, strike)
 
-  function shouldStrike(square: Square) {
+  function isStrikenSquare(square: Square) {
     return strike !== null && strike.squares.has(square)
   }
 
@@ -36,8 +36,8 @@ export default function useTicTacToeGame() {
     clickSquare,
     grid,
     isGameCompleted,
+    isStrikenSquare,
     restartGame,
-    shouldStrike,
     winner,
   } as const
 }
