@@ -3,7 +3,7 @@ import { useState } from "react"
 import getRandomizedCountryCapitalList from "../services/getRandomizedCountryCapitalList"
 import isCountryCapitalMatched from "../services/isCountryCapitalMatched"
 
-export default function useCountryCapitalGameState() {
+export default function useCountryCapitalGame() {
   const [unmatcheds, setUnmatched] = useState(getRandomizedCountryCapitalList)
   const [clicked, setClicked] = useState<string[]>([])
 
