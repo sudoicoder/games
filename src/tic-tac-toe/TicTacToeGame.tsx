@@ -1,8 +1,9 @@
 import classes from "./styles/tic-tac-toe-game.module.css"
 import draw from "./utils/draw"
 
-import useTicTacToeGameState from "./hooks/useTicTacToeGameState"
 import getSymbolIcon from "./assets/getSymbolIcon"
+
+import useTicTacToeGameState from "./hooks/useTicTacToeGameState"
 
 export default function TicTacToeGame() {
   const {
