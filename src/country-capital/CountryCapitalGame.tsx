@@ -11,14 +11,12 @@ export default function CountryCapitalGame() {
     unmatcheds,
   } = useCountryCapitalGame()
   return (
-    <div className={classes.game}>
+    <div className={classes["game"]}>
       {unmatcheds.map(unmatched => {
-        const phase = getTilePhase(unmatched)
-        const extraClasses = phase === "default" ? "" : classes[`tile-${phase}`]
         return (
           <button
             key={unmatched}
-            className={`${classes.tile} ${extraClasses}`.trim()}
+            className={classes["tile"]}
             onClick={() => handleClick(unmatched)}
             data-phase={getTilePhase(unmatched)}
           >
@@ -27,10 +25,10 @@ export default function CountryCapitalGame() {
         )
       })}
       {isGameCompleted && (
-        <div className={classes.success}>
+        <div className={classes["success"]}>
           <span className={classes["success-message"]}>Congratulations!!!</span>
           <button
-            className={classes.restart}
+            className={classes["restart"]}
             onClick={restartGame}
           >
             Restart
