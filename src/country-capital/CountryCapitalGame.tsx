@@ -3,18 +3,24 @@ import classes from "./styles/country-capital-game.module.css"
 import useCountryCapitalGame from "./hooks/useCountryCapitalGame"
 
 export default function CountryCapitalGame() {
-  const { getPhase, handleClick, isGameCompleted, restartGame, unmatcheds } =
-    useCountryCapitalGame()
+  const {
+    getTilePhase,
+    handleClick,
+    isGameCompleted,
+    restartGame,
+    unmatcheds,
+  } = useCountryCapitalGame()
   return (
     <div className={classes.game}>
       {unmatcheds.map(unmatched => {
-        const phase = getPhase(unmatched)
+        const phase = getTilePhase(unmatched)
         const extraClasses = phase === "default" ? "" : classes[`tile-${phase}`]
         return (
           <button
             key={unmatched}
             className={`${classes.tile} ${extraClasses}`.trim()}
             onClick={() => handleClick(unmatched)}
+            data-phase={getTilePhase(unmatched)}
           >
             {unmatched}
           </button>

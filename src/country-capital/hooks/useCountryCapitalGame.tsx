@@ -7,7 +7,7 @@ export default function useCountryCapitalGame() {
   const [unmatcheds, setUnmatched] = useState(getRandomizedCountryCapitalList)
   const [clicked, setClicked] = useState<string[]>([])
 
-  function getPhase(value: string) {
+  function getTilePhase(value: string) {
     if (clicked.includes(value)) {
       return clicked.length < 2 ? "selected" : "mismatched"
     }
@@ -39,7 +39,7 @@ export default function useCountryCapitalGame() {
   const isGameCompleted = unmatcheds.length === 0
 
   return {
-    getPhase,
+    getTilePhase,
     handleClick,
     isGameCompleted,
     restartGame,
