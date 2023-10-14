@@ -1,58 +1,40 @@
-import { useRef, useState } from "react"
+import type Square from "../services/square/types/Square"
 
-import type { TicTacToeSymbol } from "../services/getTicTacToeSymbols"
-import type { TicTacToeStrike } from "../services/getTicTacToeStrike"
-
-import createTicTacToeGrid from "../services/createTicTacToeGrid"
-import getTicTacToeStrike from "../services/getTicTacToeStrike"
-import markTicTacToeGridWithSymbol from "../services/markTicTacToeGrid"
-import flipTicTacToeTurn from "../services/flipTicTacToeTurn"
-
-import draw from "../utils/draw"
+import useGrid from "./useGrid"
+import useMarker from "./useMarker"
+import useStrike from "./useStrike"
+import useWinner from "./useWinner"
 
 export default function useTicTacToeGameState() {
-  const [grid, setGrid] = useState(() => createTicTacToeGrid(3))
-  const [strike, setStrike] = useState<TicTacToeStrike | null>(null)
+  const [marker, flipMarker, resetMarker] = useMarker()
 
-  const turn = useRef<TicTacToeSymbol>("X")
+  const grid = useGrid()
 
-  function shouldStrike(r: number, c: number) {
-    return (
-      strike !== null && strike.some(([row, col]) => row === r && col === c)
-    )
+  const strike = useStrike(grid, marker)
+  const winner = useWinner(grid, strike)
+
+  function shouldStrike(square: Square) {
+    return strike !== null && strike.squares.has(square)
   }
 
-  function handleClick(r: number, c: number) {
-    if (grid[r][c] !== "") {
+  function clickSquare(square: Square) {
+    if (square.marker !== null) {
       return
     }
-    const _grid = markTicTacToeGridWithSymbol(grid, r, c, turn.current)
-    setGrid(_grid)
-    setStrike(getTicTacToeStrike(_grid))
-    turn.current = flipTicTacToeTurn(turn.current)
+    square.mark(marker)
+    flipMarker()
   }
 
   function restartGame() {
-    setGrid(createTicTacToeGrid(3))
-    setStrike(null)
-    turn.current = "X"
+    grid.reset()
+    resetMarker()
   }
 
-  function getWinner() {
-    return strike
-      ? grid[strike[0][0]][strike[0][1]]
-      : grid.every(r => r.every(v => v !== ""))
-      ? draw
-      : ""
-  }
-
-  const winner = getWinner()
-
-  const isGameCompleted = winner === draw || winner !== ""
+  const isGameCompleted = winner !== undefined || winner === null
 
   return {
+    clickSquare,
     grid,
-    handleClick,
     isGameCompleted,
     restartGame,
     shouldStrike,
