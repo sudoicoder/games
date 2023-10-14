@@ -20,9 +20,10 @@ export default function createPiece(
     square: Square,
     howShouldMoveChange: "increment/move" | "decrement/move"
   ) {
-    if (_square !== null) {
-      _square.vacate()
+    if (_square === null) {
+      return
     }
+    _square.vacate()
     square.occupy(piece)
     _square = square
     switch (howShouldMoveChange) {
@@ -36,6 +37,9 @@ export default function createPiece(
   }
 
   function place(square: Square) {
+    if (_square !== null) {
+      return
+    }
     _square = square
   }
 
