@@ -23,6 +23,9 @@ export default function createPiece(
     if (_square === null) {
       return
     }
+    if (square.piece !== null) {
+      return
+    }
     _square.vacate()
     square.occupy(piece)
     _square = square
@@ -38,6 +41,9 @@ export default function createPiece(
 
   function place(square: Square) {
     if (_square !== null) {
+      return
+    }
+    if (square.piece !== null) {
       return
     }
     _square = square
