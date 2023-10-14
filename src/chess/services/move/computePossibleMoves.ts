@@ -83,7 +83,7 @@ export default function computePossibleMoves(
             const rookTo = board.square(
               getOffsettedPosition(square.position, offset)
             )!
-            if (!isSquareUnderOpponentControl(rookTo, opponentInfluence)) {
+            if (isSquareUnderOpponentControl(rookTo, opponentInfluence)) {
               break
             }
             const kingTo = board.square(
