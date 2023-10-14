@@ -4,19 +4,18 @@ import type Square from "./types/Square"
 import getSquareNotation from "./getSquareNotation"
 import getSquareShade from "./getSquareShade"
 
-export default function createSquare(
-  position: Square["position"],
-  piece: Nullish<Piece>
-): Square {
+export default function createSquare(position: Square["position"]): Square {
   const notation = getSquareNotation(position)
   const shade = getSquareShade(position)
 
-  function occupy(p: Piece) {
-    piece = p
+  let _piece: Nullish<Piece> = null
+
+  function occupy(piece: Piece) {
+    _piece = piece
   }
 
   function vacate() {
-    piece = null
+    _piece = null
   }
 
   return {
@@ -24,7 +23,7 @@ export default function createSquare(
     position,
     shade,
     get piece() {
-      return piece
+      return _piece
     },
     occupy,
     vacate,
