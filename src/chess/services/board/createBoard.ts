@@ -24,5 +24,10 @@ export default function createBoard(): Board {
       squares[row][column] = square
     }
   }
-  return { pieces, squares }
+
+  function square(position: Square["position"]): Optional<Square> {
+    return squares[position.row]?.[position.column]
+  }
+
+  return { pieces, square, squares }
 }
