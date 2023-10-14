@@ -12,10 +12,6 @@ export default function createGrid(size: number): Grid {
     }
   }
 
-  function hasUnmarkedSquares() {
-    return squares.some(row => row.some(square => square.marker === null))
-  }
-
   function reset() {
     for (const row of squares) {
       for (const square of row) {
@@ -24,5 +20,12 @@ export default function createGrid(size: number): Grid {
     }
   }
 
-  return { hasUnmarkedSquares, reset, size, squares }
+  return {
+    size,
+    squares,
+    get hasUnmarkedSquares() {
+      return squares.some(row => row.some(squares => squares.marker === null))
+    },
+    reset,
+  }
 }

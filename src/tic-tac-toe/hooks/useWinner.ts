@@ -5,7 +5,7 @@ export default function useWinner(grid: Grid, strike: Nullish<Strike>) {
   if (strike !== null) {
     return strike.marker
   }
-  if (grid.hasUnmarkedSquares()) {
+  if (grid.hasUnmarkedSquares) {
     return undefined
   }
   return null

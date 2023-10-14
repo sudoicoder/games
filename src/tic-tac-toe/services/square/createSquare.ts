@@ -5,24 +5,24 @@ export default function createSquare(
   row: Square["row"],
   column: Square["column"]
 ): Square {
-  let marker: Square["marker"] = null
+  let _marker: Square["marker"] = null
 
-  function mark(m: Marker) {
-    marker = m
+  function mark(marker: Marker) {
+    _marker = marker
   }
 
   function reset() {
-    marker = null
+    _marker = null
   }
 
   return {
     get isMarked() {
-      return marker !== null
+      return _marker !== null
     },
     column,
     mark,
     get marker() {
-      return marker
+      return _marker
     },
     reset,
     row,
