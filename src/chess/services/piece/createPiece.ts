@@ -46,6 +46,7 @@ export default function createPiece(
     if (square.piece !== null) {
       return
     }
+    square.occupy(piece)
     _square = square
   }
 
