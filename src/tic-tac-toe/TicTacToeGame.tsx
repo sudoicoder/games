@@ -18,16 +18,16 @@ export default function TicTacToeGame() {
       {isGameCompleted && (
         <div>{winner === null ? "Draw!" : `${winner} won!`}</div>
       )}
-      {grid.squares.map((row, ri) => {
+      {grid.squares.map(row => {
         return (
           <div
-            key={`${ri}:${row}`}
+            key={`${grid.squares.indexOf(row)}`}
             className={classes["row"]}
           >
-            {row.map((square, ci) => {
+            {row.map(square => {
               return (
                 <button
-                  key={`${ci}:${square}`}
+                  key={`${square.row}-${square.column}`}
                   className={classes["square"]}
                   disabled={isGameCompleted || square.isMarked}
                   onClick={() => clickSquare(square)}
