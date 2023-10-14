@@ -1,8 +1,8 @@
-import type { TicTacToeGrid } from "../grid/createGrid"
+import type Grid from "../grid/types/Grid"
 
 export type TicTacToeStrike = [number, number][]
 
-export default function computeStrike(grid: TicTacToeGrid) {
+export default function computeStrike(grid: Grid) {
   let strike = getMainDiagonalStrike(grid)
   if (strike) return strike
   strike = getOffDiagonalStrike(grid)
@@ -16,7 +16,7 @@ export default function computeStrike(grid: TicTacToeGrid) {
   return null
 }
 
-function getMainDiagonalStrike(grid: TicTacToeGrid) {
+function getMainDiagonalStrike(grid: Grid) {
   const symbol = grid[0][0]
   if (symbol === "") {
     return null
@@ -31,7 +31,7 @@ function getMainDiagonalStrike(grid: TicTacToeGrid) {
   return strike
 }
 
-function getOffDiagonalStrike(grid: TicTacToeGrid) {
+function getOffDiagonalStrike(grid: Grid) {
   const symbol = grid[0][grid.length - 1]
   if (symbol === "") {
     return null
@@ -46,7 +46,7 @@ function getOffDiagonalStrike(grid: TicTacToeGrid) {
   return strike
 }
 
-function getRowStrike(grid: TicTacToeGrid, row: number) {
+function getRowStrike(grid: Grid, row: number) {
   const symbol = grid[row][0]
   if (symbol === "") {
     return null
@@ -61,7 +61,7 @@ function getRowStrike(grid: TicTacToeGrid, row: number) {
   return strike
 }
 
-function getColStrike(grid: TicTacToeGrid, col: number) {
+function getColStrike(grid: Grid, col: number) {
   const symbol = grid[0][col]
   if (symbol === "") {
     return null

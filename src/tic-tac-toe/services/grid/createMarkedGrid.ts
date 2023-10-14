@@ -1,8 +1,8 @@
-import type { TicTacToeGrid } from "./createGrid"
+import type Grid from "./types/Grid"
 import type Marker from "../marker/Marker"
 
 export default function createMarkedGrid(
-  grid: TicTacToeGrid,
+  grid: Grid,
   row: number,
   col: number,
   symbol: Marker

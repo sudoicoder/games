@@ -1,8 +1,6 @@
-import type Marker from "../marker/Marker"
+import type Grid from "./types/Grid"
 
-export type TicTacToeGrid = ("" | Marker)[][]
-
-export default function createGrid(size: number): TicTacToeGrid {
+export default function createGrid(size: number): Grid {
   return Array(size)
     .fill(undefined)
     .map(() => Array(size).fill(""))
