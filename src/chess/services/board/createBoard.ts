@@ -30,5 +30,15 @@ export default function createBoard(): Board {
     return squares[position.row]?.[position.column]
   }
 
-  return { pieces, square, squares }
+  function stash() {
+    pieces.dark.forEach(piece => piece.stash())
+    pieces.light.forEach(piece => piece.stash())
+  }
+
+  return {
+    pieces,
+    squares,
+    square,
+    stash,
+  }
 }
