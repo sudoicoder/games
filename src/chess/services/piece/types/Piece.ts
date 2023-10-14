@@ -12,9 +12,10 @@ type Piece = Readonly<{
   Readonly<{
     designate: (designation: Piece["designation"]) => void
     move: (
-      to: Square,
+      square: Square,
       howShouldMoveChange: "increment/move" | "decrement/move"
     ) => void
+    place: (square: Square) => void
     stash: () => void
   }>
 

@@ -9,38 +9,42 @@ export default function createPiece(
 ): Piece {
   const notation = getPieceNotation(alliance, designation)
 
-  let moves = 0
-  let square: Nullish<Square> = null
+  let _moves = 0
+  let _square: Nullish<Square> = null
 
-  function designate(d: Piece["designation"]) {
-    designation = d
+  function designate(designateTo: Piece["designation"]) {
+    designation = designateTo
   }
 
   function move(
-    to: Square,
+    square: Square,
     howShouldMoveChange: "increment/move" | "decrement/move"
   ) {
-    if (square !== null) {
-      square.vacate()
+    if (_square !== null) {
+      _square.vacate()
     }
-    to.occupy(piece)
-    square = to
+    square.occupy(piece)
+    _square = square
     switch (howShouldMoveChange) {
       case "increment/move":
-        moves++
+        _moves++
         break
       case "decrement/move":
-        moves--
+        _moves--
         break
     }
   }
 
+  function place(square: Square) {
+    _square = square
+  }
+
   function stash() {
-    if (square === null) {
+    if (_square === null) {
       return
     }
-    square.vacate()
-    square = null
+    _square.vacate()
+    _square = null
   }
 
   const piece = {
@@ -50,13 +54,14 @@ export default function createPiece(
       return designation
     },
     get moves() {
-      return moves
+      return _moves
     },
     get square() {
-      return square
+      return _square
     },
     designate,
     move,
+    place,
     stash,
   }
 
