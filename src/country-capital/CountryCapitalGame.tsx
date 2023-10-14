@@ -3,7 +3,7 @@ import classes from "./styles/country-capital-game.module.css"
 import useCountryCapitalGame from "./hooks/useCountryCapitalGame"
 
 export default function CountryCapitalGame() {
-  const { getTilePhase, handleClick, isGameCompleted, restartGame, unmatched } =
+  const { getTilePhase, clickTile, isGameCompleted, restartGame, unmatched } =
     useCountryCapitalGame()
   return (
     <div className={classes["game"]}>
@@ -12,7 +12,7 @@ export default function CountryCapitalGame() {
           <button
             key={tile}
             className={classes["tile"]}
-            onClick={() => handleClick(tile)}
+            onClick={() => clickTile(tile)}
             data-phase={getTilePhase(tile)}
           >
             {tile}
