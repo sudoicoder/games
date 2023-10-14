@@ -4,15 +4,13 @@ export default function useTurn<T>(
   startWith: T,
   getNextTurn: (current: T) => T
 ) {
-  const [turn, setTurn] = useState<T>(startWith)
+  const [_turn, setTurn] = useState<T>(startWith)
 
-  function resetTurn() {
-    setTurn(startWith)
-  }
+  const turn = () => _turn
 
-  function advanceTurn() {
-    setTurn(getNextTurn(turn))
-  }
+  turn.reset = () => setTurn(startWith)
 
-  return { advanceTurn, resetTurn, turn }
+  turn.advance = () => setTurn(getNextTurn(_turn))
+
+  return turn
 }
