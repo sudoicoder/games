@@ -1,6 +1,6 @@
-import type Square from "../square/types/Square"
+import type Square from "../../square/types/Square"
 
-import createSquare from "../square/createSquare"
+import createSquare from "../../square/createSquare"
 
 export default function createSquares(): Square[][] {
   const squares = new Array<Square[]>(8)

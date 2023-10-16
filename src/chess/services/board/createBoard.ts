@@ -1,8 +1,8 @@
 import type Square from "../square/types/Square"
 import type Board from "./types/Board"
 
-import createSquares from "./createSquares"
-import createPieces from "./createPieces"
+import createSquares from "./internal/createSquares"
+import createPieces from "./internal/createPieces"
 
 export default function createBoard(): Board {
   const squares = createSquares()

@@ -1,7 +1,7 @@
-import type Piece from "../piece/types/Piece"
-import type Square from "../square/types/Square"
+import type Piece from "../../piece/types/Piece"
+import type Square from "../../square/types/Square"
 
-import createInitialPiece from "../piece/createInitialPiece"
+import createInitialPiece from "../../piece/createInitialPiece"
 
 export default function createPieces(
   squares: Square[][]
