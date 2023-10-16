@@ -1,0 +1,10 @@
+.promotion-prompt {
+  display: flex;
+  gap: 1px;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+.promotion-prompt .square {
+  background-color: antiquewhite;
+}
