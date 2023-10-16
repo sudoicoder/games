@@ -2,12 +2,12 @@ import type ExecutableMove from "../services/move/types/ExecutableMove"
 import type Piece from "../services/piece/types/Piece"
 import type Square from "../services/square/types/Square"
 
+import usePromotionPromptHandle from "../components/usePromotionPromptHandle"
+import useAlliance from "./useAlliance"
 import useBoard from "./useBoard"
 import useOpponentInfluence from "./useOpponentInfluence"
 import usePossibleMoves from "./usePossibleMoves"
-import usePromotionPrompt from "./usePromotionPrompt"
 import useSelectedPiece from "./useSelectedPiece"
-import useAlliance from "./useAlliance"
 
 export default function useChessGame() {
   const { board } = useBoard()
@@ -15,13 +15,9 @@ export default function useChessGame() {
   const { selectedPiece, selectPiece, deselectPiece } = useSelectedPiece()
 
   const opponentInfluence = useOpponentInfluence(board, alliance)
-  const possibleMoves = usePossibleMoves(
-    board,
-    selectedPiece,
-    opponentInfluence
-  )
+  const possibleMoves = usePossibleMoves(board, opponentInfluence)
 
-  const { PromotionPrompt, promptDesignation } = usePromotionPrompt()
+  const promotionPromptHandle = usePromotionPromptHandle()
 
   function getSquarePhase(square: Square) {
     if (selectedPiece === null) {
@@ -30,7 +26,11 @@ export default function useChessGame() {
     if (selectedPiece === square.piece) {
       return "selected"
     }
-    const executableMove = possibleMoves.get(square)
+    const executableMoves = possibleMoves.get(selectedPiece)
+    if (executableMoves === undefined) {
+      return "default"
+    }
+    const executableMove = executableMoves.get(square)
     if (executableMove === undefined) {
       return "default"
     }
@@ -58,22 +58,26 @@ export default function useChessGame() {
   }
 
   async function clickAsFollowSquare(selectedPiece: Piece, clicked: Square) {
-    if (selectedPiece === clicked.piece) {
+    const clickedPiece = clicked.piece
+    if (selectedPiece === clickedPiece) {
       deselectPiece()
       return
     }
-    const executableMove = possibleMoves.get(clicked)
+    const executableMoves = possibleMoves.get(selectedPiece)
+    if (executableMoves === undefined) {
+      return
+    }
+    const executableMove = executableMoves.get(clicked)
     if (executableMove !== undefined) {
       await executeMove(executableMove)
       return
     }
-    const piece = clicked.piece
-    if (piece === null) {
+    if (clickedPiece === null) {
       deselectPiece()
       return
     }
-    if (piece.alliance === alliance) {
-      selectPiece(piece)
+    if (clickedPiece.alliance === alliance) {
+      selectPiece(clickedPiece)
       return
     }
   }
@@ -88,7 +92,12 @@ export default function useChessGame() {
         break
       case "promotion/walk":
       case "promotion/capture":
-        executableMove.execute(await promptDesignation(alliance))
+        const designation =
+          await promotionPromptHandle.current?.promptDesignation()
+        if (designation === undefined) {
+          return
+        }
+        executableMove.execute(designation)
         break
     }
     deselectPiece()
@@ -104,9 +113,10 @@ export default function useChessGame() {
   }
 
   return {
-    PromotionPrompt,
+    alliance,
     board,
     clickSquare,
     getSquarePhase,
+    promotionPromptHandle,
   } as const
 }
