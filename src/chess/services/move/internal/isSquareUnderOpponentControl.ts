@@ -1,5 +1,5 @@
-import type Influence from "../influence/types/Influence"
-import type Square from "../square/types/Square"
+import type Influence from "../../influence/types/Influence"
+import type Square from "../../square/types/Square"
 
 export default function isSquareUnderOpponentControl(
   square: Square,

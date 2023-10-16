@@ -1,6 +1,6 @@
-import type Piece from "../piece/types/Piece"
-import type Square from "../square/types/Square"
-import type ExecutableMove from "./types/ExecutableMove"
+import type Piece from "../../piece/types/Piece"
+import type Square from "../../square/types/Square"
+import type ExecutableMove from "../types/ExecutableMove"
 
 export default function createCapture(
   fromPiece: Piece,

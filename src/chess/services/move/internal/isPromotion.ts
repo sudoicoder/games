@@ -1,5 +1,5 @@
-import type Piece from "../piece/types/Piece"
-import type Square from "../square/types/Square"
+import type Piece from "../../piece/types/Piece"
+import type Square from "../../square/types/Square"
 
 export default function isPromotion(piece: Piece, to: Square): boolean {
   if (piece.designation !== "pawn") {

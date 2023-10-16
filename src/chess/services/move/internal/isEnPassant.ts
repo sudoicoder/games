@@ -1,5 +1,5 @@
-import type Board from "../board/types/Board"
-import type Square from "../square/types/Square"
+import type Board from "../../board/types/Board"
+import type Square from "../../square/types/Square"
 
 export default function isEnPassant(
   board: Board,

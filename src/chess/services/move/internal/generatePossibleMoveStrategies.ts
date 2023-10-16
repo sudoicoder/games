@@ -1,8 +1,8 @@
-import type Piece from "../piece/types/Piece"
-import type MoveStrategy from "./types/MoveStrategy"
+import type Piece from "../../piece/types/Piece"
+import type MoveStrategy from "../types/MoveStrategy"
 
-import getForwardDirection from "../direction/getForwardDirection"
-import getOffset from "../offset/getOffset"
+import getForwardDirection from "../../direction/getForwardDirection"
+import getOffset from "../../offset/getOffset"
 
 export default function* generatePossibleMoveStrategies(
   piece: Piece
