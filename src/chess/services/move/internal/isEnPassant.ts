@@ -33,7 +33,7 @@ export default function isEnPassant(
     return false
   }
   const offPiece = offSquare.piece
-  if (offPiece === lastMovedPiece) {
+  if (offPiece !== lastMovedPiece) {
     return false
   }
   if (offPiece === null) {
