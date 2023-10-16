@@ -6,7 +6,7 @@ import type ExecutableMove from "./types/ExecutableMove"
 import type PossibleMoves from "./types/PossibleMoves"
 
 import getOpposition from "../alliance/getOpposition"
-import computePossibleMovesForPiece from "./computePossibleMovesForPiece"
+import computePossibleMovesForPiece from "./internal/computePossibleMovesForPiece"
 
 export default function computePossibleMoves(
   board: Board,
