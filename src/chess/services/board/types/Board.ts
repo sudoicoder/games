@@ -7,9 +7,6 @@ type Board = Readonly<{
 }> &
   Readonly<{
     square: (position: Square["position"]) => Optional<Square>
-  }> &
-  Readonly<{
-    stash: () => void
   }>
 
 export default Board
