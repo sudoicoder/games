@@ -2,13 +2,24 @@ import classes from "./styles/chess-game.module.css"
 
 import getPieceIcon from "./assets/getPieceIcon"
 
+import PromotionPrompt from "./components/PromotionPrompt"
+
 import useChessGame from "./hooks/useChessGame"
 
 export default function ChessGame() {
-  const { PromotionPrompt, board, clickSquare, getSquarePhase } = useChessGame()
+  const {
+    alliance,
+    board,
+    clickSquare,
+    getSquarePhase,
+    promotionPromptHandle,
+  } = useChessGame()
   return (
     <div>
-      <PromotionPrompt />
+      <PromotionPrompt
+        alliance={alliance}
+        ref={promotionPromptHandle}
+      />
       <div className={classes["board"]}>
         {board.squares.map(rank => {
           return rank.map(square => {
