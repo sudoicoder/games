@@ -1,4 +1,4 @@
-import { useState } from "react"
+import useState from "@/common/hooks/useState"
 
 import createBoard from "../services/board/createBoard"
 

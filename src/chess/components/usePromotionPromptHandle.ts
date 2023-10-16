@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import useRef from "@/common/hooks/useRef"
 
 import type PromotionPromptHandle from "./PromotionPromptHandle"
 

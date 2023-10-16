@@ -1,4 +1,4 @@
-import { useMemo } from "react"
+import useMemo from "@/common/hooks/useMemo"
 
 import type Board from "../services/board/types/Board"
 import type Influence from "../services/influence/types/Influence"

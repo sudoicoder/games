@@ -1,4 +1,5 @@
-import { useImperativeHandle, useState } from "react"
+import useImperativeHandle from "@/common/hooks/useImperativeHandle"
+import useState from "@/common/hooks/useState"
 
 import type Piece from "../services/piece/types/Piece"
 import type PromotionPromptHandle from "./PromotionPromptHandle"

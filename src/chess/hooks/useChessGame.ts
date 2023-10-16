@@ -5,10 +5,10 @@ import type Square from "../services/square/types/Square"
 import usePromotionPromptHandle from "../components/usePromotionPromptHandle"
 import useAlliance from "./useAlliance"
 import useBoard from "./useBoard"
+import useLastMovedPiece from "./useLastMovedPiece"
 import useOpponentInfluence from "./useOpponentInfluence"
 import usePossibleMoves from "./usePossibleMoves"
 import useSelectedPiece from "./useSelectedPiece"
-import useLastMovedPiece from "./useLastMovedPiece"
 
 export default function useChessGame() {
   const { board } = useBoard()

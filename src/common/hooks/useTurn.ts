@@ -1,4 +1,4 @@
-import { useState } from "react"
+import useState from "./useState"
 
 export default function useTurn<T>(
   startWith: T,
