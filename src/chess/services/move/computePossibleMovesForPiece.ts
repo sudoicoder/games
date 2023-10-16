@@ -3,8 +3,10 @@ import type Influence from "../influence/types/Influence"
 import type Piece from "../piece/types/Piece"
 import type Square from "../square/types/Square"
 import type ExecutableMove from "./types/ExecutableMove"
+
 import generateOffsettedSquares from "../offset/generateOffsettedSquares"
 import getOffsettedPosition from "../position/getOffsettedPosition"
+
 import createCapture from "./internal/createCapture"
 import createCastle from "./internal/createCastle"
 import createEnPassant from "./internal/createEnPassant"
