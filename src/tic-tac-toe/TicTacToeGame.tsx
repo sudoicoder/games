@@ -1,8 +1,8 @@
-import classes from "./styles/tic-tac-toe-game.module.css"
-
 import getMarkerIcon from "./assets/getMarkerIcon"
 
 import useTicTacToeGame from "./hooks/useTicTacToeGame"
+
+import classes from "./tic-tac-toe-game.module.css"
 
 export default function TicTacToeGame() {
   const {

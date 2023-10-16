@@ -1,10 +1,10 @@
-import classes from "./styles/chess-game.module.css"
+import PromotionPrompt from "./components/PromotionPrompt"
 
 import getPieceIcon from "./assets/getPieceIcon"
 
-import PromotionPrompt from "./components/PromotionPrompt"
-
 import useChessGame from "./hooks/useChessGame"
+
+import classes from "./chess-game.module.css"
 
 export default function ChessGame() {
   const {

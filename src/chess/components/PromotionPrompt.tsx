@@ -3,11 +3,11 @@ import { forwardRef } from "react"
 import type Piece from "../services/piece/types/Piece"
 import type PromotionPromptHandle from "./PromotionPromptHandle"
 
-import classes from "../styles/promotion-prompt.module.css"
-
 import getPieceIcon from "../assets/getPieceIcon"
 
 import useRegisteredPromotionPromptHandle from "./useRegisteredPromotionPromptHandle"
+
+import classes from "./promotion-prompt.module.css"
 
 type PromotionPromptProps = {
   alliance: Piece["alliance"]
