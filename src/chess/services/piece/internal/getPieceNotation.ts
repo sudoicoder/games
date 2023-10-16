@@ -1,7 +1,7 @@
-import type Piece from "./types/Piece"
+import type Piece from "../types/Piece"
 
-import getAllianceNotation from "../alliance/getAllianceNotation"
-import getDesignationNotation from "../designation/getDesignationNotation"
+import getAllianceNotation from "../../alliance/getAllianceNotation"
+import getDesignationNotation from "../../designation/getDesignationNotation"
 
 export default function getPieceNotation(
   alliance: Piece["alliance"],

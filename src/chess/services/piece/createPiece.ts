@@ -1,6 +1,6 @@
 import type Piece from "./types/Piece"
 
-import getPieceNotation from "./getPieceNotation"
+import getPieceNotation from "./internal/getPieceNotation"
 import Square from "../square/types/Square"
 
 export default function createPiece(
