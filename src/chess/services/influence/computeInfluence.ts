@@ -58,5 +58,5 @@ export default function computeInfluence(
     }
     controls.set(piece, controlsForPiece)
   }
-  return { checks, controls, pins }
+  return { alliance, checks, controls, pins }
 }
