@@ -1,9 +1,9 @@
-import type Extent from "../offset/types/Extent"
-import type Offset from "../offset/types/Offset"
-import type Piece from "../piece/types/Piece"
+import type Extent from "../../offset/types/Extent"
+import type Offset from "../../offset/types/Offset"
+import type Piece from "../../piece/types/Piece"
 
-import getForwardDirection from "../direction/getForwardDirection"
-import getOffset from "../offset/getOffset"
+import getForwardDirection from "../../direction/getForwardDirection"
+import getOffset from "../../offset/getOffset"
 
 export default function* generateInfluenceStrategies(
   alliance: Piece["alliance"],

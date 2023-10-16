@@ -4,7 +4,7 @@ import type Square from "../square/types/Square"
 import type Influence from "./types/Influence"
 
 import generateOffsettedSquares from "../offset/generateOffsettedSquares"
-import generateInfluenceStrategies from "./generateInfluenceStrategies"
+import generateInfluenceStrategies from "./internal/generateInfluenceStrategies"
 
 export default function computeInfluence(
   board: Board,
