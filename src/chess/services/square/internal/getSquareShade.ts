@@ -1,4 +1,4 @@
-import type Square from "./types/Square"
+import type Square from "../types/Square"
 
 export default function getSquareShade(
   position: Square["position"]

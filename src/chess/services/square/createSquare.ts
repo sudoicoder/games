@@ -1,8 +1,8 @@
 import type Piece from "../piece/types/Piece"
 import type Square from "./types/Square"
 
-import getSquareNotation from "./getSquareNotation"
-import getSquareShade from "./getSquareShade"
+import getSquareNotation from "./internal/getSquareNotation"
+import getSquareShade from "./internal/getSquareShade"
 
 export default function createSquare(position: Square["position"]): Square {
   const notation = getSquareNotation(position)
