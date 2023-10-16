@@ -13,9 +13,8 @@ export default function usePossibleMoves(
   opponentInfluence: Influence
 ): PossibleMoves {
   return useMemo(() => {
-    if (selectedPiece === null) {
-      return new Map()
-    }
-    return computePossibleMoves(board, selectedPiece, opponentInfluence)
+    return selectedPiece !== null
+      ? computePossibleMoves(board, selectedPiece, opponentInfluence)
+      : new Map()
   }, [board, selectedPiece, opponentInfluence])
 }
