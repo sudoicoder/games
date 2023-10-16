@@ -8,14 +8,20 @@ import useBoard from "./useBoard"
 import useOpponentInfluence from "./useOpponentInfluence"
 import usePossibleMoves from "./usePossibleMoves"
 import useSelectedPiece from "./useSelectedPiece"
+import useLastMovedPiece from "./useLastMovedPiece"
 
 export default function useChessGame() {
   const { board } = useBoard()
   const { alliance, flipAlliance } = useAlliance()
   const { selectedPiece, selectPiece, deselectPiece } = useSelectedPiece()
+  const { lastMovedPiece, saveLastMovedPiece } = useLastMovedPiece()
 
   const opponentInfluence = useOpponentInfluence(board, alliance)
-  const possibleMoves = usePossibleMoves(board, opponentInfluence)
+  const possibleMoves = usePossibleMoves(
+    board,
+    opponentInfluence,
+    lastMovedPiece
+  )
 
   const promotionPromptHandle = usePromotionPromptHandle()
 
@@ -69,7 +75,7 @@ export default function useChessGame() {
     }
     const executableMove = executableMoves.get(clicked)
     if (executableMove !== undefined) {
-      await executeMove(executableMove)
+      await executeMove(selectedPiece, executableMove)
       return
     }
     if (clickedPiece === null) {
@@ -82,7 +88,10 @@ export default function useChessGame() {
     }
   }
 
-  async function executeMove(executableMove: ExecutableMove) {
+  async function executeMove(
+    selectedPiece: Piece,
+    executableMove: ExecutableMove
+  ) {
     switch (executableMove.type) {
       case "walk":
       case "capture":
@@ -100,6 +109,7 @@ export default function useChessGame() {
         executableMove.execute(designation)
         break
     }
+    saveLastMovedPiece(selectedPiece)
     deselectPiece()
     flipAlliance()
   }

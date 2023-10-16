@@ -21,7 +21,8 @@ import isSquareUnderOpponentControl from "./internal/isSquareUnderOpponentContro
 export default function computePossibleMovesForPiece(
   board: Board,
   piece: Piece,
-  opponentInfluence: Influence
+  opponentInfluence: Influence,
+  lastMovedPiece: Nullish<Piece>
 ): ReadonlyMap<Square, ExecutableMove> {
   const possibleMoves = new Map<Square, ExecutableMove>()
   const square = piece.square
@@ -50,7 +51,7 @@ export default function computePossibleMovesForPiece(
           possibleMoves.set(offsetted, possible)
         }
         if (behaviours.includes("attack")) {
-          if (isEnPassant(board, square, offsetted)) {
+          if (isEnPassant(board, square, offsetted, lastMovedPiece)) {
             const captureSquare = board.square({
               row: square.position.row,
               column: offsetted.position.column,
