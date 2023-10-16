@@ -1,10 +1,12 @@
 import type Board from "../../board/types/Board"
+import type Piece from "../../piece/types/Piece"
 import type Square from "../../square/types/Square"
 
 export default function isEnPassant(
   board: Board,
   from: Square,
-  to: Square
+  to: Square,
+  lastMovedPiece: Nullish<Piece>
 ): boolean {
   const fromPiece = from.piece
   if (fromPiece === null) {
@@ -31,6 +33,9 @@ export default function isEnPassant(
     return false
   }
   const offPiece = offSquare.piece
+  if (offPiece === lastMovedPiece) {
+    return false
+  }
   if (offPiece === null) {
     return false
   }
