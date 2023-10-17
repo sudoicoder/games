@@ -1,10 +1,12 @@
-import { useState } from "react"
+import useState from "@/common/hooks/useState"
 
-import getRandomizedCountryCapitalList from "../services/getRandomizedCountryCapitalList"
 import isCountryCapitalMatched from "../services/isCountryCapitalMatched"
 
+import useUnmatchedCountryCapitalList from "./useUnmatchedCountryCapitalList"
+
 export default function useCountryCapitalGame() {
-  const [unmatched, setUnmatched] = useState(getRandomizedCountryCapitalList)
+  const { filterOutPairFromUnmatched, resetUnmatched, unmatched } =
+    useUnmatchedCountryCapitalList()
   const [clicked, setClicked] = useState<string[]>([])
 
   function getTilePhase(value: string) {
@@ -47,10 +49,6 @@ export default function useCountryCapitalGame() {
     }
   }
 
-  function filterOutPairFromUnmatched(previous: string, current: string) {
-    setUnmatched(um => um.filter(t => t !== previous && t !== current))
-  }
-
   function clickTile(tile: string) {
     if (clicked.length !== 1) {
       saveAsFirstTile(tile)
@@ -60,7 +58,7 @@ export default function useCountryCapitalGame() {
   }
 
   function restartGame() {
-    setUnmatched(getRandomizedCountryCapitalList())
+    resetUnmatched()
   }
 
   const isGameCompleted = unmatched.length === 0
