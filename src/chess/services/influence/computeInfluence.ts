@@ -12,7 +12,7 @@ export default function computeInfluence(
 ): Influence {
   const checks = new Map<Piece, Set<Square>>()
   const controls = new Map<Piece, Set<Square>>()
-  const pins = new Set<Piece>()
+  const pins = new Map<Piece, Set<Square>>()
   for (const piece of board.pieces[alliance]) {
     if (piece.square === null) {
       continue
@@ -50,7 +50,7 @@ export default function computeInfluence(
           continue
         }
         if (offsetted.piece.designation === "king") {
-          pins.add(pinnable)
+          pins.set(pinnable, controlsForStrategy)
         }
         break
       }
