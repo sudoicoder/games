@@ -29,9 +29,6 @@ export default function computePossibleMovesForPiece(
   if (square === null) {
     return possibleMoves
   }
-  if (opponentInfluence.pins.has(piece)) {
-    return possibleMoves
-  }
   const isUnderMultipleChecks = opponentInfluence.checks.size > 1
   const isKing = piece.designation === "king"
   if (isUnderMultipleChecks && !isKing) {
@@ -104,6 +101,15 @@ export default function computePossibleMovesForPiece(
       }
       break
     }
+  }
+  if (opponentInfluence.pins.has(piece)) {
+    const through = opponentInfluence.pins.get(piece)!
+    for (const square of possibleMoves.keys()) {
+      if (!through.has(square)) {
+        possibleMoves.delete(square)
+      }
+    }
+    return possibleMoves
   }
   const isUnderCheck = opponentInfluence.checks.size > 0
   if (!isKing) {
