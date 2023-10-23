@@ -1,6 +1,8 @@
 import classes from "./color-quiz.module.css"
+import useColorQuiz from "./hooks/useColorQuiz"
 
 export default function ColorQuiz() {
+  useColorQuiz()
   return (
     <div className={classes["game"]}>
       <p className={classes["prompt"]}>Guess the hex value for this color.</p>
