@@ -1,5 +1,7 @@
 import { useId, useState } from "react"
 
+import classes from "./synonym-game.module.css"
+
 export default function SynonymGame() {
   const id = useId()
 
@@ -12,7 +14,10 @@ export default function SynonymGame() {
 
   return (
     <div>
-      <form onSubmit={handleFetchSynonyms}>
+      <form
+        className={classes["word"]}
+        onSubmit={handleFetchSynonyms}
+      >
         <label htmlFor={`${id}/word`}>Word</label>
         <input
           id={`${id}/word`}
