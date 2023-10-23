@@ -1,11 +1,9 @@
-import { useId, useState } from "react"
+import { useState } from "react"
 
-import classes from "./synonym-game.module.css"
 import useSynonyms from "./hooks/useSynonyms"
+import classes from "./synonym-game.module.css"
 
 export default function SynonymGame() {
-  const id = useId()
-
   const [word, setWord] = useState("")
 
   const { fetchSynonyms, isFetchingSynonyms, synonyms } = useSynonyms(word)
@@ -21,9 +19,8 @@ export default function SynonymGame() {
         className={classes["word"]}
         onSubmit={handleFetchSynonyms}
       >
-        <label htmlFor={`${id}/word`}>Word</label>
         <input
-          id={`${id}/word`}
+          placeholder="Enter a word"
           value={word}
           onChange={e => setWord(e.target.value)}
           disabled={isFetchingSynonyms}
