@@ -1,6 +1,6 @@
 import useApp from "./hooks/useApp"
 
-import classes from "./App2.module.css"
+import classes from "./App.module.css"
 
 function App() {
   const {
