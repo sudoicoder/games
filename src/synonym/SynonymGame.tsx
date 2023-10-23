@@ -29,11 +29,11 @@ export default function SynonymGame() {
       </form>
       <section>
         {isFetchingSynonyms ? (
-          <p>Fetching synonyms... Please wait...</p>
+          <p>Fetching synonyms for "{word}". Please wait...</p>
         ) : synonyms === undefined ? (
-          <p>Click on the button to get synonyms for the word.</p>
+          <p>Click on the button to get synonyms.</p>
         ) : synonyms.length <= 0 ? (
-          <p>There were no synonyms found for the word "{word}"</p>
+          <p>No synonyms were found for the word "{word}"</p>
         ) : (
           <ul>
             {synonyms.map(synonym => (
