@@ -1,7 +1,9 @@
 import getAvailableGames from "./getAvailableGames"
 
-export default function getAvailableGameNames() {
+const availableGameNames = Object.keys(getAvailableGames())
+
+function getAvailableGameNames() {
   return availableGameNames
 }
 
-const availableGameNames = Object.keys(getAvailableGames())
+export default getAvailableGameNames

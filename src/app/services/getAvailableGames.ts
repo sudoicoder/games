@@ -6,10 +6,6 @@ import CountryCapitalGame from "@/country-capital/CountryCapitalGame"
 import SynonymGame from "@/synonym/SynonymGame"
 import TicTacToeGame from "@/tic-tac-toe/TicTacToeGame"
 
-export default function getAvailableGames() {
-  return availableGames
-}
-
 const availableGames: Record<Game["name"], Game> = {
   ChessGame,
   ColorQuiz,
@@ -17,3 +13,9 @@ const availableGames: Record<Game["name"], Game> = {
   SynonymGame,
   TicTacToeGame,
 }
+
+function getAvailableGames() {
+  return availableGames
+}
+
+export default getAvailableGames

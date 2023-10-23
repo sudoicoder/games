@@ -2,7 +2,7 @@ import useApp from "./hooks/useApp"
 
 import classes from "./app.module.css"
 
-export default function App() {
+function App() {
   const {
     SelectedGame,
     getAvailableGameNames,
@@ -29,3 +29,5 @@ export default function App() {
     </div>
   )
 }
+
+export default App

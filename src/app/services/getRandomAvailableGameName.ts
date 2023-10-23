@@ -1,8 +1,10 @@
 import getRandomElementOfIterable from "@/common/utils/getRandomElementOfIterable"
 import getAvailableGameNames from "./getAvailableGameNames"
 
-export default function getRandomAvailableGameName() {
+const availableGameNames = getAvailableGameNames()
+
+function getRandomAvailableGameName() {
   return getRandomElementOfIterable(availableGameNames)
 }
 
-const availableGameNames = getAvailableGameNames()
+export default getRandomAvailableGameName
