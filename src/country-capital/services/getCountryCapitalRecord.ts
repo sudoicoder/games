@@ -36,4 +36,8 @@ const countryCapitalRecord: Record<string, string> = {
   Vietnam: "Hanoi",
 }
 
-export default countryCapitalRecord
+function getCountryCapitalRecord() {
+  return countryCapitalRecord
+}
+
+export default getCountryCapitalRecord

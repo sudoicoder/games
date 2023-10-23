@@ -1,8 +1,10 @@
 import randomize from "@/common/utils/randomize"
-import countryCapitalRecord from "./getCountryCapitalRecord"
+import getCountryCapitalRecord from "./getCountryCapitalRecord"
 
-const countryCapitalList = Object.entries(countryCapitalRecord)
+const countryCapitalList = Object.entries(getCountryCapitalRecord())
 
-export default function getRandomizedCountryCapitalList() {
+function getRandomizedCountryCapitalList() {
   return countryCapitalList.flat().sort(randomize)
 }
+
+export default getRandomizedCountryCapitalList

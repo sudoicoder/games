@@ -1,5 +1,9 @@
-import countryCapitalRecord from "./getCountryCapitalRecord"
+import getCountryCapitalRecord from "./getCountryCapitalRecord"
 
-export default function isCountryCapitalMatched(x: string, y: string) {
+const countryCapitalRecord = getCountryCapitalRecord()
+
+function isCountryCapitalMatched(x: string, y: string) {
   return countryCapitalRecord[x] === y || countryCapitalRecord[y] === x
 }
+
+export default isCountryCapitalMatched
