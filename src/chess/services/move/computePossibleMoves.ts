@@ -8,7 +8,7 @@ import type PossibleMoves from "./types/PossibleMoves"
 import getOpposition from "../alliance/getOpposition"
 import computePossibleMovesForPiece from "./internal/computePossibleMovesForPiece"
 
-export default function computePossibleMoves(
+function computePossibleMoves(
   board: Board,
   opponentInfluence: Influence,
   lastMovedPiece: Nullish<Piece>
@@ -28,3 +28,5 @@ export default function computePossibleMoves(
   }
   return possibleMoves
 }
+
+export default computePossibleMoves

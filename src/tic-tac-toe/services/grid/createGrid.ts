@@ -3,7 +3,7 @@ import type Grid from "./types/Grid"
 
 import createSquare from "../square/createSquare"
 
-export default function createGrid(size: number): Grid {
+function createGrid(size: number): Grid {
   const squares = new Array<Square[]>(size)
   for (let row = 0; row < squares.length; row++) {
     squares[row] = new Array<Square>(size)
@@ -20,3 +20,5 @@ export default function createGrid(size: number): Grid {
     },
   }
 }
+
+export default createGrid

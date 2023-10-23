@@ -5,7 +5,7 @@ import type Square from "../square/types/Square"
 
 import getOffsettedPosition from "../position/getOffsettedPosition"
 
-export default function* generateOffsettedSquares(
+function* generateOffsettedSquares(
   board: Board,
   square: Square,
   offset: Offset,
@@ -20,3 +20,5 @@ export default function* generateOffsettedSquares(
     yield (square = offsettedSquare)
   }
 }
+
+export default generateOffsettedSquares

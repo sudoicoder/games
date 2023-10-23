@@ -13,13 +13,6 @@ import lightPawn from "./light/pawn.svg"
 import lightQueen from "./light/queen.svg"
 import lightRook from "./light/rook.svg"
 
-export default function getPieceIcon(
-  alliance: Piece["alliance"],
-  designation: Piece["designation"]
-): string {
-  return pieceIcons[alliance][designation]
-}
-
 const pieceIcons: Record<
   Piece["alliance"],
   Record<Piece["designation"], string>
@@ -41,3 +34,12 @@ const pieceIcons: Record<
     rook: lightRook,
   },
 }
+
+function getPieceIcon(
+  alliance: Piece["alliance"],
+  designation: Piece["designation"]
+): string {
+  return pieceIcons[alliance][designation]
+}
+
+export default getPieceIcon

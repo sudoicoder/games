@@ -1,9 +1,9 @@
+import type Square from "../square/types/Square"
 import type Piece from "./types/Piece"
 
 import getPieceNotation from "./internal/getPieceNotation"
-import Square from "../square/types/Square"
 
-export default function createPiece(
+function createPiece(
   alliance: Piece["alliance"],
   designation: Piece["designation"]
 ): Piece {
@@ -78,3 +78,5 @@ export default function createPiece(
 
   return piece
 }
+
+export default createPiece

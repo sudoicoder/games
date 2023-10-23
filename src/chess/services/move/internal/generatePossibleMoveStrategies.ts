@@ -4,7 +4,7 @@ import type MoveStrategy from "../types/MoveStrategy"
 import getForwardDirection from "../../direction/getForwardDirection"
 import getOffset from "../../offset/getOffset"
 
-export default function* generatePossibleMoveStrategies(
+function* generatePossibleMoveStrategies(
   piece: Piece
 ): Generator<MoveStrategy, void, void> {
   switch (piece.designation) {
@@ -63,3 +63,5 @@ export default function* generatePossibleMoveStrategies(
       return
   }
 }
+
+export default generatePossibleMoveStrategies

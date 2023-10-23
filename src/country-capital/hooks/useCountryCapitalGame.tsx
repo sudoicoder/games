@@ -4,7 +4,7 @@ import isCountryCapitalMatched from "../services/isCountryCapitalMatched"
 
 import useUnmatchedCountryCapitalList from "./useUnmatchedCountryCapitalList"
 
-export default function useCountryCapitalGame() {
+function useCountryCapitalGame() {
   const { filterOutPairFromUnmatched, resetUnmatched, unmatched } =
     useUnmatchedCountryCapitalList()
   const [clicked, setClicked] = useState<string[]>([])
@@ -69,5 +69,7 @@ export default function useCountryCapitalGame() {
     isGameCompleted,
     restartGame,
     unmatched,
-  } as const
+  }
 }
+
+export default useCountryCapitalGame

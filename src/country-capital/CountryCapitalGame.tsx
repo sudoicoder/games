@@ -2,7 +2,7 @@ import useCountryCapitalGame from "./hooks/useCountryCapitalGame"
 
 import classes from "./country-capital-game.module.css"
 
-export default function CountryCapitalGame() {
+function CountryCapitalGame() {
   const { getTilePhase, clickTile, isGameCompleted, restartGame, unmatched } =
     useCountryCapitalGame()
   return (
@@ -33,3 +33,5 @@ export default function CountryCapitalGame() {
     </div>
   )
 }
+
+export default CountryCapitalGame

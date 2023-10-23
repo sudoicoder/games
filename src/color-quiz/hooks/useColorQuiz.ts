@@ -3,7 +3,7 @@ import useState from "@/common/hooks/useState"
 import randomize from "@/common/utils/randomize"
 import getRandomColor from "../services/getRandomColor"
 
-export default function useColorQuiz() {
+function useColorQuiz() {
   const [colorToGuess, setColorToGuess] = useState(getRandomColor)
   const [hasCorrectlyIdentified, setHasCorrectlyIdentified] =
     useState<boolean>()
@@ -41,3 +41,5 @@ export default function useColorQuiz() {
     hasQuizEnded,
   }
 }
+
+export default useColorQuiz

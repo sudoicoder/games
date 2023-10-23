@@ -3,7 +3,7 @@ import { useState } from "react"
 import useSynonyms from "./hooks/useSynonyms"
 import classes from "./synonym-game.module.css"
 
-export default function SynonymGame() {
+function SynonymGame() {
   const [word, setWord] = useState("")
 
   const { fetchSynonyms, isFetchingSynonyms, synonyms } = useSynonyms(word)
@@ -45,3 +45,5 @@ export default function SynonymGame() {
     </div>
   )
 }
+
+export default SynonymGame

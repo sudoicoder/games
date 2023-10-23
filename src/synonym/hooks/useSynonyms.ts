@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 import fetchSynonymsForWord from "../api/fetchSynonyms"
 
-export default function useSynonyms(word: string) {
+function useSynonyms(word: string) {
   const [synonyms, setSynonyms] = useState<string[]>()
   const [isFetchingSynonyms, setIsFetchingSynonyms] = useState(false)
 
@@ -22,3 +22,5 @@ export default function useSynonyms(word: string) {
 
   return { synonyms, isFetchingSynonyms, fetchSynonyms }
 }
+
+export default useSynonyms

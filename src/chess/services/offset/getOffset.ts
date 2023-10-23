@@ -1,10 +1,6 @@
 import type Direction from "../direction/types/Direction"
 import type Offset from "./types/Offset"
 
-export default function getOffset(direction: Direction) {
-  return offsets[direction]
-}
-
 const offsets: Record<Direction, Offset> = {
   north: { alongRow: -1, alongColumn: 0 },
   south: { alongRow: +1, alongColumn: 0 },
@@ -23,3 +19,9 @@ const offsets: Record<Direction, Offset> = {
   "south > west > south": { alongRow: +2, alongColumn: -1 },
   "south > west > west": { alongRow: +1, alongColumn: -2 },
 }
+
+function getOffset(direction: Direction) {
+  return offsets[direction]
+}
+
+export default getOffset

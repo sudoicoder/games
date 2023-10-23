@@ -3,18 +3,6 @@ import type Marker from "../marker/types/Marker"
 import type Square from "../square/types/Square"
 import type Strike from "./types/Strike"
 
-export default function computeStrike(
-  grid: Grid,
-  marker: Marker
-): Nullish<Strike> {
-  return (
-    computeMainDiagonalStrike(grid, marker) ||
-    computeAuxiliaryDiagonalStrike(grid, marker) ||
-    computeStraightStrike(grid, marker, computeRowStrike) ||
-    computeStraightStrike(grid, marker, computeColumnStrike)
-  )
-}
-
 function computeMainDiagonalStrike(
   grid: Grid,
   marker: Marker
@@ -94,3 +82,14 @@ function computeColumnStrike(
   }
   return { marker, squares }
 }
+
+function computeStrike(grid: Grid, marker: Marker): Nullish<Strike> {
+  return (
+    computeMainDiagonalStrike(grid, marker) ||
+    computeAuxiliaryDiagonalStrike(grid, marker) ||
+    computeStraightStrike(grid, marker, computeRowStrike) ||
+    computeStraightStrike(grid, marker, computeColumnStrike)
+  )
+}
+
+export default computeStrike

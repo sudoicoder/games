@@ -4,7 +4,7 @@ import useTicTacToeGame from "./hooks/useTicTacToeGame"
 
 import classes from "./tic-tac-toe-game.module.css"
 
-export default function TicTacToeGame() {
+function TicTacToeGame() {
   const {
     clickSquare,
     grid,
@@ -13,6 +13,7 @@ export default function TicTacToeGame() {
     restartGame,
     winner,
   } = useTicTacToeGame()
+
   return (
     <div className={classes["game"]}>
       {isGameCompleted && (
@@ -58,3 +59,5 @@ export default function TicTacToeGame() {
     </div>
   )
 }
+
+export default TicTacToeGame

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import getRandomizedCountryCapitalList from "../services/getRandomizedCountryCapitalList"
 
-export default function useUnmatchedCountryCapitalList() {
+function useUnmatchedCountryCapitalList() {
   const [unmatched, setUnmatched] = useState(getRandomizedCountryCapitalList)
 
   function resetUnmatched() {
@@ -14,3 +14,5 @@ export default function useUnmatchedCountryCapitalList() {
 
   return { unmatched, resetUnmatched, filterOutPairFromUnmatched }
 }
+
+export default useUnmatchedCountryCapitalList

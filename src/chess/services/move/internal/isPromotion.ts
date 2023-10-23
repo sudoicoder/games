@@ -1,7 +1,7 @@
 import type Piece from "../../piece/types/Piece"
 import type Square from "../../square/types/Square"
 
-export default function isPromotion(piece: Piece, to: Square): boolean {
+function isPromotion(piece: Piece, to: Square): boolean {
   if (piece.designation !== "pawn") {
     return false
   }
@@ -13,3 +13,5 @@ export default function isPromotion(piece: Piece, to: Square): boolean {
   }
   return true
 }
+
+export default isPromotion

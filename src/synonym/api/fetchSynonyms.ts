@@ -1,14 +1,14 @@
 const API_BASE_URL = "https://api.datamuse.com"
 
+type SynonymResponse = {
+  word: string
+  score: number
+}
+
 function createUrlToFetchSynonyms(word: string) {
   const url = new URL("/words", API_BASE_URL)
   url.searchParams.set("rel_syn", word)
   return url
-}
-
-interface SynonymResponse {
-  word: string
-  score: number
 }
 
 function orderDescendingByScore(

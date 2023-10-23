@@ -4,7 +4,7 @@ import type Square from "./types/Square"
 import getSquareNotation from "./internal/getSquareNotation"
 import getSquareShade from "./internal/getSquareShade"
 
-export default function createSquare(position: Square["position"]): Square {
+function createSquare(position: Square["position"]): Square {
   const notation = getSquareNotation(position)
   const shade = getSquareShade(position)
 
@@ -29,3 +29,5 @@ export default function createSquare(position: Square["position"]): Square {
     vacate,
   }
 }
+
+export default createSquare

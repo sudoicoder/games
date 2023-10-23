@@ -2,7 +2,17 @@ import type Piece from "../../piece/types/Piece"
 import type Square from "../../square/types/Square"
 import type ExecutableMove from "../types/ExecutableMove"
 
-export default function createPromotionCapture(
+function description(
+  fromPiece: Piece,
+  toPiece: Piece,
+  fromSquare: Square,
+  toSquare: Square,
+  designation: Piece["designation"]
+): string {
+  return `Moved ${fromPiece.notation} from ${fromSquare.notation} to ${toSquare.notation} with capture of ${toPiece.notation} and promoted into ${designation}`
+}
+
+function createPromotionCapture(
   fromPiece: Piece,
   toPiece: Piece,
   fromSquare: Square,
@@ -33,12 +43,4 @@ export default function createPromotionCapture(
   }
 }
 
-function description(
-  fromPiece: Piece,
-  toPiece: Piece,
-  fromSquare: Square,
-  toSquare: Square,
-  designation: Piece["designation"]
-): string {
-  return `Moved ${fromPiece.notation} from ${fromSquare.notation} to ${toSquare.notation} with capture of ${toPiece.notation} and promoted into ${designation}`
-}
+export default createPromotionCapture

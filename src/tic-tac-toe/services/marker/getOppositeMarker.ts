@@ -1,6 +1,6 @@
 import type Marker from "./types/Marker"
 
-export default function getNextMarker(marker: Marker) {
+function getNextMarker(marker: Marker): Marker {
   switch (marker) {
     case "X":
       return "O"
@@ -8,3 +8,5 @@ export default function getNextMarker(marker: Marker) {
       return "X"
   }
 }
+
+export default getNextMarker

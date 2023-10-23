@@ -4,9 +4,7 @@ import type Piece from "./types/Piece"
 import getRoyalPieceDesignation from "../designation/getRoyalPieceDesignation"
 import createPiece from "./createPiece"
 
-export default function createInitialPiece(
-  position: Square["position"]
-): Nullish<Piece> {
+function createInitialPiece(position: Square["position"]): Nullish<Piece> {
   if (position.row === 0) {
     return createPiece("dark", getRoyalPieceDesignation(position.column))
   }
@@ -21,3 +19,5 @@ export default function createInitialPiece(
   }
   return null
 }
+
+export default createInitialPiece

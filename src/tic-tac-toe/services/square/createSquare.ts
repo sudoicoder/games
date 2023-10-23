@@ -1,10 +1,7 @@
 import type Marker from "../marker/types/Marker"
 import type Square from "./types/Square"
 
-export default function createSquare(
-  row: Square["row"],
-  column: Square["column"]
-): Square {
+function createSquare(row: Square["row"], column: Square["column"]): Square {
   let _marker: Square["marker"] = null
 
   function mark(marker: Marker) {
@@ -28,3 +25,5 @@ export default function createSquare(
     row,
   }
 }
+
+export default createSquare

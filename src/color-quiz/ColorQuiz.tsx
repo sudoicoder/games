@@ -1,7 +1,7 @@
 import classes from "./color-quiz.module.css"
 import useColorQuiz from "./hooks/useColorQuiz"
 
-export default function ColorQuiz() {
+function ColorQuiz() {
   const {
     checkIfCorrectChoice,
     choices,
@@ -35,3 +35,5 @@ export default function ColorQuiz() {
     </div>
   )
 }
+
+export default ColorQuiz

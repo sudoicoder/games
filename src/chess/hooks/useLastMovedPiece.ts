@@ -2,7 +2,7 @@ import useState from "@/common/hooks/useState"
 
 import type Piece from "../services/piece/types/Piece"
 
-export default function useLastMovedPiece() {
+function useLastMovedPiece() {
   const [lastMovedPiece, setLastMovedPiece] = useState<Nullish<Piece>>(null)
 
   function saveLastMovedPiece(piece: Piece) {
@@ -11,3 +11,5 @@ export default function useLastMovedPiece() {
 
   return { lastMovedPiece, saveLastMovedPiece }
 }
+
+export default useLastMovedPiece

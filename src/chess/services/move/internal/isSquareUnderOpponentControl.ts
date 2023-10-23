@@ -1,7 +1,7 @@
 import type Influence from "../../influence/types/Influence"
 import type Square from "../../square/types/Square"
 
-export default function isSquareUnderOpponentControl(
+function isSquareUnderOpponentControl(
   square: Square,
   opponentInfluence: Influence
 ): boolean {
@@ -12,3 +12,5 @@ export default function isSquareUnderOpponentControl(
   }
   return false
 }
+
+export default isSquareUnderOpponentControl

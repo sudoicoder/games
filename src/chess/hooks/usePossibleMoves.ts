@@ -7,7 +7,7 @@ import type Piece from "../services/piece/types/Piece"
 
 import computePossibleMoves from "../services/move/computePossibleMoves"
 
-export default function usePossibleMoves(
+function usePossibleMoves(
   board: Board,
   opponentInfluence: Influence,
   lastMovedPiece: Nullish<Piece>
@@ -17,3 +17,5 @@ export default function usePossibleMoves(
     [board, opponentInfluence, lastMovedPiece]
   )
 }
+
+export default usePossibleMoves

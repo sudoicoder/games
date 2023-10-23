@@ -6,7 +6,7 @@ import useChessGame from "./hooks/useChessGame"
 
 import classes from "./chess-game.module.css"
 
-export default function ChessGame() {
+function ChessGame() {
   const {
     alliance,
     board,
@@ -50,3 +50,5 @@ export default function ChessGame() {
     </div>
   )
 }
+
+export default ChessGame

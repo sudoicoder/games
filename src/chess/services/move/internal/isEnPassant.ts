@@ -2,7 +2,7 @@ import type Board from "../../board/types/Board"
 import type Piece from "../../piece/types/Piece"
 import type Square from "../../square/types/Square"
 
-export default function isEnPassant(
+function isEnPassant(
   board: Board,
   from: Square,
   to: Square,
@@ -50,3 +50,5 @@ export default function isEnPassant(
   }
   return true
 }
+
+export default isEnPassant

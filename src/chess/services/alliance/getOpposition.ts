@@ -1,8 +1,6 @@
 import type Piece from "../piece/types/Piece"
 
-export default function getOpposition(
-  alliance: Piece["alliance"]
-): Piece["alliance"] {
+function getOpposition(alliance: Piece["alliance"]): Piece["alliance"] {
   switch (alliance) {
     case "dark":
       return "light"
@@ -10,3 +8,5 @@ export default function getOpposition(
       return "dark"
   }
 }
+
+export default getOpposition

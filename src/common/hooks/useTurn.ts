@@ -1,9 +1,6 @@
 import useState from "./useState"
 
-export default function useTurn<T>(
-  startWith: T,
-  getNextTurn: (current: T) => T
-) {
+function useTurn<T>(startWith: T, getNextTurn: (current: T) => T) {
   const [turn, setTurn] = useState<T>(startWith)
 
   function advanceTurn() {
@@ -16,3 +13,5 @@ export default function useTurn<T>(
 
   return [turn, advanceTurn, resetTurn] as const
 }
+
+export default useTurn

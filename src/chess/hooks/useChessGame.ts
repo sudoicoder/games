@@ -10,7 +10,7 @@ import useOpponentInfluence from "./useOpponentInfluence"
 import usePossibleMoves from "./usePossibleMoves"
 import useSelectedPiece from "./useSelectedPiece"
 
-export default function useChessGame() {
+function useChessGame() {
   const { board } = useBoard()
   const { alliance, flipAlliance } = useAlliance()
   const { selectedPiece, selectPiece, deselectPiece } = useSelectedPiece()
@@ -128,5 +128,7 @@ export default function useChessGame() {
     clickSquare,
     getSquarePhase,
     promotionPromptHandle,
-  } as const
+  }
 }
+
+export default useChessGame

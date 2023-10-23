@@ -7,7 +7,7 @@ import type Piece from "../services/piece/types/Piece"
 import getOpposition from "../services/alliance/getOpposition"
 import computeInfluence from "../services/influence/computeInfluence"
 
-export default function useOpponentInfluence(
+function useOpponentInfluence(
   board: Board,
   alliance: Piece["alliance"]
 ): Influence {
@@ -16,3 +16,5 @@ export default function useOpponentInfluence(
     [board, alliance]
   )
 }
+
+export default useOpponentInfluence

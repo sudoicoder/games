@@ -2,7 +2,11 @@ import type Piece from "../../piece/types/Piece"
 import type Square from "../../square/types/Square"
 import type ExecutableMove from "../types/ExecutableMove"
 
-export default function createWalk(
+function description(piece: Piece, from: Square, to: Square): string {
+  return `Moved ${piece.notation} from ${from.notation} to ${to.notation}`
+}
+
+function createWalk(
   fromPiece: Piece,
   fromSquare: Square,
   toSquare: Square
@@ -21,6 +25,4 @@ export default function createWalk(
   }
 }
 
-function description(piece: Piece, from: Square, to: Square): string {
-  return `Moved ${piece.notation} from ${from.notation} to ${to.notation}`
-}
+export default createWalk

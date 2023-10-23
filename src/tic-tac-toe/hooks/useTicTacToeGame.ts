@@ -5,7 +5,7 @@ import useMarker from "./useMarker"
 import useStrike from "./useStrike"
 import useWinner from "./useWinner"
 
-export default function useTicTacToeGame() {
+function useTicTacToeGame() {
   const [marker, flipMarker, resetMarker] = useMarker()
 
   const { grid, resetGrid } = useGrid(3)
@@ -39,5 +39,7 @@ export default function useTicTacToeGame() {
     isStrikenSquare,
     restartGame,
     winner,
-  } as const
+  }
 }
+
+export default useTicTacToeGame
