@@ -4,7 +4,7 @@ import type Board from "./types/Board"
 import createSquares from "./internal/createSquares"
 import createPieces from "./internal/createPieces"
 
-export default function createBoard(): Board {
+function createBoard(): Board {
   const squares = createSquares()
   const pieces = createPieces(squares)
 
@@ -18,3 +18,5 @@ export default function createBoard(): Board {
     square,
   }
 }
+
+export default createBoard
