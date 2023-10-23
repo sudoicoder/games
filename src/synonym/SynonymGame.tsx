@@ -1,11 +1,13 @@
 import { useId, useState } from "react"
-import classes from "./synonym-game.module.css"
 
 export default function SynonymGame() {
-  const [word, setWord] = useState("")
   const id = useId()
+
+  const [word, setWord] = useState("")
+  const [synonyms] = useState<string[]>([])
+
   return (
-    <div className={classes["game"]}>
+    <div>
       <form>
         <label htmlFor={`${id}/word`}>Word</label>
         <input
@@ -15,6 +17,13 @@ export default function SynonymGame() {
         />
         <button>Find Synonyms</button>
       </form>
+      <section>
+        <ul>
+          {synonyms.map(synonym => (
+            <li key={synonym}>{synonym}</li>
+          ))}
+        </ul>
+      </section>
     </div>
   )
 }
