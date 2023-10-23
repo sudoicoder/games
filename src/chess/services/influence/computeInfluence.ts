@@ -3,7 +3,7 @@ import type Piece from "../piece/types/Piece"
 import type Square from "../square/types/Square"
 import type Influence from "./types/Influence"
 
-import generateOffsettedSquares from "../offset/generateOffsettedSquares"
+import computeInfluenceForPiece from "./internal/computeInfluenceForPiece"
 import generateInfluenceStrategies from "./internal/generateInfluenceStrategies"
 
 function computeInfluence(
@@ -17,46 +17,16 @@ function computeInfluence(
     if (piece.square === null) {
       continue
     }
-    const controlsForPiece = new Set<Square>()
     const strategies = generateInfluenceStrategies(alliance, piece.designation)
-    for (const [offset, extent] of strategies) {
-      const offsetteds = generateOffsettedSquares(
-        board,
-        piece.square,
-        offset,
-        extent
-      )
-      const controlsForStrategy = new Set<Square>()
-      let pinnable: Nullish<Piece> = null
-      for (const offsetted of offsetteds) {
-        if (offsetted.piece === null) {
-          if (pinnable === null) {
-            controlsForStrategy.add(offsetted)
-          }
-          continue
-        }
-        if (offsetted.piece.alliance === alliance) {
-          if (pinnable === null) {
-            controlsForStrategy.add(offsetted)
-          }
-          break
-        }
-        if (pinnable === null) {
-          if (offsetted.piece.designation === "king") {
-            checks.set(piece, controlsForStrategy)
-            break
-          }
-          pinnable = offsetted.piece
-          continue
-        }
-        if (offsetted.piece.designation === "king") {
-          pins.set(pinnable, controlsForStrategy)
-        }
-        break
-      }
-      controlsForStrategy.forEach(a => controlsForPiece.add(a))
+    const { checkByPiece, controlByPiece, pinByPiece } =
+      computeInfluenceForPiece(board, piece, piece.square, strategies)
+    controls.set(piece, controlByPiece)
+    if (checkByPiece !== null) {
+      checks.set(piece, checkByPiece)
     }
-    controls.set(piece, controlsForPiece)
+    if (pinByPiece !== null) {
+      pins.set(...pinByPiece)
+    }
   }
   return { alliance, checks, controls, pins }
 }
