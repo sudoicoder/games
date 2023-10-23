@@ -1,9 +1,7 @@
 import type Piece from "../piece/types/Piece"
 import type Vertical from "./types/Vertical"
 
-export default function getForwardDirection(
-  alliance: Piece["alliance"]
-): Vertical {
+function getForwardDirection(alliance: Piece["alliance"]): Vertical {
   switch (alliance) {
     case "dark":
       return "south"
@@ -11,3 +9,5 @@ export default function getForwardDirection(
       return "north"
   }
 }
+
+export default getForwardDirection
