@@ -5,7 +5,7 @@ import type Piece from "../../piece/types/Piece"
 import getForwardDirection from "../../direction/getForwardDirection"
 import getOffset from "../../offset/getOffset"
 
-export default function* generateInfluenceStrategies(
+function* generateInfluenceStrategies(
   alliance: Piece["alliance"],
   designation: Piece["designation"]
 ): Generator<[Offset, Extent], void, void> {
@@ -53,3 +53,5 @@ export default function* generateInfluenceStrategies(
       return
   }
 }
+
+export default generateInfluenceStrategies
