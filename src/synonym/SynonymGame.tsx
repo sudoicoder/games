@@ -1,17 +1,18 @@
 import { useId, useState } from "react"
 
 import classes from "./synonym-game.module.css"
-import fetchSynonyms from "./api/fetchSynonyms"
+import useSynonyms from "./hooks/useSynonyms"
 
 export default function SynonymGame() {
   const id = useId()
 
   const [word, setWord] = useState("")
-  const [synonyms, setSynonyms] = useState<string[]>([])
+
+  const { synonyms, fetchSynonyms } = useSynonyms(word)
 
   async function handleFetchSynonyms(e: React.FormEvent) {
     e.preventDefault()
-    setSynonyms(await fetchSynonyms(word))
+    await fetchSynonyms()
   }
 
   return (
