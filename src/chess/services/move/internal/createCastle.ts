@@ -2,7 +2,14 @@ import type Piece from "../../piece/types/Piece"
 import type Square from "../../square/types/Square"
 import type ExecutableMove from "../types/ExecutableMove"
 
-export default function createCastle(
+function description(kingFromSquare: Square, rookFromSquare: Square): string {
+  const deviation = Math.abs(
+    kingFromSquare.position.column - rookFromSquare.position.column
+  )
+  return `Castled ${deviation > 2 ? "0-0" : "0-0-0"}`
+}
+
+function createCastle(
   king: Piece,
   rook: Piece,
   kingFromSquare: Square,
@@ -26,9 +33,4 @@ export default function createCastle(
   }
 }
 
-function description(kingFromSquare: Square, rookFromSquare: Square): string {
-  const deviation = Math.abs(
-    kingFromSquare.position.column - rookFromSquare.position.column
-  )
-  return `Castled ${deviation > 2 ? "0-0" : "0-0-0"}`
-}
+export default createCastle
