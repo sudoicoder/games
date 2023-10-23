@@ -6,7 +6,12 @@ import type PromotionPromptHandle from "./PromotionPromptHandle"
 
 import getPromotableDesignations from "../services/designation/getPromotableDesignations"
 
-export default function useRegisteredPromotionPromptHandle(
+type Promotable = {
+  designation: Piece["designation"]
+  selectDesignation: () => void
+}
+
+function useRegisteredPromotionPromptHandle(
   handleRef: React.Ref<PromotionPromptHandle>
 ) {
   const [promotables, setPromotables] = useState<Promotable[]>()
@@ -35,7 +40,4 @@ export default function useRegisteredPromotionPromptHandle(
   return { promotables }
 }
 
-type Promotable = {
-  designation: Piece["designation"]
-  selectDesignation: () => void
-}
+export default useRegisteredPromotionPromptHandle

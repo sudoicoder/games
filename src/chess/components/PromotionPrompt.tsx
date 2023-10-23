@@ -13,30 +13,31 @@ type PromotionPromptProps = {
   alliance: Piece["alliance"]
 }
 
-const PromotionPrompt = forwardRef<PromotionPromptHandle, PromotionPromptProps>(
-  ({ alliance }, handle) => {
-    const { promotables } = useRegisteredPromotionPromptHandle(handle)
-    return (
-      promotables !== undefined && (
-        <div className={classes["promotion-prompt"]}>
-          {promotables.map(promotable => {
-            return (
-              <span
-                className={classes["tile"]}
-                onClick={promotable.selectDesignation}
-              >
-                <img
-                  className={classes["piece"]}
-                  src={getPieceIcon(alliance, promotable.designation)}
-                  alt={`${alliance}/${promotable.designation}`}
-                />
-              </span>
-            )
-          })}
-        </div>
-      )
+function PromotionPrompt(
+  { alliance }: PromotionPromptProps,
+  handle: React.ForwardedRef<PromotionPromptHandle>
+) {
+  const { promotables } = useRegisteredPromotionPromptHandle(handle)
+  return (
+    promotables !== undefined && (
+      <div className={classes["promotion-prompt"]}>
+        {promotables.map(promotable => {
+          return (
+            <span
+              className={classes["tile"]}
+              onClick={promotable.selectDesignation}
+            >
+              <img
+                className={classes["piece"]}
+                src={getPieceIcon(alliance, promotable.designation)}
+                alt={`${alliance}/${promotable.designation}`}
+              />
+            </span>
+          )
+        })}
+      </div>
     )
-  }
-)
+  )
+}
 
-export default PromotionPrompt
+export default forwardRef(PromotionPrompt)
