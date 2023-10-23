@@ -1,8 +1,8 @@
+import getRandomElementOfIterable from "@/common/utils/getRandomElementOfIterable"
 import getAvailableGameNames from "./getAvailableGameNames"
 
 export default function getRandomAvailableGameName() {
-  const randomIndex = Math.floor(Math.random() * availableGameNames.length)
-  return availableGameNames[randomIndex]
+  return getRandomElementOfIterable(availableGameNames)
 }
 
 const availableGameNames = getAvailableGameNames()
