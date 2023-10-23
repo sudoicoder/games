@@ -3,7 +3,7 @@ import type Square from "../../square/types/Square"
 
 import createInitialPiece from "../../piece/createInitialPiece"
 
-export default function createPieces(
+function createPieces(
   squares: Square[][]
 ): Record<Piece["alliance"], Set<Piece>> {
   const pieces = { dark: new Set<Piece>(), light: new Set<Piece>() }
@@ -19,3 +19,5 @@ export default function createPieces(
   }
   return pieces
 }
+
+export default createPieces
