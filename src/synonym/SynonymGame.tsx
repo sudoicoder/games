@@ -8,7 +8,7 @@ export default function SynonymGame() {
 
   const [word, setWord] = useState("")
 
-  const { synonyms, fetchSynonyms } = useSynonyms(word)
+  const { fetchSynonyms, isFetchingSynonyms, synonyms } = useSynonyms(word)
 
   async function handleFetchSynonyms(e: React.FormEvent) {
     e.preventDefault()
@@ -26,16 +26,27 @@ export default function SynonymGame() {
           id={`${id}/word`}
           value={word}
           onChange={e => setWord(e.target.value)}
+          disabled={isFetchingSynonyms}
         />
-        <button>Find Synonyms</button>
+        <button disabled={!word || isFetchingSynonyms}>Find Synonyms</button>
       </form>
-      <section>
-        <ul>
-          {synonyms.map(synonym => (
-            <li key={synonym}>{synonym}</li>
-          ))}
-        </ul>
-      </section>
+      {isFetchingSynonyms ? (
+        <span>Fetching synonyms... Please wait...</span>
+      ) : (
+        synonyms !== undefined && (
+          <section>
+            {synonyms.length > 0 ? (
+              <ul>
+                {synonyms.map(synonym => (
+                  <li key={synonym}>{synonym}</li>
+                ))}
+              </ul>
+            ) : (
+              <span>There were no synonyms found for the word "{word}"</span>
+            )}
+          </section>
+        )
+      )}
     </div>
   )
 }

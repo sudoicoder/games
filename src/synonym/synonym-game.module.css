@@ -13,3 +13,7 @@
   background-color: forestgreen;
   color: white;
 }
+
+.word > button:disabled {
+  opacity: 0.5;
+}
