@@ -1,6 +1,6 @@
 import useCountryCapitalGame from "./hooks/useCountryCapitalGame"
 
-import classes from "./country-capital-game.module.css"
+import classes from "./CountryCapitalGame.module.css"
 
 function CountryCapitalGame() {
   const { getTilePhase, clickTile, isGameCompleted, restartGame, unmatched } =

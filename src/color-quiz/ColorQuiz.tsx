@@ -1,5 +1,6 @@
-import classes from "./color-quiz.module.css"
 import useColorQuiz from "./hooks/useColorQuiz"
+
+import classes from "./ColorQuiz.module.css"
 
 function ColorQuiz() {
   const {

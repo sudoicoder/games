@@ -4,7 +4,7 @@ import getPieceIcon from "./assets/getPieceIcon"
 
 import useChessGame from "./hooks/useChessGame"
 
-import classes from "./chess-game.module.css"
+import classes from "./ChessGame.module.css"
 
 function ChessGame() {
   const {

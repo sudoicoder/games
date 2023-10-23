@@ -2,7 +2,7 @@ import getMarkerIcon from "./assets/getMarkerIcon"
 
 import useTicTacToeGame from "./hooks/useTicTacToeGame"
 
-import classes from "./tic-tac-toe-game.module.css"
+import classes from "./TicTacToeGame.module.css"
 
 function TicTacToeGame() {
   const {

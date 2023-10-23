@@ -7,7 +7,7 @@ import getPieceIcon from "../assets/getPieceIcon"
 
 import useRegisteredPromotionPromptHandle from "./useRegisteredPromotionPromptHandle"
 
-import classes from "./promotion-prompt.module.css"
+import classes from "./PromotionPrompt.module.css"
 
 type PromotionPromptProps = {
   alliance: Piece["alliance"]
