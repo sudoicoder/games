@@ -18,7 +18,7 @@ import isEnPassant from "./isEnPassant"
 import isPromotion from "./isPromotion"
 import isSquareUnderOpponentControl from "./isSquareUnderOpponentControl"
 
-export default function computePossibleMovesForPiece(
+function computePossibleMovesForPiece(
   board: Board,
   piece: Piece,
   opponentInfluence: Influence,
@@ -132,3 +132,5 @@ export default function computePossibleMovesForPiece(
   }
   return possibleMoves
 }
+
+export default computePossibleMovesForPiece
