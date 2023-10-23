@@ -30,23 +30,21 @@ export default function SynonymGame() {
         />
         <button disabled={!word || isFetchingSynonyms}>Find Synonyms</button>
       </form>
-      {isFetchingSynonyms ? (
-        <span>Fetching synonyms... Please wait...</span>
-      ) : (
-        synonyms !== undefined && (
-          <section>
-            {synonyms.length > 0 ? (
-              <ul>
-                {synonyms.map(synonym => (
-                  <li key={synonym}>{synonym}</li>
-                ))}
-              </ul>
-            ) : (
-              <span>There were no synonyms found for the word "{word}"</span>
-            )}
-          </section>
-        )
-      )}
+      <section>
+        {isFetchingSynonyms ? (
+          <p>Fetching synonyms... Please wait...</p>
+        ) : synonyms === undefined ? (
+          <p>Click on the button to get synonyms for the word.</p>
+        ) : synonyms.length <= 0 ? (
+          <p>There were no synonyms found for the word "{word}"</p>
+        ) : (
+          <ul>
+            {synonyms.map(synonym => (
+              <li key={synonym}>{synonym}</li>
+            ))}
+          </ul>
+        )}
+      </section>
     </div>
   )
 }
