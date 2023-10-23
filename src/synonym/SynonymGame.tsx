@@ -6,9 +6,13 @@ export default function SynonymGame() {
   const [word, setWord] = useState("")
   const [synonyms] = useState<string[]>([])
 
+  function handleFetchSynonyms(e: React.FormEvent) {
+    e.preventDefault()
+  }
+
   return (
     <div>
-      <form>
+      <form onSubmit={handleFetchSynonyms}>
         <label htmlFor={`${id}/word`}>Word</label>
         <input
           id={`${id}/word`}
