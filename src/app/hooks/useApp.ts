@@ -7,7 +7,7 @@ import getAvailableGames from "../services/getAvailableGames"
 import getRandomAvailableGameName from "../services/getRandomAvailableGameName"
 
 function useApp() {
-  const [selectedGameName, setSelectedGameName] = useState<Game["name"]>(
+  const [selectedGameName, setSelectedGameName] = useState(
     getRandomAvailableGameName
   )
 
@@ -22,7 +22,7 @@ function useApp() {
     getAvailableGameNames,
     selectGameName,
     selectedGameName,
-  } as const
+  }
 }
 
 export default useApp
