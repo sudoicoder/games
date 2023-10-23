@@ -28,7 +28,7 @@ export default function SynonymGame() {
           onChange={e => setWord(e.target.value)}
           disabled={isFetchingSynonyms}
         />
-        <button disabled={!word || isFetchingSynonyms}>Find Synonyms</button>
+        <button disabled={isFetchingSynonyms || !word}>Find Synonyms</button>
       </form>
       <section>
         {isFetchingSynonyms ? (
