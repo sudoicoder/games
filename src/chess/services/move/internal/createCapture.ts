@@ -2,7 +2,16 @@ import type Piece from "../../piece/types/Piece"
 import type Square from "../../square/types/Square"
 import type ExecutableMove from "../types/ExecutableMove"
 
-export default function createCapture(
+function description(
+  fromPiece: Piece,
+  toPiece: Piece,
+  fromSquare: Square,
+  toSquare: Square
+): string {
+  return `Moved ${fromPiece.notation} from ${fromSquare.notation} to ${toSquare.notation} with capture of ${toPiece.notation}`
+}
+
+function createCapture(
   fromPiece: Piece,
   toPiece: Piece,
   fromSquare: Square,
@@ -24,11 +33,4 @@ export default function createCapture(
   }
 }
 
-function description(
-  fromPiece: Piece,
-  toPiece: Piece,
-  fromSquare: Square,
-  toSquare: Square
-): string {
-  return `Moved ${fromPiece.notation} from ${fromSquare.notation} to ${toSquare.notation} with capture of ${toPiece.notation}`
-}
+export default createCapture
