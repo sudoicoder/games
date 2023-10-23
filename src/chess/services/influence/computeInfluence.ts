@@ -6,7 +6,7 @@ import type Influence from "./types/Influence"
 import generateOffsettedSquares from "../offset/generateOffsettedSquares"
 import generateInfluenceStrategies from "./internal/generateInfluenceStrategies"
 
-export default function computeInfluence(
+function computeInfluence(
   board: Board,
   alliance: Piece["alliance"]
 ): Influence {
@@ -60,3 +60,5 @@ export default function computeInfluence(
   }
   return { alliance, checks, controls, pins }
 }
+
+export default computeInfluence
