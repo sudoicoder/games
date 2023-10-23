@@ -1,4 +1,3 @@
-import useState from "@/common/hooks/useState"
 import classes from "./color-quiz.module.css"
 import useColorQuiz from "./hooks/useColorQuiz"
 
