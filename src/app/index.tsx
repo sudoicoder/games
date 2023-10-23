@@ -9,6 +9,7 @@ function App() {
     selectGameName,
     selectedGameName,
   } = useApp()
+
   return (
     <div className={classes["wrapper"]}>
       <select

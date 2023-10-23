@@ -5,6 +5,7 @@ import classes from "./CountryCapitalGame.module.css"
 function CountryCapitalGame() {
   const { getTilePhase, clickTile, isGameCompleted, restartGame, unmatched } =
     useCountryCapitalGame()
+
   return (
     <div className={classes["game"]}>
       {unmatched.map(tile => {

@@ -14,6 +14,7 @@ function ChessGame() {
     getSquarePhase,
     promotionPromptHandle,
   } = useChessGame()
+
   return (
     <div>
       <PromotionPrompt

@@ -18,6 +18,7 @@ function PromotionPrompt(
   handle: React.ForwardedRef<PromotionPromptHandle>
 ) {
   const { promotables } = useRegisteredPromotionPromptHandle(handle)
+
   return (
     promotables !== undefined && (
       <div className={classes["promotion-prompt"]}>
