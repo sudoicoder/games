@@ -2,7 +2,17 @@ import type Piece from "../../piece/types/Piece"
 import type Square from "../../square/types/Square"
 import type ExecutableMove from "../types/ExecutableMove"
 
-export default function createEnPassant(
+function description(
+  fromPiece: Piece,
+  capturePiece: Piece,
+  fromSquare: Square,
+  toSquare: Square,
+  captureSquare: Square
+): string {
+  return `Moved ${fromPiece.notation} from ${fromSquare.notation} to ${toSquare.notation} with capture of ${capturePiece.notation} at ${captureSquare.notation} enpassant`
+}
+
+function createEnPassant(
   fromPiece: Piece,
   capturePiece: Piece,
   fromSquare: Square,
@@ -31,12 +41,4 @@ export default function createEnPassant(
   }
 }
 
-function description(
-  fromPiece: Piece,
-  capturePiece: Piece,
-  fromSquare: Square,
-  toSquare: Square,
-  captureSquare: Square
-): string {
-  return `Moved ${fromPiece.notation} from ${fromSquare.notation} to ${toSquare.notation} with capture of ${capturePiece.notation} at ${captureSquare.notation} enpassant`
-}
+export default createEnPassant
